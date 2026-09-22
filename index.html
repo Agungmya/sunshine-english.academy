@@ -2244,16 +2244,113 @@
       });
     }
 
+    function downloadStudentKtpFrontPdf(targetStudentId) {
+      var sId = targetStudentId || activeViewingStudentKtpId || gameState.studentId;
+      var s = null;
+      for (var i = 0; i < studentRoster.length; i++) {
+        if (String(studentRoster[i].id) === String(sId)) {
+          s = studentRoster[i];
+          break;
+        }
+      }
+      var sName = s ? s.name : (document.getElementById("ktp-student-name").innerText || "Siswa");
+      var sNo = s ? s.id : (document.getElementById("ktp-student-id-tag").innerText || "01").replace(/[^0-9]/g, "");
+
+      var jsPdfLib = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
+      if (!jsPdfLib) {
+        showToast("Pustaka PDF sedang dimuat, mohon tunggu sebentar...");
+        return;
+      }
+
+      showToast("Menyusun PDF KTP Depan " + sName + "...");
+
+      var frontView = document.getElementById("ktp-card-front-view");
+      if (!frontView) return;
+
+      var sandbox = document.createElement("div");
+      sandbox.style.position = "fixed";
+      sandbox.style.left = "-9999px";
+      sandbox.style.top = "0";
+      sandbox.style.width = "450px";
+      sandbox.style.height = "282px";
+      sandbox.style.zIndex = "-9999";
+      sandbox.style.background = "#060e1d";
+
+      var clone = frontView.cloneNode(true);
+      clone.classList.remove("hidden");
+      clone.style.transform = "none";
+      clone.style.width = "450px";
+      clone.style.height = "282px";
+      clone.style.borderRadius = "24px";
+      clone.style.margin = "0";
+
+      sandbox.appendChild(clone);
+      document.body.appendChild(sandbox);
+
+      var readyPromise = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+
+      readyPromise.then(function() {
+        return html2canvas(clone, {
+          scale: 3,
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: "#060e1d",
+          width: 450,
+          height: 282,
+          windowWidth: 450,
+          windowHeight: 282,
+          logging: false
+        });
+      }).then(function(canvas) {
+        document.body.removeChild(sandbox);
+        var frontImgData = canvas.toDataURL("image/jpeg", 0.98);
+
+        // Format PDF Standar A4 Portrait dengan kartu depan presisi 86mm x 54mm di tengah
+        var doc = new jsPdfLib({
+          orientation: "portrait",
+          unit: "mm",
+          format: "a4"
+        });
+
+        var cardW = 86;
+        var cardH = 54;
+        var centerX = (210 - cardW) / 2;
+        var topY = 45;
+
+        // Garis batas gunting halus
+        doc.setDrawColor(203, 213, 225);
+        doc.setLineDashPattern([2, 2], 0);
+        doc.rect(centerX - 0.8, topY - 0.8, cardW + 1.6, cardH + 1.6);
+
+        // Gambar KTP Depan
+        doc.addImage(frontImgData, "JPEG", centerX, topY, cardW, cardH);
+
+        // Label panduan gunting
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8);
+        doc.setTextColor(148, 163, 184);
+        doc.text("✂️ GARIS GUNTING KARTU IDENTITAS SISWA (BAGIAN DEPAN) ✂️", 105, topY + cardH + 5, { align: "center" });
+        doc.setFontSize(7);
+        doc.text("Sunshine English Academy • Mr. Agung's Class", 105, topY + cardH + 9, { align: "center" });
+
+        var cleanFileName = sName.trim().replace(/[^a-zA-Z0-9]/g, "_");
+        var fileName = "KTP_DEPAN_" + (sNo ? sNo + "_" : "") + cleanFileName + ".pdf";
+
+        doc.save(fileName);
+        showToast("PDF KTP Depan berhasil diunduh!");
+      }).catch(function(err) {
+        if (document.body.contains(sandbox)) document.body.removeChild(sandbox);
+        showToast("Gagal menyusun PDF: " + err.message);
+      });
+    }
+
     function printSingleStudentKtp() {
       var frontView = document.getElementById("ktp-card-front-view").cloneNode(true);
-      var backView = document.getElementById("ktp-card-back-view").cloneNode(true);
       frontView.classList.remove("hidden");
-      backView.classList.remove("hidden");
 
       var printContainer = document.getElementById("dedicated-print-container");
       printContainer.innerHTML = "";
       printContainer.appendChild(frontView);
-      printContainer.appendChild(backView);
       printContainer.classList.remove("hidden");
 
       setTimeout(function() {
