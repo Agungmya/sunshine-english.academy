@@ -147,6 +147,7 @@
       * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
+        color-adjust: exact !important;
       }
       .no-print {
         display: none !important;
@@ -189,6 +190,7 @@
         </button>
       </div>
     </header>
+
     <!-- SCREEN 1: LOGIN SISWA & GURU -->
     <main id="screen-login" class="flex-1 p-5 md:p-10 flex flex-col justify-between items-center overflow-y-auto custom-scroll w-full">
       <div class="text-center pt-4 max-w-sm">
@@ -231,6 +233,7 @@
         <p class="text-xs md:text-sm text-slate-400 font-semibold italic">“It’s time to <span class="text-amber-500 font-bold">rise and shine!</span>”</p>
       </div>
     </main>
+
     <!-- SCREEN 2: HOME SISWA DENGAN GRID RESPONSIF -->
     <main id="screen-home" class="flex-1 p-4 md:p-6 lg:p-8 flex flex-col justify-start gap-4 hidden overflow-y-auto custom-scroll w-full">
       <div class="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 rounded-3xl p-5 md:p-6 text-white shadow-md relative overflow-hidden">
@@ -386,6 +389,7 @@
         </div>
       </div>
     </main>
+
     <!-- SCREEN 3: DAFTAR BAB -->
     <main id="screen-worlds" class="flex-1 p-4 md:p-8 flex flex-col justify-between hidden overflow-y-auto custom-scroll w-full">
       <div class="max-w-3xl mx-auto w-full">
@@ -437,6 +441,7 @@
         <div class="relative max-w-sm mx-auto py-2" id="adventure-trail-nodes-container"></div>
       </div>
     </main>
+
     <!-- SCREEN 5: GAMEPLAY DENGAN JUMLAH SOAL FLEKSIBEL (10, 11, DLL) -->
     <main id="screen-gameplay" class="flex-1 p-4 md:p-8 flex flex-col justify-between hidden overflow-y-auto custom-scroll w-full">
       <div class="max-w-2xl mx-auto w-full">
@@ -504,6 +509,7 @@
         <button id="btn-result-back" onclick="navigate('screen-levels')" class="w-full py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-title text-base font-bold rounded-2xl transition">🗺️ Kembali ke Peta Level</button>
       </div>
     </main>
+
     <!-- SCREEN 7: PORTAL GURU RESPONSIF PENUH -->
     <main id="screen-teacher" class="flex-1 flex flex-col justify-between hidden overflow-hidden bg-slate-100 w-full">
       <div class="bg-amber-500 text-white p-4 shadow-md flex items-center justify-between">
@@ -596,6 +602,7 @@
             <div class="max-h-80 overflow-y-auto custom-scroll" id="admin-roster-list-container"></div>
           </div>
         </div>
+
         <!-- TAB 2: ABSENSI QR GURU -->
         <div id="teacher-tab-attendance" class="space-y-4 hidden">
           <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300 rounded-3xl p-4 md:p-5 space-y-3">
@@ -716,6 +723,7 @@
             <button type="button" onclick="adminSaveQuestionForm()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-title text-xs md:text-sm font-bold rounded-xl shadow-xs transition">Simpan Perubahan Soal ✓</button>
           </div>
         </div>
+
         <!-- TAB 5: KUNCI LEVEL -->
         <div id="teacher-tab-locks" class="space-y-4 hidden">
           <div class="space-y-2"><label class="text-xs font-bold text-slate-700 uppercase block">Pilih Bab:</label><select id="admin-lock-world-select" onchange="renderAdminLevelLocks()" class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl font-bold text-xs"></select></div>
@@ -771,6 +779,7 @@
         </div>
       </div>
     </main>
+
     <!-- MODAL: KTP SISWA RESMI (DENGAN OPSI DOKUMEN WORD, HTML CETAK, & GAMBAR HD) -->
     <div id="modal-student-ktp" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex flex-col items-center justify-center p-3 overflow-y-auto">
       <div class="modal-ktp-box w-full max-w-lg bg-sunNavy-950/95 border border-sunGold-500/40 rounded-3xl p-4 shadow-2xl flex flex-col items-center gap-3 text-center">
@@ -991,6 +1000,7 @@
 
       </div>
     </div>
+
     <!-- MODAL: TEMPEL MASSAL SOAL DARI GEMINI -->
     <div id="modal-gemini-import" class="fixed inset-0 bg-slate-900/80 z-50 hidden flex items-center justify-center p-3">
       <div class="bg-white rounded-3xl w-full max-w-xl flex flex-col shadow-2xl border-4 border-indigo-500 overflow-hidden">
@@ -1079,6 +1089,7 @@
     <!-- TOAST NOTIFIKASI -->
     <div id="app-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2 bg-slate-900/90 text-white font-title text-xs rounded-2xl shadow-xl transition-all">Pesan</div>
   </div>
+
   <script>
     window.onerror = function(msg, url, line) {
       var errBox = document.getElementById("login-error-msg");
@@ -1150,6 +1161,7 @@
         { text: "The opposite of 'big' is ________.", options: ["small", "huge", "tall", "long"], answer: 0, tip: "Lawan kata besar adalah kecil ('small')." }
       ]
     };
+
     function loadSavedAcademyLogos() {
       try {
         var savedFrontLogo = localStorage.getItem("MRAGUNG_SEA_LOGO");
@@ -1197,7 +1209,7 @@
 
     function loadLocalCache() {
       try {
-        var raw = localStorage.getItem("MRAGUNG_V8_CONFIG") || localStorage.getItem("MRAGUNG_V7_CONFIG");
+        var raw = localStorage.getItem("MRAGUNG_V8_CONFIG") || localStorage.getItem("MRAGUNG_V7_CONFIG") || localStorage.getItem("MRAGUNG_V6_CONFIG");
         if (raw) {
           var parsed = JSON.parse(raw);
           if (parsed.studentRoster && parsed.studentRoster.length > 0) studentRoster = parsed.studentRoster;
@@ -1330,6 +1342,7 @@
       if (screenId === "screen-worlds") renderWorldsList();
       else if (screenId === "screen-levels") renderAdventureLevelMap();
     }
+
     function handleLogin() {
       try {
         var userEl = document.getElementById("login-username-input");
@@ -1558,6 +1571,7 @@
       document.getElementById("header-streak-count").innerText = streakVal;
       document.getElementById("home-streak-display").innerText = streakVal + " Hari";
     }
+
     function renderWorldsList() {
       var container = document.getElementById("worlds-card-container");
       if (!container) return;
@@ -1797,6 +1811,7 @@
       navigate("screen-gameplay");
       renderCurrentQuestion();
     }
+
     function getQuestionCountForCurrentSession() {
       if (gameState.isExamMode) {
         return (window.examConfig && window.examConfig.questions && window.examConfig.questions.length > 0) ? window.examConfig.questions.length : 10;
@@ -2027,6 +2042,7 @@
       updateStudentHomeCard();
       navigate("screen-result");
     }
+
     function switchTeacherTab(t) {
       var tabs = ["roster", "attendance", "bab", "editor", "locks", "exam", "scores"];
       for (var i = 0; i < tabs.length; i++) {
@@ -2109,10 +2125,13 @@
       openSpecificStudentKtpModal(stId);
       downloadStudentKtpDocument(docType, stId);
     }
+
     function generateStudentKtpDocumentHtml(studentData) {
       var s = studentData;
       var logoEl = document.querySelector(".app-global-logo");
       var logoSrc = (logoEl && logoEl.src) ? logoEl.src : "https://placehold.co/120x120/ffffff/0b1b36?text=SEA";
+      var backLogoEl = document.querySelector(".app-global-back-logo");
+      var backLogoSrc = (backLogoEl && backLogoEl.src) ? backLogoEl.src : "https://placehold.co/400x160/ffffff/0b1b36?text=SUNSHINE+ENGLISH+ACADEMY";
       var photoSrc = s.photo || "https://images.unsplash.com/photo-1544717305-2782549b5136?w=240&auto=format&fit=crop&q=80";
       var cleanGrade = (s.grade || "Basic").replace("Kelas ", "").toUpperCase() + " LEVEL";
       var qrPayload = "MRAGUNG:ABSEN:" + s.id + ":" + s.username;
@@ -2124,55 +2143,78 @@
           '<meta charset="utf-8">' +
           '<title>Official Student Smart Card - ' + s.name + '</title>' +
           '<style>' +
-            '@page { size: A4 portrait; margin: 15mm; }' +
-            'body { font-family: "Segoe UI", Arial, sans-serif; background-color: #f1f5f9; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }' +
-            '.doc-container { width: 450px; margin: 20px auto; }' +
-            '.id-card { width: 450px; height: 282px; background: linear-gradient(135deg, #0b1b36 0%, #0f2347 50%, #060e1d 100%); border-radius: 24px; border: 1.5px solid #dfb743; box-shadow: 0 15px 35px rgba(6,14,29,0.45); color: #ffffff; position: relative; overflow: hidden; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; font-family: "Segoe UI", Tahoma, sans-serif; }' +
-            '.card-header { padding: 10px 16px; background-color: rgba(6, 14, 29, 0.75); border-bottom: 1px solid rgba(223, 183, 67, 0.35); display: flex; align-items: center; justify-content: space-between; }' +
+            '@page { size: A4 portrait; margin: 10mm; }' +
+            '*, *:before, *:after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }' +
+            'body { font-family: "Segoe UI", Arial, sans-serif; background-color: #f1f5f9; margin: 0; padding: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; }' +
+            '.doc-container { width: 450px; margin: 10px auto; display: flex; flex-direction: column; align-items: center; gap: 14px; }' +
+            '.id-card { width: 450px; height: 282px; background: #0b1b36 !important; background-color: #0b1b36 !important; background-image: linear-gradient(135deg, #0b1b36 0%, #0f2347 50%, #060e1d 100%) !important; border-radius: 24px; border: 1.5px solid #dfb743 !important; box-shadow: 0 15px 35px rgba(6,14,29,0.45); color: #ffffff !important; position: relative; overflow: hidden; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; font-family: "Segoe UI", Tahoma, sans-serif; page-break-inside: avoid !important; }' +
+            '.card-header { padding: 10px 16px; background-color: #060e1d !important; border-bottom: 1px solid rgba(223, 183, 67, 0.35); display: flex; align-items: center; justify-content: space-between; }' +
             '.header-left { display: flex; align-items: center; gap: 10px; }' +
-            '.logo-box { width: 42px; height: 42px; background: #ffffff; border: 1.5px solid #dfb743; border-radius: 10px; padding: 2px; display: flex; align-items: center; justify-content: center; overflow: hidden; }' +
+            '.logo-box { width: 42px; height: 42px; background: #ffffff !important; border: 1.5px solid #dfb743; border-radius: 10px; padding: 2px; display: flex; align-items: center; justify-content: center; overflow: hidden; }' +
             '.logo-box img { width: 100%; height: 100%; object-fit: contain; }' +
             '.title-group { line-height: 1.2; text-align: left; }' +
-            '.school-title { font-size: 12px; font-weight: 900; letter-spacing: 0.5px; color: #ffffff; text-transform: uppercase; }' +
-            '.smart-badge { font-size: 7px; background: rgba(223, 183, 67, 0.25); color: #edd06d; padding: 1px 4px; border-radius: 4px; border: 1px solid rgba(223, 183, 67, 0.4); font-weight: bold; margin-left: 4px; }' +
-            '.school-sub { font-size: 7.5px; font-weight: 800; color: #dfb743; letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }' +
+            '.school-title { font-size: 12px; font-weight: 900; letter-spacing: 0.5px; color: #ffffff !important; text-transform: uppercase; }' +
+            '.smart-badge { font-size: 7px; background: rgba(223, 183, 67, 0.25) !important; color: #edd06d !important; padding: 1px 4px; border-radius: 4px; border: 1px solid rgba(223, 183, 67, 0.4); font-weight: bold; margin-left: 4px; }' +
+            '.school-sub { font-size: 7.5px; font-weight: 800; color: #dfb743 !important; letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }' +
             '.header-right { text-align: right; }' +
-            '.grade-pill { background: linear-gradient(90deg, #f7e396, #dfb743, #c59a27); color: #060e1d; font-size: 9px; font-weight: 900; padding: 3px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; }' +
-            '.acad-year { font-size: 7.5px; color: #edd06d; margin-top: 2px; display: block; }' +
-            '.card-body { padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex: 1; }' +
+            '.grade-pill { background: linear-gradient(90deg, #f7e396, #dfb743, #c59a27) !important; background-color: #dfb743 !important; color: #060e1d !important; font-size: 9px; font-weight: 900; padding: 3px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; }' +
+            '.acad-year { font-size: 7.5px; color: #edd06d !important; margin-top: 2px; display: block; }' +
+            '.card-body { padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex: 1; position: relative; z-index: 2; }' +
             '.photo-col { width: 88px; display: flex; flex-direction: column; align-items: center; gap: 6px; }' +
-            '.photo-frame { width: 76px; height: 92px; border-radius: 12px; border: 2px solid #dfb743; overflow: hidden; background: #1e293b; position: relative; }' +
+            '.photo-frame { width: 76px; height: 92px; border-radius: 12px; border: 2px solid #dfb743 !important; overflow: hidden; background: #1e293b !important; position: relative; }' +
             '.photo-frame img { width: 100%; height: 100%; object-fit: cover; }' +
-            '.photo-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(6, 14, 29, 0.85); color: #edd06d; font-size: 6.5px; font-weight: 800; text-align: center; padding: 2px 0; border-top: 1px solid #dfb743; }' +
-            '.chip-emv { width: 32px; height: 20px; background: linear-gradient(135deg, #f7e396, #dfb743, #9c7616); border-radius: 4px; border: 1px solid #edd06d; }' +
+            '.photo-label { position: absolute; bottom: 0; left: 0; right: 0; background: #060e1d !important; color: #edd06d !important; font-size: 6.5px; font-weight: 800; text-align: center; padding: 2px 0; border-top: 1px solid #dfb743; }' +
+            '.chip-emv { width: 32px; height: 20px; background: linear-gradient(135deg, #f7e396, #dfb743, #9c7616) !important; background-color: #dfb743 !important; border-radius: 4px; border: 1px solid #edd06d; }' +
             '.info-col { flex: 1; text-align: left; display: flex; flex-direction: column; justify-content: center; gap: 3px; }' +
             '.name-header { display: flex; justify-content: space-between; align-items: center; }' +
-            '.std-label { font-size: 7.5px; color: #cbd5e1; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }' +
-            '.std-id { font-size: 8.5px; color: #edd06d; background: rgba(255,255,255,0.1); padding: 1px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); font-weight: bold; }' +
-            '.student-name { font-size: 15px; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; margin: 2px 0; }' +
-            '.creds-box { background: rgba(6, 14, 29, 0.8); border: 1px solid rgba(223, 183, 67, 0.4); border-radius: 10px; padding: 5px 8px; margin: 2px 0; }' +
-            '.creds-header { font-size: 6.5px; color: #cbd5e1; font-weight: 800; text-transform: uppercase; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 2px; margin-bottom: 4px; }' +
+            '.std-label { font-size: 7.5px; color: #cbd5e1 !important; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }' +
+            '.std-id { font-size: 8.5px; color: #edd06d !important; background: rgba(255,255,255,0.12) !important; padding: 1px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); font-weight: bold; }' +
+            '.student-name { font-size: 15px; font-weight: 900; color: #ffffff !important; text-transform: uppercase; letter-spacing: 0.5px; margin: 2px 0; }' +
+            '.creds-box { background: #060e1d !important; background-color: #060e1d !important; border: 1px solid rgba(223, 183, 67, 0.4) !important; border-radius: 10px; padding: 5px 8px; margin: 2px 0; }' +
+            '.creds-header { font-size: 6.5px; color: #cbd5e1 !important; font-weight: 800; text-transform: uppercase; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 2px; margin-bottom: 4px; }' +
             '.creds-grid { display: flex; gap: 6px; }' +
-            '.cred-item { flex: 1; background: rgba(255,255,255,0.05); padding: 3px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); }' +
-            '.cred-label { font-size: 6px; color: #94a3b8; font-weight: bold; text-transform: uppercase; display: block; }' +
-            '.cred-value { font-size: 11px; font-weight: 900; color: #edd06d; font-family: monospace; display: block; }' +
+            '.cred-item { flex: 1; background: rgba(255,255,255,0.08) !important; padding: 3px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }' +
+            '.cred-label { font-size: 6px; color: #94a3b8 !important; font-weight: bold; text-transform: uppercase; display: block; }' +
+            '.cred-value { font-size: 11px; font-weight: 900; color: #edd06d !important; font-family: monospace; display: block; }' +
             '.status-row { display: flex; align-items: center; gap: 6px; margin-top: 2px; }' +
-            '.status-badge { font-size: 7.5px; font-weight: bold; color: #6ee7b7; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.5); padding: 2px 6px; border-radius: 5px; }' +
+            '.status-badge { font-size: 7.5px; font-weight: bold; color: #6ee7b7 !important; background: rgba(16, 185, 129, 0.25) !important; border: 1px solid rgba(16, 185, 129, 0.5); padding: 2px 6px; border-radius: 5px; }' +
             '.qr-col { width: 88px; display: flex; flex-direction: column; align-items: center; gap: 4px; }' +
-            '.qr-frame { width: 78px; height: 78px; background: #ffffff; border: 2px solid #dfb743; border-radius: 12px; padding: 3px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; }' +
+            '.qr-frame { width: 78px; height: 78px; background: #ffffff !important; border: 2px solid #dfb743 !important; border-radius: 12px; padding: 3px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; }' +
             '.qr-frame img { width: 100%; height: 100%; object-fit: contain; }' +
-            '.qr-tag { font-size: 7.5px; font-weight: 800; color: #edd06d; background: rgba(223, 183, 67, 0.2); border: 1px solid rgba(223, 183, 67, 0.4); padding: 2px 6px; border-radius: 5px; text-transform: uppercase; }' +
-            '.card-footer { padding: 6px 16px; background-color: rgba(6, 14, 29, 0.9); border-top: 1px solid rgba(223, 183, 67, 0.35); display: flex; align-items: center; justify-content: space-between; font-size: 8px; }' +
-            '.reg-code { color: #94a3b8; font-family: monospace; }' +
-            '.motto { font-weight: 900; font-style: italic; color: #edd06d; letter-spacing: 0.5px; }' +
-            '.signature-tag { font-weight: bold; color: #e2e8f0; }' +
-            '@media print { body { background: white !important; padding: 0 !important; } .doc-container { margin: 0 auto !important; } }' +
+            '.qr-tag { font-size: 7.5px; font-weight: 800; color: #edd06d !important; background: rgba(223, 183, 67, 0.25) !important; border: 1px solid rgba(223, 183, 67, 0.4); padding: 2px 6px; border-radius: 5px; text-transform: uppercase; }' +
+            '.card-footer { padding: 6px 16px; background-color: #060e1d !important; border-top: 1px solid rgba(223, 183, 67, 0.35); display: flex; align-items: center; justify-content: space-between; font-size: 8px; }' +
+            '.reg-code { color: #94a3b8 !important; font-family: monospace; }' +
+            '.motto { font-weight: 900; font-style: italic; color: #edd06d !important; letter-spacing: 0.5px; }' +
+            '.signature-tag { font-weight: bold; color: #e2e8f0 !important; }' +
+            '.cut-divider { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 10px; font-weight: bold; color: #64748b; margin: 4px 0; font-family: monospace; }' +
+            '.cut-line { flex: 1; height: 1px; border-top: 1.5px dashed #94a3b8; }' +
+            '.id-card-back { width: 450px; height: 282px; background: #060e1d !important; background-color: #060e1d !important; background-image: linear-gradient(135deg, #060e1d 0%, #0b1b36 50%, #0f2347 100%) !important; border-radius: 24px; border: 1.5px solid #dfb743 !important; box-shadow: 0 15px 35px rgba(6,14,29,0.45); color: #ffffff !important; position: relative; overflow: hidden; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; font-family: "Segoe UI", Tahoma, sans-serif; page-break-inside: avoid !important; }' +
+            '.magnetic-stripe { width: 100%; height: 28px; background: #000000 !important; background-color: #000000 !important; margin-top: 8px; border-top: 1px solid rgba(223,183,67,0.3); border-bottom: 1px solid rgba(223,183,67,0.3); display: flex; align-items: center; padding: 0 16px; box-sizing: border-box; }' +
+            '.magnetic-text { font-size: 6.5px; font-family: monospace; color: #edd06d !important; letter-spacing: 1px; }' +
+            '.watermark-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 16px; opacity: 0.22; pointer-events: none; z-index: 1; }' +
+            '.watermark-bg img { width: 100%; max-height: 120px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }' +
+            '.back-body { padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex: 1; position: relative; z-index: 2; }' +
+            '.terms-box { flex: 1; text-align: left; }' +
+            '.terms-title { font-size: 8px; font-weight: 800; color: #dfb743 !important; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; }' +
+            '.terms-list { font-size: 7px; color: #e2e8f0 !important; margin: 0; padding-left: 14px; line-height: 1.35; }' +
+            '.support-pill { display: inline-flex; align-items: center; gap: 4px; background: #060e1d !important; border: 1px solid rgba(223,183,67,0.5) !important; padding: 2px 8px; border-radius: 6px; font-size: 7px; color: #e2e8f0 !important; margin-top: 6px; }' +
+            '.barcode-col { width: 120px; shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }' +
+            '.barcode-box { background: #ffffff !important; padding: 4px 6px; border-radius: 6px; border: 1px solid #dfb743 !important; display: flex; flex-direction: column; align-items: center; }' +
+            '.barcode-bars { display: flex; align-items: flex-end; height: 24px; gap: 2px; }' +
+            '.barcode-bar { background: #0f172a !important; height: 100%; }' +
+            '.barcode-label { font-size: 6px; font-family: monospace; font-weight: bold; color: #0f172a !important; margin-top: 2px; }' +
+            '.signature-box { width: 100%; border: 1px dashed rgba(223,183,67,0.6) !important; border-radius: 8px; padding: 4px; background: #060e1d !important; text-align: center; }' +
+            '.sig-title { font-size: 6px; color: #cbd5e1 !important; display: block; }' +
+            '.sig-name { font-size: 9px; font-weight: bold; color: #dfb743 !important; letter-spacing: 0.5px; display: block; margin-top: 1px; }' +
+            '.sig-verified { display: inline-block; background: rgba(16,185,129,0.25) !important; color: #6ee7b7 !important; padding: 1px 4px; border-radius: 3px; font-size: 5.5px; font-family: monospace; font-weight: bold; border: 1px solid rgba(16,185,129,0.4); margin-top: 1px; }' +
+            '@media print { body { background: #ffffff !important; padding: 0 !important; margin: 0 !important; } .doc-container { margin: 10px auto !important; } }' +
           '</style>' +
         '</head>' +
         '<body>' +
           '<div class="doc-container">' +
-            '<div class="id-card">' +
-              '<div class="card-header">' +
+            '<!-- KARTU TAMPAK DEPAN (DEEP ROYAL NAVY & GOLD) -->' +
+            '<div class="id-card" style="background-color: #0b1b36 !important; color: #ffffff !important;">' +
+              '<div class="card-header" style="background-color: #060e1d !important;">' +
                 '<div class="header-left">' +
                   '<div class="logo-box"><img src="' + logoSrc + '" alt="Logo"></div>' +
                   '<div class="title-group">' +
@@ -2202,8 +2244,8 @@
                   '</div>' +
                   '<div class="student-name">' + s.name + '</div>' +
 
-                  '<div class="creds-box">' +
-                    '<div class="creds-header"><span>Akses Login Web App:</span><span>Active</span></div>' +
+                  '<div class="creds-box" style="background-color: #060e1d !important;">' +
+                    '<div class="creds-header"><span>Akses Login Web App:</span><span style="color: #34d399 !important;">Active</span></div>' +
                     '<div class="creds-grid">' +
                       '<div class="cred-item">' +
                         '<span class="cred-label">Username</span>' +
@@ -2218,7 +2260,7 @@
 
                   '<div class="status-row">' +
                     '<span class="status-badge">&check; Official Active Learner</span>' +
-                    '<span style="font-size: 7px; color: #94a3b8;">English Class</span>' +
+                    '<span style="font-size: 7px; color: #94a3b8 !important;">English Class</span>' +
                   '</div>' +
                 '</div>' +
 
@@ -2228,10 +2270,77 @@
                 '</div>' +
               '</div>' +
 
-              '<div class="card-footer">' +
+              '<div class="card-footer" style="background-color: #060e1d !important;">' +
                 '<span class="reg-code">SEC-2026-REG</span>' +
                 '<span class="motto">&ldquo;It\'s time to rise and shine&rdquo;</span>' +
                 '<span class="signature-tag">MR. AGUNG &check;</span>' +
+              '</div>' +
+            '</div>' +
+
+            '<!-- GARIS PANDUAN GUNTING & LIPAT (CUT & FOLD) -->' +
+            '<div class="cut-divider">' +
+              '<div class="cut-line"></div>' +
+              '<span>✂️ GUNTING & LIPAT (CUT & FOLD) ✂️</span>' +
+              '<div class="cut-line"></div>' +
+            '</div>' +
+
+            '<!-- KARTU TAMPAK BELAKANG (DEEP ROYAL NAVY & GOLD) -->' +
+            '<div class="id-card-back" style="background-color: #060e1d !important; color: #ffffff !important;">' +
+              '<div class="watermark-bg">' +
+                '<img src="' + backLogoSrc + '" alt="Watermark">' +
+              '</div>' +
+
+              '<div class="magnetic-stripe" style="background-color: #000000 !important;">' +
+                '<span class="magnetic-text">MR. AGUNG\'S CLASS &bull; SUNSHINE ENGLISH ACADEMY &bull; STUDENT SMART ID CR-80</span>' +
+              '</div>' +
+
+              '<div class="back-body">' +
+                '<div class="terms-box">' +
+                  '<span class="terms-title">Ketentuan Pemegang Kartu:</span>' +
+                  '<ul class="terms-list">' +
+                    '<li>Kartu identitas resmi siswa <strong>Mr. Agung\'s Class</strong>.</li>' +
+                    '<li>Wajib dibawa & dipindai saat kelas untuk mencatat kehadiran.</li>' +
+                    '<li>Gunakan akun di bagian depan untuk masuk ke web app.</li>' +
+                    '<li>Jika hilang/rusak, hubungi Mr. Agung untuk penggantian.</li>' +
+                  '</ul>' +
+                  '<div class="support-pill" style="background-color: #060e1d !important;">' +
+                    '<span>📞</span><span>Support: <strong>Mr. Agung (085759420950)</strong></span>' +
+                  '</div>' +
+                '</div>' +
+
+                '<div class="barcode-col">' +
+                  '<div class="barcode-box">' +
+                    '<div class="barcode-bars">' +
+                      '<div class="barcode-bar" style="width: 2px;"></div>' +
+                      '<div class="barcode-bar" style="width: 4px;"></div>' +
+                      '<div class="barcode-bar" style="width: 2px;"></div>' +
+                      '<div class="barcode-bar" style="width: 5px;"></div>' +
+                      '<div class="barcode-bar" style="width: 2px;"></div>' +
+                      '<div class="barcode-bar" style="width: 4px;"></div>' +
+                      '<div class="barcode-bar" style="width: 6px;"></div>' +
+                      '<div class="barcode-bar" style="width: 2px;"></div>' +
+                      '<div class="barcode-bar" style="width: 3px;"></div>' +
+                      '<div class="barcode-bar" style="width: 5px;"></div>' +
+                      '<div class="barcode-bar" style="width: 2px;"></div>' +
+                    '</div>' +
+                    '<span class="barcode-label">SEC-2026-STD-' + s.id + '</span>' +
+                  '</div>' +
+
+                  '<div class="signature-box" style="background-color: #060e1d !important;">' +
+                    '<span class="sig-title">Instructor & Director:</span>' +
+                    '<span class="sig-name">Mr. Agung</span>' +
+                    '<span class="sig-verified">&check; VERIFIED</span>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+
+              '<div class="card-footer" style="background-color: #060e1d !important;">' +
+                '<div style="display: flex; align-items: center; gap: 6px;">' +
+                  '<img src="' + logoSrc + '" alt="Logo" style="width: 14px; height: 14px; background: #ffffff; border-radius: 3px; padding: 1px;">' +
+                  '<span style="color: #dfb743 !important; font-weight: bold;">Sunshine English Academy</span>' +
+                '</div>' +
+                '<span class="motto">&ldquo;It\'s time to rise and shine&rdquo;</span>' +
+                '<span style="font-family: monospace; color: #dfb743 !important; font-weight: bold;">SMART ID</span>' +
               '</div>' +
             '</div>' +
           '</div>' +
@@ -2326,6 +2435,7 @@
         }, 500);
       }
     }
+
     function openCurrentStudentKtpModal() {
       openSpecificStudentKtpModal(gameState.studentId);
     }
@@ -2483,6 +2593,7 @@
         showToast("Gagal mengunduh gambar.");
       });
     }
+
     function openGeminiImportModal() {
       document.getElementById("gemini-bulk-paste-input").value = "";
       document.getElementById("modal-gemini-import").classList.remove("hidden");
@@ -2604,6 +2715,7 @@
       closeGeminiImportModal();
       showToast("Berhasil menerapkan " + parsedList.length + " soal dari Gemini sekaligus!");
     }
+
     function startEditStudentForm(id) {
       var s = null;
       for (var i = 0; i < studentRoster.length; i++) {
@@ -2932,6 +3044,7 @@
       document.getElementById("modal-streak").classList.remove("hidden");
     }
     function closeStreakModal() { document.getElementById("modal-streak").classList.add("hidden"); }
+
     function renderTeacherBabList() {
       var c = document.getElementById("admin-bab-list-container");
       if (!c) return;
@@ -3268,6 +3381,7 @@
       renderTeacherScorebook();
       showToast("Akses ujian untuk murid #" + studentId + " berhasil di-reset!");
     }
+
     function openScoreboardModal() {
       document.getElementById("modal-scoreboard").classList.remove("hidden");
       filterLeaderboardClass("ALL");
