@@ -4,25 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Welcome to Mr Agung Class - Sunshine English Academy</title>
-  
   <!-- TAILWIND CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
   <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Quicksand:wght@500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  
-  <!-- PUSTAKA JSQR & SCANNER -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Quicksand:wght@500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- PUSTAKA JSQR, CONFETTI, & HTML2CANVAS -->
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-  
-  <!-- PUSTAKA CONFETTI -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  
-  <!-- PUSTAKA HTML2CANVAS & JSPDF -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
+  
   <script>
     tailwind.config = {
       theme: {
@@ -85,11 +77,10 @@
       }
     };
   </script>
-
   <style>
     body { font-family: "Quicksand", sans-serif; user-select: none; -webkit-tap-highlight-color: transparent; }
     .font-title { font-family: "Fredoka", cursive; }
-    .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
     .custom-scroll::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 9999px; }
     .adventure-bg {
       background-color: #f8fafc;
@@ -147,196 +138,138 @@
     }
 
     .watermark-silhouette {
-      opacity: 0.85 !important;
+      opacity: 0.80 !important;
       pointer-events: none;
       user-select: none;
-      mix-blend-mode: screen;
     }
 
-    /* PENGATURAN CETAK PDF / A4 */
     @media print {
       * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        color-adjust: exact !important;
-      }
-      html, body {
-        background: white !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        width: 100% !important;
-      }
-      body > div:not(#print-batch-a4-area):not(#dedicated-print-container) {
-        display: none !important;
       }
       .no-print {
         display: none !important;
       }
-      #dedicated-print-container {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
-        gap: 10mm !important;
-        width: 100% !important;
-        min-height: 100vh !important;
-        background: white !important;
-      }
-      #dedicated-print-container .id-card-frame {
-        width: 86mm !important;
-        height: 54mm !important;
-        box-shadow: none !important;
-        border: 1px solid #c59a27 !important;
-        border-radius: 4mm !important;
-        transform: none !important;
-        display: flex !important;
-      }
-      #print-batch-a4-area {
-        display: block !important;
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 8mm !important;
-        box-sizing: border-box !important;
-      }
-      .a4-page-sheet {
-        page-break-after: always !important;
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 8mm !important;
-        height: 280mm !important;
-        box-sizing: border-box !important;
-      }
-      .a4-student-row {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: center !important;
-        align-items: center !important;
-        gap: 8mm !important;
-        page-break-inside: avoid !important;
-      }
     }
   </style>
 </head>
-
-<body class="bg-slate-100 min-h-screen text-slate-800 flex flex-col justify-start">
+<body class="bg-gradient-to-b from-sky-100 via-white to-sky-50 min-h-screen text-slate-800 flex flex-col items-center justify-start">
   
-  <!-- WRAPPER UTAMA: RESPONSIF UNTUK HP, TABLET, LAPTOP & PC -->
-  <div class="w-full max-w-7xl mx-auto min-h-screen flex flex-col bg-white shadow-xl relative border-x border-slate-200">
+  <!-- KONTAINER UTAMA RESPONSIF UNTUK SEMUA PERANGKAT (HP, TABLET, LAPTOP) -->
+  <div class="w-full max-w-md md:max-w-4xl lg:max-w-7xl min-h-screen flex flex-col bg-white shadow-2xl relative border-x border-sky-200 transition-all duration-300">
     
-    <header class="bg-white/95 backdrop-blur-md px-4 sm:px-6 md:px-8 py-3 flex items-center justify-between border-b border-sky-100 sticky top-0 z-30 shadow-xs">
+    <!-- HEADER NAVIGASI GLOBAL -->
+    <header class="bg-white/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-sky-100 sticky top-0 z-30 shadow-xs">
       <div class="flex items-center gap-3">
         <button id="btn-header-back" onclick="handleHeaderBack()" class="hidden w-9 h-9 rounded-xl bg-slate-100 hover:bg-sky-100 active:scale-95 flex items-center justify-center text-slate-700 transition">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
         </button>
         <div class="flex items-center gap-2.5 cursor-pointer" onclick="handleLogoClick()">
-          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white border border-sunGold-400 p-0.5 flex items-center justify-center shadow-xs overflow-hidden shrink-0">
+          <div class="w-9 h-9 rounded-full bg-white border border-sunGold-400 p-0.5 flex items-center justify-center shadow-xs overflow-hidden shrink-0">
             <img class="app-global-logo w-full h-full object-contain" src="https://placehold.co/100x100/ffffff/0b1b36?text=SEA" alt="Logo SEA">
           </div>
           <div class="leading-tight">
-            <span class="text-[9px] sm:text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">Sunshine English Academy</span>
+            <span class="text-[9px] md:text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">Sunshine English Academy</span>
             <div class="flex items-center gap-1.5">
-              <span class="font-title text-sm sm:text-base font-bold text-sky-900">Mr. Agung's Class</span>
-              <span id="cloud-sync-status" title="Status Cloud" class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span class="font-title text-sm md:text-base font-bold text-sky-900">Mr. Agung's Class</span>
+              <span id="cloud-sync-status" title="Status Cloud" class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
             </div>
           </div>
         </div>
       </div>
-      <div class="flex items-center gap-2 sm:gap-3">
-        <div id="header-streak-badge" onclick="openStreakModal()" class="hidden cursor-pointer flex items-center gap-1.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white px-3 py-1 rounded-xl font-title text-xs sm:text-sm font-bold shadow-xs active:scale-95 transition">
-          <span class="animate-flame-flicker text-sm">🔥</span>
+      <div class="flex items-center gap-2">
+        <div id="header-streak-badge" onclick="openStreakModal()" class="hidden cursor-pointer flex items-center gap-1.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white px-3 py-1.5 rounded-xl font-title text-xs font-bold shadow-xs active:scale-95 transition">
+          <span class="animate-flame-flicker text-base">🔥</span>
           <span id="header-streak-count">0</span>
         </div>
-        <button onclick="toggleSound()" id="btn-sound-toggle" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-sm transition">🔊</button>
-        <button id="btn-header-logout" onclick="logoutSession()" class="hidden flex items-center gap-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 px-3 py-1.5 rounded-xl font-title text-xs sm:text-sm font-bold transition"><span>🚪</span><span>Keluar</span></button>
+        <button onclick="toggleSound()" id="btn-sound-toggle" class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-base transition">🔊</button>
+        <button id="btn-header-logout" onclick="logoutSession()" class="hidden flex items-center gap-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 px-3 py-1.5 rounded-xl font-title text-xs font-bold transition">
+          <span>🚪</span><span>Keluar</span>
+        </button>
       </div>
     </header>
-
-    <!-- SCREEN 1: LOGIN -->
-    <main id="screen-login" class="flex-1 p-4 sm:p-8 md:p-12 flex flex-col justify-center items-center overflow-y-auto custom-scroll w-full">
-      <div class="max-w-md w-full space-y-6 my-auto">
-        <div class="text-center">
-          <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-3xl bg-white p-2 flex items-center justify-center shadow-futuristic border-2 border-sunGold-400/80 overflow-hidden">
-            <img class="app-global-logo w-full h-full object-contain" src="https://placehold.co/150x150/ffffff/0b1b36?text=LOGO+SEA" alt="Logo Sunshine English Academy">
-          </div>
-          <h1 class="font-title text-2xl sm:text-3xl font-black text-sky-900 leading-tight mt-3">Welcome to Mr Agung Class</h1>
-          <p class="text-xs sm:text-sm text-slate-500 font-semibold mt-1">Sunshine English Academy &bull; Masuk untuk belajar!</p>
+    <!-- SCREEN 1: LOGIN SISWA & GURU -->
+    <main id="screen-login" class="flex-1 p-5 md:p-10 flex flex-col justify-between items-center overflow-y-auto custom-scroll w-full">
+      <div class="text-center pt-4 max-w-sm">
+        <div class="w-20 h-20 md:w-24 md:h-24 mx-auto rounded-3xl bg-white p-2 flex items-center justify-center shadow-futuristic border-2 border-sunGold-400/80 overflow-hidden">
+          <img class="app-global-logo w-full h-full object-contain" src="https://placehold.co/150x150/ffffff/0b1b36?text=LOGO+SEA" alt="Logo Sunshine English Academy">
         </div>
+        <h1 class="font-title text-2xl md:text-3xl font-black text-sky-900 leading-tight mt-3">Welcome to Mr Agung Class</h1>
+        <p class="text-xs md:text-sm text-slate-500 font-semibold mt-1">Sunshine English Academy &bull; Masuk untuk belajar!</p>
+      </div>
 
-        <div class="bg-white rounded-3xl p-6 sm:p-7 border-2 border-sky-200 shadow-bouncy space-y-4">
-          <div class="border-b border-slate-100 pb-2.5 flex items-center justify-between">
-            <span class="text-xs sm:text-sm font-bold text-slate-700 flex items-center gap-1.5"><span>🔑</span> <span>Masuk ke Kelas</span></span>
-            <span id="system-ready-dot" class="text-[10px] sm:text-xs text-emerald-600 font-bold bg-emerald-50 px-2.5 py-0.5 rounded-md flex items-center gap-1">● Sistem Siap</span>
-          </div>
-          <div class="space-y-3.5">
-            <div>
-              <label class="text-xs font-bold text-slate-600 block mb-1">Username atau Nomor Absen</label>
-              <div class="relative"><span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">👤</span>
-                <input id="login-username-input" type="text" placeholder="Masukkan username atau no absen..." class="w-full pl-10 pr-3 py-2.5 sm:py-3 bg-slate-50 border-2 border-slate-200 focus:border-sky-500 rounded-2xl text-xs sm:text-sm font-bold text-slate-800 outline-none">
-              </div>
-            </div>
-            <div>
-              <label class="text-xs font-bold text-slate-600 block mb-1">Password</label>
-              <div class="relative"><span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">🔒</span>
-                <input id="login-password-input" type="password" placeholder="Masukkan password..." class="w-full pl-10 pr-10 py-2.5 sm:py-3 bg-slate-50 border-2 border-slate-200 focus:border-sky-500 rounded-2xl text-xs sm:text-sm font-bold text-slate-800 outline-none">
-                <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 text-xs sm:text-sm"><span id="pwd-toggle-icon">👁️</span></button>
-              </div>
-            </div>
-
-            <div id="login-error-msg" class="hidden p-2.5 bg-rose-50 border border-rose-200 rounded-xl text-center text-xs font-bold text-rose-600"></div>
-
-            <button onclick="handleLogin()" id="btn-login-submit" class="w-full py-3.5 sm:py-4 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base sm:text-lg font-bold rounded-2xl shadow-bouncy-btn active:translate-y-1 transition flex items-center justify-center gap-2">
-              <span>Masuk ke Kelas</span><span>🚀</span>
-            </button>
-          </div>
+      <div class="w-full max-w-md bg-white rounded-3xl p-6 md:p-8 border-2 border-sky-200 shadow-bouncy space-y-4 my-auto">
+        <div class="border-b border-slate-100 pb-2.5 flex items-center justify-between">
+          <span class="text-xs md:text-sm font-bold text-slate-700 flex items-center gap-1.5"><span>🔑</span> <span>Masuk ke Kelas</span></span>
+          <span id="system-ready-dot" class="text-[10px] md:text-xs text-emerald-600 font-bold bg-emerald-50 px-2.5 py-0.5 rounded-md flex items-center gap-1">● Sistem Siap</span>
         </div>
+        <div class="space-y-3.5">
+          <div>
+            <label class="text-xs font-bold text-slate-600 block mb-1">Username atau Nomor Absen</label>
+            <div class="relative"><span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">👤</span>
+              <input id="login-username-input" type="text" placeholder="Masukkan username atau no absen..." class="w-full pl-10 pr-3 py-3 bg-slate-50 border-2 border-slate-200 focus:border-sky-500 rounded-2xl text-xs md:text-sm font-bold text-slate-800 outline-none transition">
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-600 block mb-1">Password</label>
+            <div class="relative"><span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">🔒</span>
+              <input id="login-password-input" type="password" placeholder="Masukkan password..." class="w-full pl-10 pr-10 py-3 bg-slate-50 border-2 border-slate-200 focus:border-sky-500 rounded-2xl text-xs md:text-sm font-bold text-slate-800 outline-none transition">
+              <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 text-sm"><span id="pwd-toggle-icon">👁️</span></button>
+            </div>
+          </div>
 
-        <div class="text-center pt-1">
-          <p class="text-xs text-slate-400 font-semibold italic">“It’s time to <span class="text-amber-500 font-bold">rise and shine!</span>”</p>
+          <div id="login-error-msg" class="hidden p-3 bg-rose-50 border border-rose-200 rounded-xl text-center text-xs font-bold text-rose-600"></div>
+
+          <button onclick="handleLogin()" id="btn-login-submit" class="w-full py-4 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base font-bold rounded-2xl shadow-bouncy-btn active:translate-y-1 transition flex items-center justify-center gap-2">
+            <span>Masuk ke Kelas</span><span>🚀</span>
+          </button>
         </div>
       </div>
-    </main>
 
-    <!-- SCREEN 2: HOME SISWA -->
-    <main id="screen-home" class="flex-1 p-4 sm:p-6 md:p-8 flex flex-col justify-start gap-5 hidden overflow-y-auto custom-scroll w-full max-w-5xl mx-auto">
-      <div class="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 rounded-3xl p-5 sm:p-7 text-white shadow-md relative overflow-hidden">
+      <div class="text-center pt-2 pb-4">
+        <p class="text-xs md:text-sm text-slate-400 font-semibold italic">“It’s time to <span class="text-amber-500 font-bold">rise and shine!</span>”</p>
+      </div>
+    </main>
+    <!-- SCREEN 2: HOME SISWA DENGAN GRID RESPONSIF -->
+    <main id="screen-home" class="flex-1 p-4 md:p-6 lg:p-8 flex flex-col justify-start gap-4 hidden overflow-y-auto custom-scroll w-full">
+      <div class="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 rounded-3xl p-5 md:p-6 text-white shadow-md relative overflow-hidden">
         <div class="flex items-center justify-between relative z-10">
           <div>
             <div class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-amber-300">
               <span>✨</span><span>Sunshine English Academy</span>
             </div>
-            <h1 class="font-title text-2xl sm:text-3xl md:text-4xl font-black text-white mt-1.5 leading-tight">
+            <h1 class="font-title text-xl md:text-3xl font-black text-white mt-1.5 leading-tight">
               Learning with <span class="text-amber-300">Mr. Agung</span>
             </h1>
-            <p class="text-xs sm:text-sm text-sky-100 mt-1">Petualangan Bahasa Inggris Interaktif</p>
+            <p class="text-xs md:text-sm text-sky-100 mt-0.5">Petualangan Belajar Bahasa Inggris Interaktif & Menyenangkan</p>
           </div>
-          <div class="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl bg-white p-1.5 shadow-md border-2 border-sunGold-400 shrink-0 flex items-center justify-center overflow-hidden">
+          <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white p-1.5 shadow-md border-2 border-sunGold-400 shrink-0 flex items-center justify-center overflow-hidden">
             <img class="app-global-logo w-full h-full object-contain" src="https://placehold.co/100x100/ffffff/0b1b36?text=SEA" alt="Logo SEA">
           </div>
         </div>
       </div>
 
-      <!-- Layout Grid di Tablet & Laptop -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
-        
-        <!-- Sisi Kiri (Kolom Profil VIP Siswa) -->
-        <div class="md:col-span-7 bg-gradient-to-br from-sunNavy-900 via-sunNavy-850 to-sunNavy-950 rounded-3xl p-5 sm:p-6 text-white shadow-card-vip border-2 border-sunGold-500/40 relative overflow-hidden space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Kartu Profil VIP Siswa -->
+        <div class="bg-gradient-to-br from-sunNavy-900 via-sunNavy-850 to-sunNavy-950 rounded-3xl p-5 text-white shadow-card-vip border-2 border-sunGold-500/40 relative overflow-hidden space-y-4">
           <div class="absolute inset-0 security-guilloche opacity-40 pointer-events-none"></div>
 
           <div class="flex items-center justify-between relative z-10 border-b border-sunGold-500/25 pb-3">
-            <div class="flex items-center gap-3 sm:gap-4">
+            <div class="flex items-center gap-3.5">
               <div class="relative cursor-pointer" onclick="openAvatarModal()" title="Ganti Maskot">
-                <div id="home-avatar-display" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/10 backdrop-blur-md border-2 border-sunGold-400 shadow-inner flex items-center justify-center text-3xl sm:text-4xl">🦎</div>
+                <div id="home-avatar-display" class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md border-2 border-sunGold-400 shadow-inner flex items-center justify-center text-3xl">🦎</div>
                 <div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-sunGold-500 text-sunNavy-950 flex items-center justify-center text-[10px] shadow-sm font-bold border border-white">✏️</div>
               </div>
               <div>
                 <div class="flex items-center gap-1.5">
-                  <span id="home-avatar-name" class="text-[10px] sm:text-xs bg-sunGold-400/25 text-sunGold-300 border border-sunGold-400/40 px-2 py-0.5 rounded font-bold uppercase">Komodo</span>
-                  <span class="text-[10px] sm:text-xs text-slate-300 font-code">#<span id="card-display-id">01</span></span>
+                  <span id="home-avatar-name" class="text-[9px] bg-sunGold-400/25 text-sunGold-300 border border-sunGold-400/40 px-2 py-0.5 rounded font-bold uppercase">Komodo</span>
+                  <span class="text-[9px] text-slate-300 font-code">#<span id="card-display-id">01</span></span>
                 </div>
-                <h2 class="font-display text-lg sm:text-2xl font-black text-white leading-tight mt-1">
+                <h2 class="font-display text-base md:text-lg font-black text-white leading-tight mt-0.5">
                   Hai, <span id="welcome-student-name" class="text-sunGold-300">Budi Pratama</span>!
                 </h2>
-                <span class="text-[10px] sm:text-xs text-slate-400 font-code block mt-0.5">@<span id="home-username-tag">budi01</span></span>
+                <span class="text-xs text-slate-400 font-code block">@<span id="home-username-tag">budi01</span></span>
               </div>
             </div>
             <div class="text-right flex flex-col items-end gap-1">
@@ -344,150 +277,148 @@
                 <span class="animate-flame-flicker">🔥</span>
                 <span id="home-streak-display">0 Hari</span>
               </div>
-              <span class="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-wider font-code">Streak Api</span>
+              <span class="text-[9px] text-slate-400 uppercase tracking-wider font-code">Streak Api</span>
             </div>
           </div>
           
-          <div class="relative z-10 flex flex-wrap sm:flex-nowrap items-center gap-2.5">
-            <div class="flex-1 bg-white/10 backdrop-blur-md rounded-2xl py-2.5 px-3.5 border border-sunGold-500/30 flex items-center justify-center gap-2">
+          <div class="relative z-10 flex items-center gap-2">
+            <div class="flex-1 bg-white/10 backdrop-blur-md rounded-2xl py-2.5 px-3 border border-sunGold-500/30 flex items-center justify-center gap-2">
               <span class="text-xl">🎓</span>
-              <span class="font-display font-black text-xs sm:text-sm text-white tracking-wide uppercase" id="display-student-grade-badge">Kelas Basic</span>
+              <span class="font-display font-black text-xs md:text-sm text-white tracking-wide uppercase" id="display-student-grade-badge">Kelas Basic</span>
             </div>
-            <button onclick="openCurrentStudentKtpModal()" class="w-full sm:w-auto py-2.5 px-5 bg-gradient-to-r from-amber-400 via-sunGold-400 to-amber-500 text-sunNavy-950 rounded-2xl border border-white/60 font-display text-xs sm:text-sm font-black shadow-md active:scale-95 transition flex items-center justify-center gap-2">
+            <button onclick="openCurrentStudentKtpModal()" class="py-2.5 px-4 bg-gradient-to-r from-amber-400 via-sunGold-400 to-amber-500 text-sunNavy-950 rounded-2xl border border-white/60 font-display text-xs md:text-sm font-black shadow-md active:scale-95 transition flex items-center gap-1.5">
               <span>🪪</span>
               <span>Buka KTP Siswa</span>
             </button>
           </div>
 
-          <div class="relative z-10 pt-2 border-t border-sunGold-500/20 grid grid-cols-3 gap-2.5 text-center text-xs font-bold">
-            <div class="bg-white/5 rounded-2xl py-3 border border-white/10">
-              <span class="block text-sunGold-300 text-base sm:text-lg font-title" id="home-stat-stars">⭐ 0</span>
-              <span class="text-[10px] sm:text-xs text-slate-300">Bintang</span>
+          <div class="relative z-10 pt-2 border-t border-sunGold-500/20 grid grid-cols-3 gap-2 text-center text-xs font-bold">
+            <div class="bg-white/5 rounded-2xl py-2.5 border border-white/10">
+              <span class="block text-sunGold-300 text-sm md:text-base font-title" id="home-stat-stars">⭐ 0</span>
+              <span class="text-[10px] text-slate-300">Bintang</span>
             </div>
-            <div class="bg-white/5 rounded-2xl py-3 border border-white/10">
-              <span class="block text-emerald-300 text-base sm:text-lg font-title" id="home-stat-levels">0 Level</span>
-              <span class="text-[10px] sm:text-xs text-slate-300">Selesai</span>
+            <div class="bg-white/5 rounded-2xl py-2.5 border border-white/10">
+              <span class="block text-emerald-300 text-sm md:text-base font-title" id="home-stat-levels">0 Level</span>
+              <span class="text-[10px] text-slate-300">Selesai</span>
             </div>
-            <div class="bg-white/5 rounded-2xl py-3 border border-white/10">
-              <span class="block text-white text-base sm:text-lg font-title" id="home-stat-score">0 Pts</span>
-              <span class="text-[10px] sm:text-xs text-slate-300">Total Skor</span>
+            <div class="bg-white/5 rounded-2xl py-2.5 border border-white/10">
+              <span class="block text-white text-sm md:text-base font-title" id="home-stat-score">0 Pts</span>
+              <span class="text-[10px] text-slate-300">Total Skor</span>
             </div>
           </div>
         </div>
 
-        <!-- Sisi Kanan (Widgets & Target) -->
-        <div class="md:col-span-5 space-y-4">
+        <!-- Kolom Kanan: Word of the Day & Target Harian -->
+        <div class="space-y-4 flex flex-col justify-between">
           <!-- Widget Word of the Day -->
-          <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-3xl p-4 sm:p-5 border-2 border-amber-300 shadow-xs flex items-center justify-between">
+          <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-3xl p-4 border-2 border-amber-300 shadow-xs flex items-center justify-between">
             <div class="flex items-center gap-3.5">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-amber-400 text-amber-950 flex items-center justify-center text-2xl shadow-xs shrink-0">
+              <div class="w-12 h-12 rounded-2xl bg-amber-400 text-amber-950 flex items-center justify-center text-2xl shadow-xs shrink-0">
                 <span>🌟</span>
               </div>
               <div>
                 <div class="flex items-center gap-1.5">
-                  <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider bg-amber-200 text-amber-900 px-1.5 py-0.5 rounded font-code">Word of the Day</span>
+                  <span class="text-[9px] font-extrabold uppercase tracking-wider bg-amber-200 text-amber-900 px-2 py-0.5 rounded font-code">Word of the Day</span>
                   <span class="text-[10px] text-slate-400 font-bold">/ʃaɪn/</span>
                 </div>
-                <h4 class="font-title text-base sm:text-lg font-bold text-slate-800 mt-0.5">Shine <span class="text-xs font-normal text-slate-600 font-sans">&bull; Bersinar</span></h4>
+                <h4 class="font-title text-base font-bold text-slate-800 mt-0.5">Shine <span class="text-xs font-normal text-slate-600 font-sans">&bull; Bersinar</span></h4>
                 <p class="text-xs text-amber-800 font-semibold italic mt-0.5">“It’s time to rise and shine!”</p>
               </div>
             </div>
-            <button onclick="speakText('Shine. It is time to rise and shine!')" class="p-3 bg-white hover:bg-amber-100 border border-amber-300 rounded-2xl text-lg shadow-xs active:scale-95 transition text-amber-700" title="Dengarkan pengucapan">
+            <button onclick="speakText('Shine. It is time to rise and shine!')" class="p-3 bg-white border border-amber-300 rounded-2xl text-base shadow-xs active:scale-95 transition text-amber-700" title="Dengarkan pengucapan">
               🔊
             </button>
           </div>
 
           <!-- Target Harian -->
-          <div class="bg-white rounded-3xl p-4 sm:p-5 border-2 border-sky-200 shadow-xs space-y-3">
+          <div class="bg-white rounded-3xl p-4 border-2 border-sky-200 shadow-xs space-y-2.5">
             <div class="flex items-center justify-between">
-              <span class="font-title text-sm font-bold text-slate-800 flex items-center gap-1.5">
-                <span>🎯</span><span>Target Hari Ini</span>
+              <span class="font-title text-xs md:text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                <span>🎯</span><span>Target Petualangan Hari Ini</span>
               </span>
-              <span class="text-[10px] sm:text-xs bg-sky-100 text-sky-800 font-bold px-2.5 py-0.5 rounded-full">Tantangan</span>
+              <span class="text-[10px] bg-sky-100 text-sky-800 font-bold px-2.5 py-0.5 rounded-full">Tantangan Harian</span>
             </div>
             <div class="space-y-2">
-              <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-100 text-xs sm:text-sm">
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-xs">
                 <div class="flex items-center gap-2.5">
                   <span class="text-lg">🚀</span>
-                  <span class="font-bold text-slate-700">Selesaikan minimal 1 Level baru</span>
+                  <span class="font-bold text-slate-700 text-xs">Selesaikan minimal 1 Level baru hari ini</span>
                 </div>
-                <span class="text-[10px] sm:text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">Aktif</span>
+                <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">Aktif</span>
               </div>
-              <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-100 text-xs sm:text-sm">
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-xs">
                 <div class="flex items-center gap-2.5">
                   <span class="text-lg">🔥</span>
-                  <span class="font-bold text-slate-700">Tunjukkan KTP untuk Absen</span>
+                  <span class="font-bold text-slate-700 text-xs">Tunjukkan KTP ke Mr. Agung untuk Absen</span>
                 </div>
-                <span class="text-[10px] sm:text-xs font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-md">Absen</span>
+                <span class="text-[10px] font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-md">Absen</span>
               </div>
             </div>
           </div>
         </div>
-
       </div>
 
       <!-- Tombol Aksi Utama -->
-      <div class="w-full space-y-3.5 pt-2 pb-6">
-        <button onclick="navigate('screen-worlds')" class="w-full py-4 sm:py-5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-xl sm:text-2xl font-bold rounded-2xl sm:rounded-3xl shadow-bouncy-btn active:translate-y-1 transition flex items-center justify-center gap-3">
-          <span class="text-2xl sm:text-3xl animate-bounce">▶</span>
-          <span>Mulai Petualangan Belajar</span>
+      <div class="w-full space-y-3 pt-2 pb-4">
+        <button onclick="navigate('screen-worlds')" class="w-full py-4 md:py-5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-xl md:text-2xl font-bold rounded-2xl shadow-bouncy-btn active:translate-y-1 transition flex items-center justify-center gap-3">
+          <span class="text-2xl animate-bounce">▶</span>
+          <span>Mulai Petualangan</span>
         </button>
         <div class="grid grid-cols-3 gap-3">
-          <button onclick="openScoreboardModal()" class="py-3.5 sm:py-4 px-2 bg-white hover:bg-sky-50 border-2 border-sky-200 rounded-2xl flex flex-col items-center justify-center shadow-bouncy-sm active:scale-95 transition">
-            <span class="text-2xl sm:text-3xl mb-1">🏆</span>
-            <span class="font-title text-xs sm:text-sm font-bold text-slate-700">Papan Skor</span>
+          <button onclick="openScoreboardModal()" class="py-3.5 px-2 bg-white border-2 border-sky-200 rounded-2xl flex flex-col items-center justify-center shadow-bouncy-sm active:scale-95 transition">
+            <span class="text-2xl mb-1">🏆</span>
+            <span class="font-title text-xs font-bold text-slate-700">Papan Skor</span>
           </button>
-          <button onclick="openCurrentStudentKtpModal()" class="py-3.5 sm:py-4 px-2 bg-white hover:bg-amber-50 border-2 border-amber-300 rounded-2xl flex flex-col items-center justify-center shadow-bouncy-sm active:scale-95 transition">
-            <span class="text-2xl sm:text-3xl mb-1">🪪</span>
-            <span class="font-title text-xs sm:text-sm font-bold text-slate-700">KTP Siswa</span>
+          <button onclick="openCurrentStudentKtpModal()" class="py-3.5 px-2 bg-white border-2 border-amber-300 rounded-2xl flex flex-col items-center justify-center shadow-bouncy-sm active:scale-95 transition">
+            <span class="text-2xl mb-1">🪪</span>
+            <span class="font-title text-xs font-bold text-slate-700">KTP Siswa</span>
           </button>
-          <button onclick="openGuideModal()" class="py-3.5 sm:py-4 px-2 bg-white hover:bg-sky-50 border-2 border-sky-200 rounded-2xl flex flex-col items-center justify-center shadow-bouncy-sm active:scale-95 transition">
-            <span class="text-2xl sm:text-3xl mb-1">📖</span>
-            <span class="font-title text-xs sm:text-sm font-bold text-slate-700">Petunjuk</span>
+          <button onclick="openGuideModal()" class="py-3.5 px-2 bg-white border-2 border-sky-200 rounded-2xl flex flex-col items-center justify-center shadow-bouncy-sm active:scale-95 transition">
+            <span class="text-2xl mb-1">📖</span>
+            <span class="font-title text-xs font-bold text-slate-700">Petunjuk</span>
           </button>
         </div>
 
         <div class="text-center pt-2">
-          <p class="text-xs sm:text-sm text-sunGold-600 font-display font-bold italic tracking-wide">
+          <p class="text-xs text-sunGold-600 font-display font-bold italic tracking-wide">
             ✨ “It’s time to rise and shine” ✨
           </p>
         </div>
       </div>
     </main>
-
     <!-- SCREEN 3: DAFTAR BAB -->
-    <main id="screen-worlds" class="flex-1 p-4 sm:p-6 md:p-8 flex flex-col justify-between hidden overflow-y-auto custom-scroll w-full max-w-4xl mx-auto">
-      <div>
+    <main id="screen-worlds" class="flex-1 p-4 md:p-8 flex flex-col justify-between hidden overflow-y-auto custom-scroll w-full">
+      <div class="max-w-3xl mx-auto w-full">
         <div class="text-center mb-5">
-          <h2 class="font-title text-2xl sm:text-3xl font-bold text-sky-900">Pilih Bab Petualangan</h2>
-          <p class="text-xs sm:text-sm text-slate-500 font-semibold mt-1">Materi Khusus <span id="worlds-grade-badge" class="text-sky-700 font-bold bg-sky-100 px-2 py-0.5 rounded">Kelas Basic</span></p>
+          <h2 class="font-title text-2xl font-bold text-sky-900">Pilih Bab Petualangan</h2>
+          <p class="text-xs md:text-sm text-slate-500 font-semibold mt-1">Materi Khusus <span id="worlds-grade-badge" class="text-sky-700 font-bold bg-sky-100 px-2 py-0.5 rounded">Kelas Basic</span></p>
         </div>
-        <div class="space-y-4" id="worlds-card-container"></div>
+        <div class="space-y-3.5" id="worlds-card-container"></div>
       </div>
     </main>
 
     <!-- SCREEN 4: PETA JALUR LEVEL -->
-    <main id="screen-levels" class="flex-1 flex flex-col justify-between hidden overflow-hidden bg-slate-50 w-full max-w-4xl mx-auto">
-      <div class="p-3 sm:p-5 bg-white border-b border-sky-100 shadow-xs z-10">
-        <div class="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 rounded-3xl p-4 sm:p-5 text-white shadow-md relative overflow-hidden">
+    <main id="screen-levels" class="flex-1 flex flex-col justify-between hidden overflow-hidden bg-slate-50 w-full">
+      <div class="p-4 bg-white border-b border-sky-100 shadow-xs z-10">
+        <div class="max-w-3xl mx-auto bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 rounded-3xl p-4 md:p-5 text-white shadow-md relative overflow-hidden">
           <div class="flex items-center justify-between relative z-10">
             <div class="flex items-center gap-3">
-              <div id="level-map-world-mascot-icon" class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-2xl sm:text-3xl shadow-inner animate-float">📘</div>
+              <div id="level-map-world-mascot-icon" class="w-13 h-13 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-3xl shadow-inner animate-float">📘</div>
               <div>
-                <span id="level-map-world-tag" class="text-[9px] sm:text-[10px] font-extrabold uppercase bg-amber-400 text-amber-950 px-2 py-0.5 rounded-md tracking-wider">Bab 1</span>
-                <h2 id="level-map-world-name" class="font-title text-base sm:text-xl font-black text-white leading-tight mt-0.5">Judul Bab</h2>
-                <p id="level-map-world-desc" class="text-[10px] sm:text-xs text-sky-100 font-medium">Petualangan Bahasa Inggris</p>
+                <span id="level-map-world-tag" class="text-[9px] md:text-[10px] font-extrabold uppercase bg-amber-400 text-amber-950 px-2 py-0.5 rounded-md tracking-wider">Bab 1</span>
+                <h2 id="level-map-world-name" class="font-title text-lg md:text-xl font-black text-white leading-tight mt-0.5">Judul Bab</h2>
+                <p id="level-map-world-desc" class="text-xs text-sky-100 font-medium">Petualangan Bahasa Inggris</p>
               </div>
             </div>
             <div class="text-right">
-              <div class="inline-flex items-center gap-1 bg-white/20 backdrop-blur-md border border-white/30 px-3 py-1 rounded-full text-xs sm:text-sm font-title font-bold text-amber-300">
+              <div class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md border border-white/30 px-3 py-1 rounded-full text-xs md:text-sm font-title font-bold text-amber-300">
                 <span id="level-map-stars-count">⭐ 0 / 30</span>
               </div>
-              <span id="level-map-student-badge" class="block text-[10px] text-sky-200 mt-1 font-mono font-bold">@budi01</span>
+              <span id="level-map-student-badge" class="block text-xs text-sky-200 mt-1 font-mono font-bold">@budi01</span>
             </div>
           </div>
-          <div class="mt-3 pt-2.5 border-t border-white/20 flex items-center gap-3">
-            <span class="text-[10px] sm:text-xs font-bold text-sky-100 whitespace-nowrap" id="adventure-progress-label">0/10 Selesai</span>
+          <div class="mt-3 pt-2 border-t border-white/20 flex items-center gap-2.5">
+            <span class="text-xs font-bold text-sky-100 whitespace-nowrap" id="adventure-progress-label">0/10 Selesai</span>
             <div class="flex-1 bg-white/20 h-2.5 rounded-full overflow-hidden">
               <div id="adventure-progress-fill" class="bg-gradient-to-r from-amber-400 to-yellow-300 h-full rounded-full transition-all duration-500" style="width: 10%;"></div>
             </div>
@@ -495,344 +426,342 @@
         </div>
       </div>
 
-      <div class="flex-1 overflow-y-auto custom-scroll p-4 pb-12 adventure-bg relative" id="adventure-path-scroll-area">
+      <div class="flex-1 overflow-y-auto custom-scroll p-4 pb-12 adventure-bg relative w-full" id="adventure-path-scroll-area">
         <div class="sticky top-0 z-20 flex justify-center mb-3">
-          <div class="bg-white/95 backdrop-blur-md border-2 border-amber-300 px-4 py-1.5 rounded-full shadow-md flex items-center gap-2 text-xs sm:text-sm">
+          <div class="bg-white/95 backdrop-blur-md border-2 border-amber-300 px-4 py-1.5 rounded-full shadow-md flex items-center gap-2 text-xs md:text-sm">
             <span class="animate-bounce">🎯</span>
             <span class="font-bold text-slate-700">Target:</span>
-            <span id="floating-level-theme-tag" class="font-title font-bold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-md border border-sky-200">Level 1</span>
+            <span id="floating-level-theme-tag" class="font-title font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200">Level 1</span>
           </div>
         </div>
         <div class="relative max-w-sm mx-auto py-2" id="adventure-trail-nodes-container"></div>
       </div>
     </main>
-
-    <!-- SCREEN 5: GAMEPLAY -->
-    <main id="screen-gameplay" class="flex-1 p-4 sm:p-6 md:p-8 flex flex-col justify-between hidden overflow-y-auto custom-scroll w-full max-w-3xl mx-auto">
-      <div>
-        <div class="flex items-center justify-between gap-3 mb-3">
+    <!-- SCREEN 5: GAMEPLAY DENGAN JUMLAH SOAL FLEKSIBEL (10, 11, DLL) -->
+    <main id="screen-gameplay" class="flex-1 p-4 md:p-8 flex flex-col justify-between hidden overflow-y-auto custom-scroll w-full">
+      <div class="max-w-2xl mx-auto w-full">
+        <div class="flex items-center justify-between gap-2 mb-3">
           <div class="flex items-center gap-2">
-            <span class="text-xs sm:text-sm font-bold text-slate-500" id="game-q-counter">1 / 10</span>
-            <div class="w-32 sm:w-48 bg-slate-200 h-3 rounded-full overflow-hidden">
-              <div id="game-progress-bar" class="bg-gameGreen h-full transition-all rounded-full" style="width: 10%"></div>
+            <span class="text-xs md:text-sm font-bold text-slate-500" id="game-q-counter">1 / 10</span>
+            <div class="w-32 md:w-48 bg-slate-200 h-3 rounded-full overflow-hidden">
+              <div id="game-progress-bar" class="bg-gameGreen h-full transition-all duration-300" style="width: 10%"></div>
             </div>
           </div>
-          <span class="bg-amber-100 text-amber-800 font-bold text-xs sm:text-sm px-3.5 py-1 rounded-full border border-amber-200 flex items-center gap-1.5 shadow-2xs">
+          <span class="bg-amber-100 text-amber-800 font-bold text-xs md:text-sm px-3 py-1 rounded-full border border-amber-200 flex items-center gap-1.5">
             ⭐ <span id="game-score-val">0</span>
           </span>
         </div>
-        <div class="bg-white rounded-3xl p-5 sm:p-7 border-2 border-sky-200 shadow-sm">
-          <div id="question-illustration-box" class="w-full h-44 sm:h-56 bg-slate-50 rounded-2xl border border-sky-200 overflow-hidden flex items-center justify-center text-6xl">🖼️</div>
-          <div class="mt-4 text-center relative px-2">
-            <p id="question-instruction" class="text-xs sm:text-sm font-bold text-sky-700 uppercase mb-1">Lengkapi kalimat:</p>
-            <h3 id="question-text" class="font-title text-xl sm:text-2xl md:text-3xl font-bold text-slate-800">Soal</h3>
-            <button onclick="playQuestionSpeech()" class="inline-flex items-center gap-1.5 bg-sky-100 hover:bg-sky-200 text-sky-700 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold mt-3 active:scale-95 transition">🔊 Listen</button>
+
+        <div class="bg-white rounded-3xl p-4 md:p-6 border-2 border-sky-200 shadow-sm">
+          <div id="question-illustration-box" class="w-full h-44 md:h-56 bg-slate-50 rounded-2xl border border-sky-200 overflow-hidden flex items-center justify-center text-5xl md:text-6xl">🖼️</div>
+          <div class="mt-3.5 text-center relative px-2">
+            <p id="question-instruction" class="text-xs md:text-sm font-bold text-sky-700 uppercase mb-1">Lengkapi kalimat:</p>
+            <h3 id="question-text" class="font-title text-xl md:text-2xl font-bold text-slate-800 leading-snug">Soal</h3>
+            <button onclick="playQuestionSpeech()" class="inline-flex items-center gap-1 bg-sky-100 text-sky-700 px-3.5 py-1.5 rounded-full text-xs font-bold mt-2.5 active:scale-95 transition">🔊 Listen</button>
           </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4" id="options-container"></div>
-        <div id="answer-feedback-banner" class="hidden mt-4 p-4 rounded-2xl border-2 transition-all">
-          <div class="flex items-start gap-3"><span id="feedback-icon" class="text-3xl">✅</span><div class="flex-1"><h4 id="feedback-title" class="font-title text-base sm:text-lg font-bold text-emerald-800">Jawaban Benar!</h4><p id="feedback-explanation" class="text-xs sm:text-sm text-slate-600 mt-0.5"></p><div class="mt-2 p-2.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 font-semibold"><span id="feedback-tip-text"></span></div></div></div>
+
+        <div class="grid grid-cols-2 gap-3 mt-3.5" id="options-container"></div>
+
+        <div id="answer-feedback-banner" class="hidden mt-3.5 p-3.5 rounded-2xl border-2 transition-all">
+          <div class="flex items-start gap-3">
+            <span id="feedback-icon" class="text-2xl">✅</span>
+            <div class="flex-1">
+              <h4 id="feedback-title" class="font-title text-sm md:text-base font-bold text-emerald-800">Jawaban Benar!</h4>
+              <p id="feedback-explanation" class="text-xs md:text-sm text-slate-600 mt-0.5"></p>
+              <div class="mt-2 p-2 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 font-semibold">
+                <span id="feedback-tip-text"></span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="mt-5 pt-3 border-t border-sky-100 flex items-center gap-3">
-        <button onclick="navigate('screen-levels')" class="py-3.5 px-5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-title text-xs sm:text-sm font-bold rounded-xl transition">Kembali</button>
-        <button id="btn-check-or-next" onclick="checkOrNextQuestion()" class="flex-1 py-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base sm:text-lg font-bold rounded-xl shadow-bouncy-btn active:translate-y-1 text-center transition">Periksa ✓</button>
+
+      <div class="mt-4 pt-3 border-t border-sky-100 flex items-center gap-3 max-w-2xl mx-auto w-full">
+        <button onclick="navigate('screen-levels')" class="py-3 px-4 bg-slate-100 text-slate-600 font-title text-xs md:text-sm font-bold rounded-xl hover:bg-slate-200 transition">Kembali</button>
+        <button id="btn-check-or-next" onclick="checkOrNextQuestion()" class="flex-1 py-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base font-bold rounded-xl shadow-bouncy-btn active:translate-y-1 text-center">Periksa ✓</button>
       </div>
     </main>
 
     <!-- SCREEN 6: RESULT -->
-    <main id="screen-result" class="flex-1 p-4 sm:p-8 flex flex-col items-center justify-center hidden overflow-y-auto custom-scroll text-center w-full max-w-xl mx-auto">
-      <div class="w-full">
-        <div class="flex items-center justify-center gap-3 my-3" id="result-stars-box"></div>
-        <h2 id="result-title-text" class="font-title text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-800 mt-1">Level Selesai!</h2>
-        <div class="bg-sky-50 border-2 border-sky-200 rounded-3xl p-5 sm:p-6 my-5 text-left shadow-sm">
-          <div class="flex items-center justify-between border-b border-sky-200 pb-3">
-            <span class="text-xs sm:text-sm font-bold text-slate-500">Skor:</span><span id="result-score-tag" class="font-title text-2xl sm:text-3xl font-bold text-blue-700">80 / 100</span>
+    <main id="screen-result" class="flex-1 p-4 md:p-8 flex flex-col items-center justify-between hidden overflow-y-auto custom-scroll text-center w-full">
+      <div class="max-w-md mx-auto w-full">
+        <div class="flex items-center justify-center gap-2 my-3" id="result-stars-box"></div>
+        <h2 id="result-title-text" class="font-title text-2xl md:text-3xl font-extrabold text-slate-800 mt-1">Level Selesai!</h2>
+        <div class="bg-sky-50 border-2 border-sky-200 rounded-3xl p-5 my-4 text-left shadow-sm">
+          <div class="flex items-center justify-between border-b border-sky-200 pb-2.5">
+            <span class="text-xs md:text-sm font-bold text-slate-500">Skor:</span>
+            <span id="result-score-tag" class="font-title text-2xl md:text-3xl font-bold text-blue-700">80 / 100</span>
           </div>
-          <div class="grid grid-cols-2 gap-3 pt-3.5 text-xs sm:text-sm font-bold">
-            <div class="flex items-center gap-2 text-emerald-700 bg-emerald-50 p-3 rounded-xl border border-emerald-200">✅ <span id="result-correct-count">8</span> Benar</div>
-            <div class="flex items-center gap-2 text-rose-700 bg-rose-50 p-3 rounded-xl border border-rose-200">❌ <span id="result-wrong-count">2</span> Salah</div>
+          <div class="grid grid-cols-2 gap-3 pt-3 text-xs md:text-sm font-bold">
+            <div class="flex items-center gap-2 text-emerald-700 bg-emerald-50 p-2.5 rounded-xl border border-emerald-200">✅ <span id="result-correct-count">8</span> Benar</div>
+            <div class="flex items-center gap-2 text-rose-700 bg-rose-50 p-2.5 rounded-xl border border-rose-200">❌ <span id="result-wrong-count">2</span> Salah</div>
           </div>
         </div>
       </div>
-      <div class="w-full space-y-3 max-w-md mx-auto">
-        <button id="btn-result-retry" onclick="launchSelectedLevel()" class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-title text-base sm:text-lg font-bold rounded-2xl shadow-sm transition">🔄 Main Lagi</button>
-        <button id="btn-result-back" onclick="navigate('screen-levels')" class="w-full py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-title text-base sm:text-lg font-bold rounded-2xl transition">🗺️ Kembali ke Peta Level</button>
+      <div class="w-full max-w-md mx-auto space-y-2.5 my-2">
+        <button id="btn-result-retry" onclick="launchSelectedLevel()" class="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-title text-base font-bold rounded-2xl shadow-sm transition">🔄 Main Lagi</button>
+        <button id="btn-result-back" onclick="navigate('screen-levels')" class="w-full py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-title text-base font-bold rounded-2xl transition">🗺️ Kembali ke Peta Level</button>
       </div>
     </main>
-
-    <!-- SCREEN 7: PORTAL GURU (RESPONSIF DI TABLET & LAPTOP) -->
-    <main id="screen-teacher" class="flex-1 flex flex-col justify-start hidden overflow-hidden bg-slate-50 w-full">
-      <div class="bg-amber-500 text-white px-4 sm:px-6 md:px-8 py-3.5 sm:py-4 shadow-md flex items-center justify-between">
+    <!-- SCREEN 7: PORTAL GURU RESPONSIF PENUH -->
+    <main id="screen-teacher" class="flex-1 flex flex-col justify-between hidden overflow-hidden bg-slate-100 w-full">
+      <div class="bg-amber-500 text-white p-4 shadow-md flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <span class="text-3xl sm:text-4xl">👨‍🏫</span>
+          <span class="text-3xl">👨‍🏫</span>
           <div>
-            <h2 class="font-title text-base sm:text-xl font-bold leading-tight">Portal Pengelolaan Guru</h2>
-            <p class="text-xs sm:text-sm text-amber-100">Kelola Akun Murid, KTP Siswa, QR Absen, Bab, Soal, Ujian, & Nilai</p>
+            <h2 class="font-title text-base md:text-lg font-bold leading-tight">Portal Pengelolaan Guru</h2>
+            <p class="text-xs text-amber-100">Kelola Akun Murid, KTP Siswa, QR Absen, Bab, Soal, Ujian, & Nilai</p>
           </div>
         </div>
-        <button onclick="logoutSession()" class="px-3.5 py-1.5 bg-white/20 hover:bg-white/30 rounded-xl text-xs sm:text-sm font-bold font-title active:scale-95 transition">🚪 Keluar</button>
+        <button onclick="logoutSession()" class="px-3 py-1.5 bg-white/20 hover:bg-white/30 rounded-xl text-xs font-bold font-title transition">🚪 Keluar</button>
       </div>
 
       <!-- Tab Bar Guru -->
-      <div class="bg-white border-b border-slate-200 px-3 sm:px-6 py-2 flex gap-2 text-xs sm:text-sm font-bold font-title overflow-x-auto custom-scroll shadow-xs">
-        <button onclick="switchTeacherTab('roster')" id="tab-btn-roster" class="py-2 px-3 sm:px-4 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap">👥 Murid & KTP</button>
-        <button onclick="switchTeacherTab('attendance')" id="tab-btn-attendance" class="py-2 px-3 sm:px-4 rounded-xl text-slate-600 hover:bg-slate-100 whitespace-nowrap">📷 Absen QR</button>
-        <button onclick="switchTeacherTab('bab')" id="tab-btn-bab" class="py-2 px-3 sm:px-4 rounded-xl text-slate-600 hover:bg-slate-100 whitespace-nowrap">📚 Bab</button>
-        <button onclick="switchTeacherTab('editor')" id="tab-btn-editor" class="py-2 px-3 sm:px-4 rounded-xl text-slate-600 hover:bg-slate-100 whitespace-nowrap">✏️ Soal</button>
-        <button onclick="switchTeacherTab('locks')" id="tab-btn-locks" class="py-2 px-3 sm:px-4 rounded-xl text-slate-600 hover:bg-slate-100 whitespace-nowrap">🔒 Kunci</button>
-        <button onclick="switchTeacherTab('exam')" id="tab-btn-exam" class="py-2 px-3 sm:px-4 rounded-xl text-slate-600 hover:bg-slate-100 whitespace-nowrap">📝 Ujian</button>
-        <button onclick="switchTeacherTab('scores')" id="tab-btn-scores" class="py-2 px-3 sm:px-4 rounded-xl text-slate-600 hover:bg-slate-100 whitespace-nowrap">📊 Nilai</button>
+      <div class="bg-white border-b border-slate-200 p-2 flex gap-1.5 text-xs font-bold font-title overflow-x-auto custom-scroll shadow-xs">
+        <button onclick="switchTeacherTab('roster')" id="tab-btn-roster" class="flex-1 py-2 px-3 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap">👥 Murid & KTP</button>
+        <button onclick="switchTeacherTab('attendance')" id="tab-btn-attendance" class="flex-1 py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap">📷 Absen QR</button>
+        <button onclick="switchTeacherTab('bab')" id="tab-btn-bab" class="flex-1 py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap">📚 Bab</button>
+        <button onclick="switchTeacherTab('editor')" id="tab-btn-editor" class="flex-1 py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap">✏️ Soal</button>
+        <button onclick="switchTeacherTab('locks')" id="tab-btn-locks" class="flex-1 py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap">🔒 Kunci</button>
+        <button onclick="switchTeacherTab('exam')" id="tab-btn-exam" class="flex-1 py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap">📝 Ujian</button>
+        <button onclick="switchTeacherTab('scores')" id="tab-btn-scores" class="flex-1 py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap">📊 Nilai</button>
       </div>
 
-      <div class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-5 custom-scroll max-w-6xl mx-auto w-full" id="teacher-content-container">
-        
+      <div class="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 custom-scroll" id="teacher-content-container">
         <!-- TAB 1: ROSTER MURID & CETAK KTP -->
         <div id="teacher-tab-roster" class="space-y-4">
-          <div class="bg-gradient-to-r from-sunNavy-900 to-sunNavy-850 p-4 sm:p-5 rounded-3xl border border-sunGold-400 text-white flex flex-col gap-3.5 shadow-xs">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <!-- Upload Logo Depan & Belakang -->
+          <div class="bg-gradient-to-r from-sunNavy-900 to-sunNavy-850 p-4 rounded-3xl border border-sunGold-400 text-white flex flex-col gap-3 shadow-xs">
+            <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-white p-0.5 border border-sunGold-400 flex items-center justify-center shrink-0">
                   <img class="app-global-logo w-full h-full object-contain" src="https://placehold.co/100x100/ffffff/0b1b36?text=SEA" alt="Logo">
                 </div>
                 <div>
-                  <strong class="font-display text-sm sm:text-base text-sunGold-300 block">Logo Sunshine English Academy</strong>
+                  <strong class="font-display text-sm text-sunGold-300 block">Logo Sunshine English Academy</strong>
                   <span class="text-xs text-slate-300">Terapkan gambar resmi ke Header, Login, & KTP</span>
                 </div>
               </div>
-              <label class="px-4 py-2 bg-gradient-to-r from-amber-400 to-sunGold-500 text-sunNavy-950 rounded-xl font-display text-xs sm:text-sm font-bold shadow-xs cursor-pointer active:scale-95 transition text-center">
+              <label class="px-3 py-2 bg-gradient-to-r from-amber-400 to-sunGold-500 text-sunNavy-950 rounded-xl font-display text-xs font-bold shadow-xs cursor-pointer active:scale-95 transition">
                 <span>🖼️ Upload Logo Depan</span>
                 <input type="file" accept="image/*" class="hidden" onchange="uploadGlobalLogoFile(event)">
               </label>
             </div>
 
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between pt-3.5 border-t border-white/10 gap-3">
+            <div class="flex items-center justify-between pt-2 border-t border-white/10">
               <div class="flex items-center gap-3">
                 <div class="w-14 h-7 rounded-lg bg-white p-0.5 border border-sunGold-400 flex items-center justify-center shrink-0 overflow-hidden">
-                  <img class="app-global-back-logo w-full h-full object-contain" src="https://placehold.co/200x80/ffffff/0b1b36?text=LOGO" alt="Watermark Belakang">
+                  <img class="app-global-back-logo w-full h-full object-contain" src="https://placehold.co/200x80/ffffff/0b1b36?text=LOGO+MEMANJANG" alt="Watermark Belakang">
                 </div>
                 <div>
-                  <strong class="font-display text-sm sm:text-base text-amber-300 block">Gambar Latar Belakang KTP (Belakang)</strong>
-                  <span class="text-xs text-slate-300">Logo memanjang transparan di balik teks</span>
+                  <strong class="font-display text-xs text-amber-300 block">Gambar Latar Belakang KTP (Belakang)</strong>
+                  <span class="text-[10px] text-slate-300">Logo memanjang transparan 80% di balik teks</span>
                 </div>
               </div>
-              <label class="px-4 py-2 bg-sunNavy-800 hover:bg-sunNavy-700 text-sunGold-300 border border-sunGold-400/60 rounded-xl font-display text-xs sm:text-sm font-bold shadow-xs cursor-pointer active:scale-95 transition text-center">
+              <label class="px-3 py-2 bg-sunNavy-800 hover:bg-sunNavy-700 text-sunGold-300 border border-sunGold-400/60 rounded-xl font-display text-xs font-bold shadow-xs cursor-pointer active:scale-95 transition">
                 <span>✨ Upload Background Belakang</span>
                 <input type="file" accept="image/*" class="hidden" onchange="uploadGlobalBackLogoFile(event)">
               </label>
             </div>
           </div>
 
-          <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-4 sm:p-5 rounded-3xl text-white flex flex-col sm:flex-row sm:items-center justify-between shadow-xs gap-3">
-            <div>
-              <strong class="font-title text-base sm:text-lg block">🖨️ Cetak Semua KTP Siswa (Format A4)</strong>
-              <span class="text-xs sm:text-sm text-amber-100">1 Lembar = 3 Siswa (Kiri Depan, Kanan Belakang + Garis Gunting ✂️)</span>
+          <!-- Form Tambah Murid -->
+          <div class="bg-white p-4 md:p-5 rounded-3xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <span id="form-roster-title" class="text-xs md:text-sm font-bold text-slate-800">➕ Tambah Murid Baru:</span>
+              <button type="button" id="btn-cancel-edit-roster" onclick="cancelEditStudentForm()" class="text-xs text-rose-600 font-bold hidden">✕ Batal</button>
             </div>
-            <button type="button" onclick="printAllStudentsKtpA4()" class="px-5 py-2.5 bg-white hover:bg-amber-50 text-orange-950 rounded-xl font-title text-xs sm:text-sm font-bold shadow-sm active:scale-95 transition whitespace-nowrap">
-              <span>📄 Cetak PDF Masal</span>
-            </button>
+            <div class="grid grid-cols-6 gap-3">
+              <div class="col-span-2"><label class="text-[10px] font-bold text-slate-500 block mb-1">No. Absen</label><input id="form-roster-id" type="text" placeholder="01" class="w-full p-2.5 border border-slate-300 rounded-xl text-xs font-mono font-bold text-center"></div>
+              <div class="col-span-4"><label class="text-[10px] font-bold text-slate-500 block mb-1">Nama Lengkap</label><input id="form-roster-name" type="text" placeholder="Nama Murid..." class="w-full p-2.5 border border-slate-300 rounded-xl text-xs font-bold"></div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 p-3 bg-blue-50/60 rounded-2xl border border-blue-200">
+              <div><label class="text-[10px] font-bold text-blue-900 block mb-1">Username</label><input id="form-roster-username" type="text" placeholder="budi01" class="w-full p-2 border border-blue-300 rounded-lg text-xs font-mono font-bold"></div>
+              <div><label class="text-[10px] font-bold text-blue-900 block mb-1">Password</label><input id="form-roster-password" type="text" placeholder="123" class="w-full p-2 border border-blue-300 rounded-lg text-xs font-mono font-bold"></div>
+            </div>
+            <div class="grid grid-cols-6 gap-3">
+              <div class="col-span-3"><label class="text-[10px] font-bold text-slate-500 block mb-1">Penempatan Kelas</label><select id="form-roster-grade" class="w-full p-2.5 border border-slate-300 rounded-xl text-xs font-bold bg-amber-50 text-amber-900"><option value="Kelas Basic">Kelas Basic</option><option value="Kelas Advance">Kelas Advance</option><option value="Kelas Champion">Kelas Champion</option></select></div>
+              <div class="col-span-3"><label class="text-[10px] font-bold text-slate-500 block mb-1">Maskot</label><select id="form-roster-avatar" class="w-full p-2.5 border border-slate-300 rounded-xl text-xs font-bold"><option value="🦎">🦎 Komodo</option><option value="🦧">🦧 Orangutan</option><option value="🐅">🐅 Harimau</option><option value="🦏">🦏 Badak</option><option value="🦅">🦅 Elang</option><option value="🦌">🦌 Rusa</option><option value="🦜">🦜 Burung</option><option value="🐢">🐢 Penyu</option></select></div>
+            </div>
+            <button type="button" onclick="adminSaveStudentForm()" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-title text-xs md:text-sm font-bold rounded-xl shadow-xs transition"><span id="btn-save-roster-label">Simpan Akun Murid ✓</span></button>
           </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-            <!-- Form Tambah Murid -->
-            <div class="lg:col-span-5 bg-white p-5 rounded-3xl border-2 border-slate-200 shadow-xs space-y-3.5">
-              <div class="flex items-center justify-between">
-                <span id="form-roster-title" class="text-sm sm:text-base font-bold text-slate-800">➕ Tambah Murid Baru:</span>
-                <button type="button" id="btn-cancel-edit-roster" onclick="cancelEditStudentForm()" class="text-xs text-rose-600 font-bold hidden">✕ Batal</button>
-              </div>
-              <div class="grid grid-cols-6 gap-2.5">
-                <div class="col-span-2"><label class="text-[11px] font-bold text-slate-500 block mb-1">No. Absen</label><input id="form-roster-id" type="text" placeholder="01" class="w-full p-2.5 border border-slate-300 rounded-xl text-xs sm:text-sm font-mono font-bold text-center"></div>
-                <div class="col-span-4"><label class="text-[11px] font-bold text-slate-500 block mb-1">Nama Lengkap</label><input id="form-roster-name" type="text" placeholder="Nama Murid..." class="w-full p-2.5 border border-slate-300 rounded-xl text-xs sm:text-sm font-bold"></div>
-              </div>
-              <div class="grid grid-cols-2 gap-2.5 p-3 bg-blue-50/60 rounded-2xl border border-blue-200">
-                <div><label class="text-[11px] font-bold text-blue-900 block mb-1">Username</label><input id="form-roster-username" type="text" placeholder="budi01" class="w-full p-2 bg-white border border-blue-300 rounded-xl text-xs sm:text-sm font-mono font-bold"></div>
-                <div><label class="text-[11px] font-bold text-blue-900 block mb-1">Password</label><input id="form-roster-password" type="text" placeholder="123" class="w-full p-2 bg-white border border-blue-300 rounded-xl text-xs sm:text-sm font-mono font-bold"></div>
-              </div>
-              <div class="grid grid-cols-2 gap-2.5">
-                <div><label class="text-[11px] font-bold text-slate-500 block mb-1">Penempatan Kelas</label><select id="form-roster-grade" class="w-full p-2.5 border border-slate-300 rounded-xl text-xs sm:text-sm font-bold bg-amber-50 text-amber-900"><option value="Kelas Basic">Kelas Basic</option><option value="Kelas Advance">Kelas Advance</option><option value="Kelas Champion">Kelas Champion</option></select></div>
-                <div><label class="text-[11px] font-bold text-slate-500 block mb-1">Maskot</label><select id="form-roster-avatar" class="w-full p-2.5 border border-slate-300 rounded-xl text-xs sm:text-sm font-bold"><option value="🦎">🦎 Komodo</option><option value="🦧">🦧 Orangutan</option><option value="🐅">🐅 Harimau</option><option value="🦏">🦏 Badak</option><option value="🦅">🦅 Elang</option><option value="🦌">🦌 Rusa</option><option value="🦜">🦜 Burung</option><option value="🐢">🐢 Penyu</option></select></div>
-              </div>
-              <button type="button" onclick="adminSaveStudentForm()" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-title text-sm font-bold rounded-2xl shadow-xs transition"><span id="btn-save-roster-label">Simpan Akun Murid ✓</span></button>
+          
+          <!-- Daftar Seluruh Murid -->
+          <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-xs">
+            <div class="p-3 bg-slate-50 border-b text-xs font-bold text-slate-700 flex justify-between items-center">
+              <span>Daftar Seluruh Murid:</span>
+              <span id="roster-count-tag" class="text-sky-700 font-mono font-bold">0 Murid</span>
             </div>
-            
-            <!-- Daftar Seluruh Murid -->
-            <div class="lg:col-span-7 bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-xs">
-              <div class="p-3.5 bg-slate-50 border-b text-xs sm:text-sm font-bold text-slate-700 flex justify-between items-center">
-                <span>Daftar Seluruh Murid:</span>
-                <span id="roster-count-tag" class="text-sky-700 font-mono font-bold">0 Murid</span>
-              </div>
-              <div class="max-h-96 overflow-y-auto custom-scroll divide-y divide-slate-100" id="admin-roster-list-container"></div>
-            </div>
+            <div class="max-h-80 overflow-y-auto custom-scroll" id="admin-roster-list-container"></div>
           </div>
         </div>
-
         <!-- TAB 2: ABSENSI QR GURU -->
         <div id="teacher-tab-attendance" class="space-y-4 hidden">
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
-            <div class="md:col-span-6 bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300 rounded-3xl p-5 space-y-4">
-              <div class="flex items-center justify-between">
-                <div>
-                  <strong class="font-title text-base sm:text-lg text-amber-950 block">📷 Pemindai QR Absensi Siswa</strong>
-                  <span class="text-xs sm:text-sm text-amber-800 font-semibold">Pindai QR Kartu Siswa untuk menyalakan Api Streak 🔥!</span>
-                </div>
-                <span class="text-3xl animate-flame-flicker">🔥</span>
+          <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300 rounded-3xl p-4 md:p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <strong class="font-title text-sm md:text-base text-amber-950 block">📷 Pemindai QR Absensi Siswa</strong>
+                <span class="text-xs text-amber-800 font-semibold">Pindai QR Kartu Siswa untuk menyalakan Api Streak 🔥!</span>
               </div>
-              
-              <div class="bg-slate-900 rounded-2xl overflow-hidden relative border-2 border-amber-400 aspect-square max-w-[260px] mx-auto flex items-center justify-center text-center p-2">
-                <video id="qr-live-video" class="w-full h-full object-cover hidden rounded-xl"></video>
-                <div id="qr-camera-placeholder" class="absolute inset-0 flex flex-col items-center justify-center p-4 bg-slate-800 text-white">
-                  <span class="text-4xl mb-1">📷</span>
-                  <p class="text-xs sm:text-sm font-bold">Kamera Siap</p>
-                  <p class="text-[10px] text-slate-300 mt-0.5">Ketuk tombol hijau di bawah untuk memotret QR siswa</p>
-                </div>
+              <span class="text-3xl animate-flame-flicker">🔥</span>
+            </div>
+            
+            <div class="bg-slate-900 rounded-3xl overflow-hidden relative border-2 border-amber-400 aspect-square max-w-[240px] mx-auto flex items-center justify-center text-center p-2">
+              <video id="qr-live-video" class="w-full h-full object-cover hidden rounded-2xl"></video>
+              <div id="qr-camera-placeholder" class="absolute inset-0 flex flex-col items-center justify-center p-4 bg-slate-800 text-white">
+                <span class="text-4xl mb-1">📷</span>
+                <p class="text-xs font-bold">Kamera Siap</p>
+                <p class="text-[10px] text-slate-300 mt-0.5">Ketuk tombol hijau di bawah untuk memotret QR siswa</p>
               </div>
+            </div>
 
-              <input type="file" id="qr-native-file-input" accept="image/*" capture="environment" class="hidden" onchange="handleNativeQrCapture(event)">
+            <input type="file" id="qr-native-file-input" accept="image/*" capture="environment" class="hidden" onchange="handleNativeQrCapture(event)">
 
-              <div class="space-y-2.5">
-                <button type="button" onclick="triggerNativeQrCamera()" class="w-full py-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-xs sm:text-sm font-bold rounded-xl shadow-bouncy-btn active:scale-95 transition flex items-center justify-center gap-2">
-                  <span class="text-base">📸</span>
-                  <span>Jepret Foto QR Siswa (Deteksi Cepat & Akurat)</span>
+            <div class="space-y-2.5">
+              <button type="button" onclick="triggerNativeQrCamera()" class="w-full py-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-xs md:text-sm font-bold rounded-xl shadow-bouncy-btn active:scale-95 transition flex items-center justify-center gap-2">
+                <span class="text-base">📸</span>
+                <span>Jepret Foto QR Siswa (Deteksi Cepat & Akurat)</span>
+              </button>
+
+              <div class="flex gap-2">
+                <button type="button" id="btn-start-qr-scan" onclick="startQrScannerCamera()" class="flex-1 py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-title text-xs font-bold rounded-xl shadow-xs active:scale-95 transition flex items-center justify-center gap-1.5">
+                  <span>🎥 Kamera Live Streaming</span>
                 </button>
-
-                <div class="flex gap-2">
-                  <button type="button" id="btn-start-qr-scan" onclick="startQrScannerCamera()" class="flex-1 py-2.5 bg-slate-700 hover:bg-slate-800 text-white font-title text-xs font-bold rounded-xl shadow-xs active:scale-95 transition flex items-center justify-center gap-1">
-                    <span>🎥 Kamera Live</span>
-                  </button>
-                  <button type="button" id="btn-stop-qr-scan" onclick="stopQrScannerCamera()" class="hidden flex-1 py-2.5 bg-rose-500 hover:bg-rose-600 text-white font-title text-xs font-bold rounded-xl shadow-xs active:scale-95 transition">
-                    <span>⏹ Matikan Live</span>
-                  </button>
-                </div>
-              </div>
-
-              <div id="qr-scan-success-banner" class="hidden p-3 bg-emerald-100 border border-emerald-400 rounded-xl text-emerald-950 text-xs sm:text-sm font-bold flex items-center gap-2">
-                <span class="text-2xl">🎉</span>
-                <div id="qr-scan-success-msg">Absen Berhasil!</div>
+                <button type="button" id="btn-stop-qr-scan" onclick="stopQrScannerCamera()" class="hidden flex-1 py-2.5 bg-rose-500 hover:bg-rose-600 text-white font-title text-xs font-bold rounded-xl shadow-xs active:scale-95 transition">
+                  <span>⏹ Matikan Live</span>
+                </button>
               </div>
             </div>
 
-            <div class="md:col-span-6 bg-white border-2 border-slate-200 rounded-3xl p-5 shadow-xs space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="font-title text-sm sm:text-base font-bold text-slate-800">📋 Absensi Cepat Sekali Klik & Status Api:</span>
-                <span class="text-xs text-slate-400 font-mono" id="today-date-tag">Hari Ini</span>
-              </div>
-              <div class="max-h-80 overflow-y-auto custom-scroll space-y-2" id="admin-attendance-manual-list"></div>
+            <div id="qr-scan-success-banner" class="hidden p-3 bg-emerald-100 border border-emerald-400 rounded-2xl text-emerald-950 text-xs font-bold flex items-center gap-2.5">
+              <span class="text-2xl">🎉</span>
+              <div id="qr-scan-success-msg">Absen Berhasil!</div>
             </div>
+          </div>
+
+          <div class="bg-white border-2 border-slate-200 rounded-3xl p-4 shadow-xs space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="font-title text-xs md:text-sm font-bold text-slate-800">📋 Absensi Cepat Sekali Klik & Status Api:</span>
+              <span class="text-xs text-slate-400 font-mono" id="today-date-tag">Hari Ini</span>
+            </div>
+            <div class="max-h-64 overflow-y-auto custom-scroll space-y-2" id="admin-attendance-manual-list"></div>
           </div>
         </div>
 
         <!-- TAB 3: KELOLA BAB -->
         <div id="teacher-tab-bab" class="space-y-4 hidden">
-          <div class="bg-white p-5 rounded-3xl border-2 border-slate-200 shadow-xs space-y-3">
-            <div class="flex items-center justify-between"><span id="form-bab-title" class="text-sm sm:text-base font-bold text-slate-800">➕ Tambah Bab Baru:</span><button type="button" id="btn-cancel-edit-bab" onclick="cancelEditBabForm()" class="text-xs text-rose-600 font-bold hidden">✕ Batal</button></div>
-            <div class="grid grid-cols-6 gap-2.5">
-              <div class="col-span-2"><label class="text-[11px] font-bold text-slate-500 block mb-1">Tag Bab</label><input id="form-bab-tag" type="text" placeholder="Bab 5" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold text-center"></div>
-              <div class="col-span-3"><label class="text-[11px] font-bold text-slate-500 block mb-1">Nama Bab</label><input id="form-bab-name" type="text" placeholder="Judul Bab..." class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold"></div>
-              <div class="col-span-1"><label class="text-[11px] font-bold text-slate-500 block mb-1">Ikon</label><input id="form-bab-icon" type="text" placeholder="🚀" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold text-center"></div>
+          <div class="bg-white p-4 md:p-5 rounded-3xl border-2 border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between"><span id="form-bab-title" class="text-xs md:text-sm font-bold text-slate-800">➕ Tambah Bab Baru:</span><button type="button" id="btn-cancel-edit-bab" onclick="cancelEditBabForm()" class="text-xs text-rose-600 font-bold hidden">✕ Batal</button></div>
+            <div class="grid grid-cols-6 gap-3">
+              <div class="col-span-2"><label class="text-[10px] font-bold text-slate-500 block mb-1">Tag Bab</label><input id="form-bab-tag" type="text" placeholder="Bab 5" class="w-full p-2.5 border rounded-xl text-xs font-bold text-center"></div>
+              <div class="col-span-3"><label class="text-[10px] font-bold text-slate-500 block mb-1">Nama Bab</label><input id="form-bab-name" type="text" placeholder="Judul Bab..." class="w-full p-2.5 border rounded-xl text-xs font-bold"></div>
+              <div class="col-span-1"><label class="text-[10px] font-bold text-slate-500 block mb-1">Ikon</label><input id="form-bab-icon" type="text" placeholder="🚀" class="w-full p-2.5 border rounded-xl text-xs font-bold text-center"></div>
             </div>
-            <div><label class="text-[11px] font-bold text-slate-500 block mb-1">Deskripsi Ringkas</label><input id="form-bab-desc" type="text" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm"></div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <div><label class="text-[11px] font-bold text-slate-500 block mb-1">Target Kelas</label><select id="form-bab-grade" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold bg-amber-50 text-amber-900"><option value="Basic">Basic</option><option value="Advance">Advance</option><option value="Champion">Champion</option></select></div>
-              <div><label class="text-[11px] font-bold text-slate-500 block mb-1">Warna Kartu</label><select id="form-bab-color" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold"><option value="from-sky-500 to-blue-600">Biru Langit</option><option value="from-amber-500 to-orange-600">Oranye Cerah</option><option value="from-emerald-500 to-green-600">Hijau Segar</option><option value="from-purple-500 to-indigo-600">Ungu Indigo</option></select></div>
+            <div><label class="text-[10px] font-bold text-slate-500 block mb-1">Deskripsi Ringkas</label><input id="form-bab-desc" type="text" class="w-full p-2.5 border rounded-xl text-xs"></div>
+            <div class="grid grid-cols-2 gap-3">
+              <div><label class="text-[10px] font-bold text-slate-500 block mb-1">Target Kelas</label><select id="form-bab-grade" class="w-full p-2.5 border rounded-xl text-xs font-bold bg-amber-50 text-amber-900"><option value="Basic">Basic</option><option value="Advance">Advance</option><option value="Champion">Champion</option></select></div>
+              <div><label class="text-[10px] font-bold text-slate-500 block mb-1">Warna Kartu</label><select id="form-bab-color" class="w-full p-2.5 border rounded-xl text-xs font-bold"><option value="from-sky-500 to-blue-600">Biru Langit</option><option value="from-amber-500 to-orange-600">Oranye Cerah</option><option value="from-emerald-500 to-green-600">Hijau Segar</option><option value="from-purple-500 to-indigo-600">Ungu Indigo</option></select></div>
             </div>
-            <button type="button" onclick="adminSaveBabForm()" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-title text-sm font-bold rounded-xl shadow-xs transition">Simpan Bab Petualangan ✓</button>
+            <button type="button" onclick="adminSaveBabForm()" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-title text-xs md:text-sm font-bold rounded-xl shadow-xs transition">Simpan Bab Petualangan ✓</button>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-xs space-y-3">
-              <span class="text-sm font-bold text-slate-800 block">Daftar Bab Aktif:</span>
-              <div class="space-y-2 max-h-60 overflow-y-auto custom-scroll" id="admin-bab-list-container"></div>
-            </div>
+          <div class="bg-white border border-slate-200 rounded-3xl p-4 shadow-xs space-y-2.5">
+            <span class="text-xs md:text-sm font-bold text-slate-800 block">Daftar Bab Aktif:</span>
+            <div class="space-y-2 max-h-56 overflow-y-auto custom-scroll" id="admin-bab-list-container"></div>
+          </div>
 
-            <div class="bg-white border-2 border-slate-200 rounded-3xl p-5 shadow-xs space-y-3">
-              <div class="flex items-center justify-between"><span class="text-sm font-bold text-slate-800">🎯 Edit Tema 10 Level:</span><select id="admin-leveltheme-world-select" onchange="renderAdminLevelThemesEditor()" class="p-1.5 border rounded-lg text-xs font-bold bg-slate-50"></select></div>
-              <div id="admin-levelthemes-inputs-grid" class="space-y-2 max-h-48 overflow-y-auto custom-scroll"></div>
-              <button onclick="saveAdminLevelThemes()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-title text-xs sm:text-sm font-bold rounded-xl shadow-xs transition">Simpan Tema Level ✓</button>
-            </div>
+          <div class="bg-white border-2 border-slate-200 rounded-3xl p-4 shadow-xs space-y-3">
+            <div class="flex items-center justify-between"><span class="text-xs md:text-sm font-bold text-slate-800">🎯 Edit Tema 10 Level:</span><select id="admin-leveltheme-world-select" onchange="renderAdminLevelThemesEditor()" class="p-1.5 border rounded-lg text-xs font-bold bg-slate-50 max-w-[160px]"></select></div>
+            <div id="admin-levelthemes-inputs-grid" class="space-y-2 max-h-48 overflow-y-auto custom-scroll"></div>
+            <button onclick="saveAdminLevelThemes()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-title text-xs md:text-sm font-bold rounded-xl shadow-xs transition">Simpan Tema Level ✓</button>
           </div>
         </div>
 
-        <!-- TAB 4: EDITOR SOAL & BULK GEMINI -->
+        <!-- TAB 4: EDITOR SOAL (DENGAN TEMPEL MASSAL GEMINI) -->
         <div id="teacher-tab-editor" class="space-y-4 hidden">
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-gradient-to-r from-sky-50 to-indigo-50 border-2 border-sky-200 rounded-3xl p-4 sm:p-5">
+          <!-- BANNER FITUR TEMPEL MASSAL SOAL DARI GEMINI -->
+          <div class="bg-gradient-to-r from-purple-700 via-indigo-700 to-blue-700 rounded-3xl p-4 text-white shadow-md flex items-center justify-between">
             <div>
-              <strong class="font-title text-sm sm:text-base text-sky-950 block">✨ Fitur Tempel Massal Soal dari Gemini</strong>
-              <span class="text-xs text-sky-800 font-medium">Bisa langsung paste 11 soal atau lebih sekaligus tanpa mengetik satu per satu!</span>
+              <div class="flex items-center gap-1.5">
+                <span class="text-xs bg-amber-400 text-amber-950 font-bold px-2 py-0.5 rounded-md uppercase">Fitur Gemini AI</span>
+                <span class="text-xs text-purple-200">Bisa 11 Soal Sekaligus!</span>
+              </div>
+              <h3 class="font-title text-sm md:text-base font-bold mt-1">Tempel Massal Soal dari Gemini</h3>
+              <p class="text-[11px] text-purple-100 mt-0.5">Copy 11 soal dari Gemini lalu tempel sekaligus untuk mengganti soal level ini secara instan!</p>
             </div>
-            <button type="button" onclick="openBulkGeminiModal()" class="py-2.5 px-4 bg-gradient-to-r from-sky-600 to-indigo-600 text-white font-title text-xs sm:text-sm font-bold rounded-2xl shadow-md active:scale-95 transition flex items-center justify-center gap-2 shrink-0">
-              <span>📋</span><span>Buka Kotak Tempel Soal</span>
+            <button type="button" onclick="openGeminiImportModal()" class="px-4 py-2.5 bg-white hover:bg-amber-100 text-purple-950 font-title text-xs font-bold rounded-xl shadow-md active:scale-95 transition whitespace-nowrap">
+              📋 Tempel Soal Gemini
             </button>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div><label class="text-xs font-bold text-slate-600 block mb-1">Pilih Bab:</label><select id="admin-editor-world" onchange="loadAdminQuestionsList()" class="w-full p-2.5 text-xs sm:text-sm font-bold border-2 border-slate-200 rounded-xl bg-white"></select></div>
-            <div><label class="text-xs font-bold text-slate-600 block mb-1">Pilih Level:</label><select id="admin-editor-level" onchange="loadAdminQuestionsList()" class="w-full p-2.5 text-xs sm:text-sm font-bold border-2 border-slate-200 rounded-xl bg-white"></select></div>
+          <div class="grid grid-cols-2 gap-3">
+            <div><label class="text-xs font-bold text-slate-600 block mb-1">Pilih Bab:</label><select id="admin-editor-world" onchange="loadAdminQuestionsList()" class="w-full p-2.5 text-xs font-bold border-2 border-slate-200 rounded-xl bg-white"></select></div>
+            <div><label class="text-xs font-bold text-slate-600 block mb-1">Pilih Level:</label><select id="admin-editor-level" onchange="loadAdminQuestionsList()" class="w-full p-2.5 text-xs font-bold border-2 border-slate-200 rounded-xl bg-white"></select></div>
           </div>
+          <div class="border-2 border-slate-200 rounded-2xl p-2.5 max-h-48 overflow-y-auto custom-scroll space-y-2 bg-white" id="admin-questions-accordion"></div>
           
-          <div class="border-2 border-slate-200 rounded-2xl p-3 max-h-48 overflow-y-auto custom-scroll space-y-2 bg-white" id="admin-questions-accordion"></div>
-          
-          <div class="bg-white p-5 rounded-3xl border-2 border-slate-300 space-y-3.5 shadow-xs">
-            <div class="flex items-center justify-between"><span id="form-q-mode-label" class="text-sm font-bold text-slate-800">✏️ Edit Soal No. 1:</span></div>
-            <div><label class="text-xs font-bold text-slate-500 block mb-1">Instruksi</label><input id="form-q-instruction" type="text" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm bg-slate-50 font-medium"></div>
-            <div><label class="text-xs font-bold text-slate-500 block mb-1">Teks Soal ("________")</label><input id="form-q-text" type="text" class="w-full p-2.5 border-2 border-slate-300 rounded-xl text-xs sm:text-sm font-bold bg-white"></div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-              <div><label class="text-[10px] font-bold text-slate-400">Pilihan A</label><input id="form-opt-0" type="text" class="w-full p-2.5 border rounded-lg text-xs sm:text-sm font-semibold"></div>
-              <div><label class="text-[10px] font-bold text-slate-400">Pilihan B</label><input id="form-opt-1" type="text" class="w-full p-2.5 border rounded-lg text-xs sm:text-sm font-semibold"></div>
-              <div><label class="text-[10px] font-bold text-slate-400">Pilihan C</label><input id="form-opt-2" type="text" class="w-full p-2.5 border rounded-lg text-xs sm:text-sm font-semibold"></div>
-              <div><label class="text-[10px] font-bold text-slate-400">Pilihan D</label><input id="form-opt-3" type="text" class="w-full p-2.5 border rounded-lg text-xs sm:text-sm font-semibold"></div>
+          <div class="bg-white p-4 md:p-5 rounded-3xl border-2 border-slate-300 space-y-3 shadow-xs">
+            <div class="flex items-center justify-between"><span id="form-q-mode-label" class="text-xs md:text-sm font-bold text-slate-800">✏️ Edit Soal No. 1:</span></div>
+            <div><label class="text-[10px] font-bold text-slate-500 block mb-1">Instruksi</label><input id="form-q-instruction" type="text" class="w-full p-2.5 border rounded-xl text-xs bg-slate-50 font-medium"></div>
+            <div><label class="text-[10px] font-bold text-slate-500 block mb-1">Teks Soal ("________")</label><input id="form-q-text" type="text" class="w-full p-2.5 border-2 border-slate-300 rounded-xl text-xs font-bold bg-white"></div>
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <div><label class="text-[9px] font-bold text-slate-400">Pilihan A</label><input id="form-opt-0" type="text" class="w-full p-2 border rounded-lg text-xs font-semibold"></div>
+              <div><label class="text-[9px] font-bold text-slate-400">Pilihan B</label><input id="form-opt-1" type="text" class="w-full p-2 border rounded-lg text-xs font-semibold"></div>
+              <div><label class="text-[9px] font-bold text-slate-400">Pilihan C</label><input id="form-opt-2" type="text" class="w-full p-2 border rounded-lg text-xs font-semibold"></div>
+              <div><label class="text-[9px] font-bold text-slate-400">Pilihan D</label><input id="form-opt-3" type="text" class="w-full p-2 border rounded-lg text-xs font-semibold"></div>
             </div>
-            <div class="pt-1"><label class="text-xs font-bold text-slate-600 block mb-1">Kunci Jawaban Benar:</label><select id="form-correct-idx" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold bg-emerald-50 text-emerald-900 border-emerald-300"><option value="0">Pilihan A</option><option value="1">Pilihan B</option><option value="2">Pilihan C</option><option value="3">Pilihan D</option></select></div>
-            <div><label class="text-xs font-bold text-slate-500 block mb-1">Tips Tata Bahasa</label><input id="form-q-tip" type="text" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm bg-slate-50"></div>
-            <button type="button" onclick="adminSaveQuestionForm()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-title text-sm font-bold rounded-xl shadow-xs transition">Simpan Perubahan Soal ✓</button>
+            <div class="pt-1"><label class="text-[10px] font-bold text-slate-600 block mb-1">Kunci Jawaban Benar:</label><select id="form-correct-idx" class="w-full p-2 border rounded-xl text-xs font-bold bg-emerald-50 text-emerald-900 border-emerald-300"><option value="0">Pilihan A</option><option value="1">Pilihan B</option><option value="2">Pilihan C</option><option value="3">Pilihan D</option></select></div>
+            <div><label class="text-[10px] font-bold text-slate-500 block mb-1">Tips Tata Bahasa</label><input id="form-q-tip" type="text" class="w-full p-2.5 border rounded-xl text-xs bg-slate-50"></div>
+            <button type="button" onclick="adminSaveQuestionForm()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-title text-xs md:text-sm font-bold rounded-xl shadow-xs transition">Simpan Perubahan Soal ✓</button>
           </div>
         </div>
-
         <!-- TAB 5: KUNCI LEVEL -->
         <div id="teacher-tab-locks" class="space-y-4 hidden">
-          <div class="space-y-2"><label class="text-xs sm:text-sm font-bold text-slate-700 uppercase block">Pilih Bab:</label><select id="admin-lock-world-select" onchange="renderAdminLevelLocks()" class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl font-bold text-xs sm:text-sm"></select></div>
-          <div class="flex items-center justify-between p-3.5 bg-amber-50 border border-amber-200 rounded-2xl"><div><span class="text-xs sm:text-sm font-bold text-amber-900 block">Kunci Seluruh Bab Ini</span><span class="text-[10px] sm:text-xs text-amber-700">Murid tidak bisa membuka bab ini</span></div><input type="checkbox" id="admin-world-lock-toggle" onchange="toggleWorldLock(this.checked)" class="w-6 h-6 accent-amber-500 cursor-pointer"></div>
-          <div><label class="text-xs sm:text-sm font-bold text-slate-700 uppercase mb-2 block">Status Kunci Per Level (1–10):</label><div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5" id="admin-level-locks-grid"></div></div>
+          <div class="space-y-2"><label class="text-xs font-bold text-slate-700 uppercase block">Pilih Bab:</label><select id="admin-lock-world-select" onchange="renderAdminLevelLocks()" class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl font-bold text-xs"></select></div>
+          <div class="flex items-center justify-between p-3 bg-amber-50 border border-amber-200 rounded-2xl"><div><span class="text-xs font-bold text-amber-900 block">Kunci Seluruh Bab Ini</span><span class="text-[10px] text-amber-700">Murid tidak bisa membuka bab ini</span></div><input type="checkbox" id="admin-world-lock-toggle" onchange="toggleWorldLock(this.checked)" class="w-5 h-5 accent-amber-500"></div>
+          <div><label class="text-xs font-bold text-slate-700 uppercase mb-2 block">Status Kunci Per Level (1–10):</label><div class="grid grid-cols-2 md:grid-cols-5 gap-2.5" id="admin-level-locks-grid"></div></div>
         </div>
 
         <!-- TAB 6: PENGELOLAAN UJIAN -->
         <div id="teacher-tab-exam" class="space-y-4 hidden">
-          <div class="bg-purple-50 border-2 border-purple-200 rounded-3xl p-5 space-y-3">
+          <div class="bg-purple-50 border-2 border-purple-200 rounded-3xl p-4 md:p-5 space-y-2.5">
             <div class="flex items-center justify-between">
               <div>
-                <strong class="font-title text-sm sm:text-base text-purple-900 block">⚡ Status Akses Ujian / Ulangan:</strong>
+                <strong class="font-title text-sm md:text-base text-purple-900 block">⚡ Status Akses Ujian / Ulangan:</strong>
                 <span class="text-xs text-purple-700 font-semibold">Aktifkan saat sesi ulangan dimulai. Siswa hanya bisa mengerjakan 1x (tanpa batas waktu).</span>
               </div>
               <input type="checkbox" id="admin-exam-active-toggle" onchange="toggleExamActive(this.checked)" class="w-6 h-6 accent-purple-600 cursor-pointer">
             </div>
           </div>
 
-          <div class="bg-white border-2 border-slate-200 rounded-3xl p-5 space-y-3.5">
+          <div class="bg-white border-2 border-slate-200 rounded-3xl p-4 md:p-5 space-y-3">
             <div class="flex items-center justify-between">
-              <span class="font-title text-sm sm:text-base font-bold text-slate-800">📝 Edit 10 Soal Ujian Dadakan:</span>
-              <select id="admin-exam-q-select" onchange="loadAdminExamQuestionForm(parseInt(this.value))" class="p-2 border rounded-xl text-xs sm:text-sm font-bold bg-slate-50">
+              <span class="font-title text-xs md:text-sm font-bold text-slate-800">📝 Edit 10 Soal Ujian Dadakan:</span>
+              <select id="admin-exam-q-select" onchange="loadAdminExamQuestionForm(parseInt(this.value))" class="p-1.5 border rounded-lg text-xs font-bold bg-slate-50">
                 <option value="0">Soal 1</option><option value="1">Soal 2</option><option value="2">Soal 3</option><option value="3">Soal 4</option>
                 <option value="4">Soal 5</option><option value="5">Soal 6</option><option value="6">Soal 7</option><option value="7">Soal 8</option>
                 <option value="8">Soal 9</option><option value="9">Soal 10</option>
               </select>
             </div>
-            <div><label class="text-xs font-bold text-slate-500 block mb-1">Teks Kalimat Soal ("________")</label><input id="form-exam-q-text" type="text" class="w-full p-2.5 border-2 rounded-xl text-xs sm:text-sm font-bold"></div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <div><label class="text-[10px] font-bold text-slate-400">Pilihan A</label><input id="form-exam-opt-0" type="text" class="w-full p-2.5 border rounded-lg text-xs sm:text-sm font-semibold"></div>
-              <div><label class="text-[10px] font-bold text-slate-400">Pilihan B</label><input id="form-exam-opt-1" type="text" class="w-full p-2.5 border rounded-lg text-xs sm:text-sm font-semibold"></div>
-              <div><label class="text-[10px] font-bold text-slate-400">Pilihan C</label><input id="form-exam-opt-2" type="text" class="w-full p-2.5 border rounded-lg text-xs sm:text-sm font-semibold"></div>
-              <div><label class="text-[10px] font-bold text-slate-400">Pilihan D</label><input id="form-exam-opt-3" type="text" class="w-full p-2.5 border rounded-lg text-xs sm:text-sm font-semibold"></div>
+            <div><label class="text-[10px] font-bold text-slate-500 block mb-1">Teks Kalimat Soal ("________")</label><input id="form-exam-q-text" type="text" class="w-full p-2.5 border-2 rounded-xl text-xs font-bold"></div>
+            <div class="grid grid-cols-2 gap-2">
+              <div><label class="text-[9px] font-bold text-slate-400">Pilihan A</label><input id="form-exam-opt-0" type="text" class="w-full p-2 border rounded-lg text-xs font-semibold"></div>
+              <div><label class="text-[9px] font-bold text-slate-400">Pilihan B</label><input id="form-exam-opt-1" type="text" class="w-full p-2 border rounded-lg text-xs font-semibold"></div>
+              <div><label class="text-[9px] font-bold text-slate-400">Pilihan C</label><input id="form-exam-opt-2" type="text" class="w-full p-2 border rounded-lg text-xs font-semibold"></div>
+              <div><label class="text-[9px] font-bold text-slate-400">Pilihan D</label><input id="form-exam-opt-3" type="text" class="w-full p-2 border rounded-lg text-xs font-semibold"></div>
             </div>
-            <div class="pt-1"><label class="text-xs font-bold text-slate-600 block mb-1">Kunci Jawaban Benar:</label><select id="form-exam-correct-idx" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold bg-purple-50 text-purple-900 border-purple-300"><option value="0">Pilihan A</option><option value="1">Pilihan B</option><option value="2">Pilihan C</option><option value="3">Pilihan D</option></select></div>
-            <div><label class="text-xs font-bold text-slate-500 block mb-1">Tips Tata Bahasa Ujian</label><input id="form-exam-tip" type="text" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm bg-slate-50"></div>
-            <button type="button" onclick="adminSaveExamQuestionForm()" class="w-full py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-title text-sm font-bold rounded-xl shadow-xs transition">Simpan Soal Ujian ✓</button>
+            <div class="pt-1"><label class="text-[10px] font-bold text-slate-600 block mb-1">Kunci Jawaban Benar:</label><select id="form-exam-correct-idx" class="w-full p-2 border rounded-xl text-xs font-bold bg-purple-50 text-purple-900 border-purple-300"><option value="0">Pilihan A</option><option value="1">Pilihan B</option><option value="2">Pilihan C</option><option value="3">Pilihan D</option></select></div>
+            <div><label class="text-[10px] font-bold text-slate-500 block mb-1">Tips Tata Bahasa Ujian</label><input id="form-exam-tip" type="text" class="w-full p-2.5 border rounded-xl text-xs bg-slate-50"></div>
+            <button type="button" onclick="adminSaveExamQuestionForm()" class="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-title text-xs md:text-sm font-bold rounded-xl shadow-xs transition">Simpan Soal Ujian ✓</button>
           </div>
         </div>
 
         <!-- TAB 7: BUKU NILAI -->
         <div id="teacher-tab-scores" class="space-y-4 hidden">
-          <div class="flex items-center justify-between"><span class="text-sm font-bold text-slate-700">Rekap Nilai & Api Kehadiran:</span><span class="text-xs text-emerald-700 font-bold bg-emerald-100 px-3 py-1 rounded-full">Tersimpan Permanen</span></div>
-          <div class="border border-slate-200 rounded-3xl overflow-hidden max-h-96 overflow-y-auto custom-scroll bg-white shadow-xs">
-            <table class="w-full text-xs sm:text-sm text-left">
+          <div class="flex items-center justify-between"><span class="text-xs md:text-sm font-bold text-slate-700">Rekap Nilai & Api Kehadiran:</span><span class="text-xs text-emerald-700 font-bold bg-emerald-100 px-2.5 py-0.5 rounded">Tersimpan Permanen</span></div>
+          <div class="border border-slate-200 rounded-3xl overflow-hidden max-h-80 overflow-y-auto custom-scroll bg-white shadow-xs">
+            <table class="w-full text-xs text-left">
               <thead class="bg-slate-100 text-slate-600 font-bold border-b">
                 <tr><th class="p-3">No.</th><th class="p-3">Nama</th><th class="p-3">Kelas</th><th class="p-3">Api 🔥</th><th class="p-3">Skor</th><th class="p-3">Ujian</th><th class="p-3 text-center">Aksi</th></tr>
               </thead>
@@ -842,76 +771,24 @@
         </div>
       </div>
     </main>
-
-    <!-- MODAL: TEMPEL MASSAL SOAL DARI GEMINI -->
-    <div id="modal-gemini-bulk" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex flex-col items-center justify-center p-3 overflow-y-auto">
-      <div class="w-full max-w-2xl bg-white rounded-3xl border-2 border-indigo-400 p-5 sm:p-6 shadow-2xl flex flex-col gap-4">
-        <div class="flex items-center justify-between border-b pb-3">
-          <div class="flex items-center gap-2">
-            <span class="text-2xl">✨</span>
-            <div>
-              <h3 class="font-title text-base sm:text-lg font-bold text-indigo-950">Tempel 11 Soal dari Gemini</h3>
-              <p class="text-xs text-slate-500">Target: <strong id="bulk-gemini-target-label" class="text-indigo-600">Bab 1 - Level 1</strong></p>
-            </div>
-          </div>
-          <button onclick="closeBulkGeminiModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold">✕</button>
-        </div>
-
-        <div class="p-3 bg-amber-50 border border-amber-200 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs text-amber-900">
-          <div>
-            <strong>💡 Cara Praktis:</strong> Klik tombol di kanan untuk menyalin contoh instruksi/prompt, minta Gemini membuatnya, lalu salin seluruh hasilnya ke kotak di bawah.
-          </div>
-          <button type="button" onclick="copyGeminiPromptTemplate()" class="px-3 py-1.5 bg-amber-200 hover:bg-amber-300 text-amber-950 rounded-xl font-bold font-title whitespace-nowrap active:scale-95 transition">
-            📋 Salin Prompt Gemini
-          </button>
-        </div>
-
-        <div>
-          <label class="text-xs font-bold text-slate-700 block mb-1">Tempelkan teks soal dari Gemini di sini:</label>
-          <textarea id="gemini-bulk-textarea" rows="9" placeholder="1. I ________ to school every day.
-A. go
-B. goes
-C. going
-D. went
-Jawaban: A
-Tips: Subjek I menggunakan kata kerja dasar.
-
-2. She ________ an apple in the morning.
-A. eat
-B. eats
-C. eating
-D. eaten
-Jawaban: B
-Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-slate-300 rounded-2xl text-xs sm:text-sm font-mono focus:border-indigo-500 outline-none"></textarea>
-        </div>
-
-        <div class="flex items-center justify-end gap-2 pt-1 border-t">
-          <button type="button" onclick="closeBulkGeminiModal()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs sm:text-sm">Batal</button>
-          <button type="button" onclick="processGeminiBulkQuestions()" class="px-5 py-2.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title font-bold rounded-xl text-xs sm:text-sm shadow-md active:scale-95 transition">
-            ✨ Terapkan & Simpan Semua Soal
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- MODAL: KTP SISWA RESMI -->
+    <!-- MODAL: KTP SISWA RESMI (DENGAN OPSI DOKUMEN WORD, HTML CETAK, & GAMBAR HD) -->
     <div id="modal-student-ktp" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex flex-col items-center justify-center p-3 overflow-y-auto">
-      
-      <div class="modal-ktp-box w-full max-w-lg bg-sunNavy-950/95 border border-sunGold-500/40 rounded-3xl p-4 sm:p-6 shadow-2xl flex flex-col items-center gap-3 text-center">
+      <div class="modal-ktp-box w-full max-w-lg bg-sunNavy-950/95 border border-sunGold-500/40 rounded-3xl p-4 shadow-2xl flex flex-col items-center gap-3 text-center">
         
-        <div class="w-full flex items-center justify-between border-b border-sunGold-500/20 pb-2.5 no-print">
+        <div class="w-full flex items-center justify-between border-b border-sunGold-500/20 pb-2 no-print">
           <div class="flex items-center gap-2">
             <span class="text-xl">🪪</span>
             <div class="text-left">
-              <h3 class="font-display font-black text-xs sm:text-sm text-white leading-tight">Official Student Smart ID Card</h3>
-              <p class="text-[9px] sm:text-[10px] text-sunGold-300">Sunshine English Academy &bull; Mr. Agung's Class</p>
+              <h3 class="font-display font-black text-sm text-white leading-tight">Official Student Smart ID Card</h3>
+              <p class="text-[10px] text-sunGold-300">Sunshine English Academy &bull; Mr. Agung's Class</p>
             </div>
           </div>
           <div class="flex items-center gap-1.5">
-            <button type="button" onclick="toggleStudentKtpSide()" id="btn-toggle-ktp-flip" class="px-3 py-1.5 bg-amber-400 text-sunNavy-950 rounded-xl font-display text-xs font-black shadow-xs active:scale-95 transition flex items-center gap-1">
+            <!-- Tombol Balik Kartu -->
+            <button type="button" onclick="toggleStudentKtpSide()" id="btn-toggle-ktp-flip" class="px-2.5 py-1 bg-amber-400 text-sunNavy-950 rounded-xl font-display text-[10px] font-black shadow-xs active:scale-95 transition flex items-center gap-1">
               <span>🔄</span><span id="ktp-flip-btn-label">Lihat Belakang</span>
             </button>
-            <button onclick="closeStudentKtpModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center transition">✕</button>
+            <button onclick="closeStudentKtpModal()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center transition">✕</button>
           </div>
         </div>
 
@@ -919,13 +796,12 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
 
         <!-- KONTEN KARTU KTP (CR-80: 450px x 282px) -->
         <div class="ktp-scale-container my-1">
-          
           <!-- SISI 1: TAMPAK DEPAN -->
           <div id="ktp-card-front-view" class="id-card-frame rounded-3xl shadow-card-vip gold-foil-border overflow-hidden text-white flex flex-col justify-between relative bg-gradient-to-br from-sunNavy-900 via-sunNavy-850 to-sunNavy-950 text-left">
-            
             <div class="absolute inset-0 security-guilloche opacity-70 pointer-events-none"></div>
             <div class="absolute inset-0 gold-holographic-ribbon pointer-events-none"></div>
 
+            <!-- HEADER DEPAN -->
             <div class="relative z-10 px-4 pt-3 pb-2 flex items-center justify-between border-b border-sunGold-500/30 bg-sunNavy-950/60 backdrop-blur-xs">
               <div class="flex items-center gap-2.5">
                 <div class="w-11 h-11 rounded-xl bg-white p-0.5 shadow-md border-2 border-sunGold-400/80 flex items-center justify-center shrink-0 overflow-hidden">
@@ -949,6 +825,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
               </div>
             </div>
 
+            <!-- BODY DEPAN -->
             <div class="relative z-10 px-4 py-2 flex items-center justify-between gap-3 flex-1">
               <div class="flex flex-col items-center justify-center gap-1.5 w-24 shrink-0">
                 <div class="relative group cursor-pointer" onclick="triggerStudentPhotoUpload()" title="Klik untuk ganti foto murid">
@@ -1014,6 +891,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
               </div>
             </div>
 
+            <!-- FOOTER DEPAN -->
             <div class="relative z-10 px-4 py-1.5 bg-sunNavy-950/90 border-t border-sunGold-500/30 flex items-center justify-between text-[8px]">
               <span class="font-code text-slate-400 tracking-wider">SEC-2026-REG</span>
               <div class="flex items-center gap-1 text-sunGold-300 font-display font-black tracking-wide italic">
@@ -1021,12 +899,10 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
               </div>
               <span class="font-display font-bold text-slate-300">MR. AGUNG ✓</span>
             </div>
-
           </div>
 
           <!-- SISI 2: TAMPAK BELAKANG -->
           <div id="ktp-card-back-view" class="id-card-frame rounded-3xl shadow-card-vip gold-foil-border overflow-hidden text-white flex flex-col justify-between hidden relative bg-gradient-to-br from-sunNavy-950 via-sunNavy-900 to-sunNavy-850 text-left">
-            
             <div class="absolute inset-0 security-guilloche opacity-50 pointer-events-none"></div>
 
             <div class="absolute inset-0 flex items-center justify-center p-4 watermark-silhouette">
@@ -1041,9 +917,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
 
             <div class="relative z-10 px-4 py-1 flex items-center justify-between gap-2.5 flex-1">
               <div class="flex-1 space-y-1">
-                <span class="text-[8px] font-display font-extrabold text-sunGold-300 uppercase tracking-wider block">
-                  Ketentuan Pemegang Kartu:
-                </span>
+                <span class="text-[8px] font-display font-extrabold text-sunGold-300 uppercase tracking-wider block">Ketentuan Pemegang Kartu:</span>
                 <ul class="text-[7px] text-slate-200 space-y-0.5 list-disc pl-3 leading-tight font-medium">
                   <li>Kartu identitas resmi siswa <strong>Mr. Agung's Class</strong>.</li>
                   <li>Wajib dibawa & dipindai saat kelas untuk mencatat kehadiran.</li>
@@ -1078,7 +952,6 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
                   </div>
                 </div>
               </div>
-
             </div>
 
             <div class="relative z-10 px-4 py-1.5 bg-sunNavy-950/90 border-t border-sunGold-500/30 flex items-center justify-between text-[7.5px]">
@@ -1091,35 +964,66 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
               <span class="font-display italic text-slate-300">“It’s time to rise and shine”</span>
               <span class="font-code text-sunGold-400 font-bold">SMART ID</span>
             </div>
-
           </div>
-
         </div>
 
+        <!-- TOMBOL AKSI MODAL KTP RESMI -->
         <div class="w-full flex flex-wrap items-center justify-center gap-2 pt-2 border-t border-sunGold-500/20 no-print">
-          <button type="button" onclick="downloadStudentKtpFrontPdf()" class="py-2.5 px-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-display text-xs sm:text-sm font-bold rounded-xl shadow-md active:scale-95 transition flex items-center gap-1.5">
-            <span>📄 Download PDF (Depan Saja)</span>
+          <button type="button" onclick="downloadStudentKtpDocument('doc')" class="py-2.5 px-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white font-display text-xs font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1.5">
+            <span>📄 Download Dokumen (.doc Word)</span>
           </button>
-          <button type="button" onclick="downloadStudentKtpSidePng('front')" class="py-2.5 px-3.5 bg-gradient-to-r from-amber-400 via-sunGold-400 to-amber-500 text-sunNavy-950 font-display text-xs sm:text-sm font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1.5">
-            <span>📥 Unduh Depan (PNG HD)</span>
+          <button type="button" onclick="downloadStudentKtpDocument('html')" class="py-2.5 px-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-display text-xs font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1.5">
+            <span>🌐 Dokumen Cetak Mandiri</span>
           </button>
-          <button type="button" onclick="downloadStudentKtpSidePng('back')" class="py-2.5 px-3.5 bg-gradient-to-r from-amber-500 to-orange-500 text-sunNavy-950 font-display text-xs sm:text-sm font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1.5">
-            <span>📥 Unduh Belakang (PNG HD)</span>
+          <button type="button" onclick="downloadStudentKtpSidePng('front')" class="py-2.5 px-3 bg-gradient-to-r from-amber-400 via-sunGold-400 to-amber-500 text-sunNavy-950 font-display text-xs font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1">
+            <span>📥 Unduh Gambar (PNG HD)</span>
           </button>
-          <button type="button" onclick="document.getElementById('ktp-modal-back-logo-input').click()" class="py-2.5 px-3 bg-sunNavy-800 hover:bg-sunNavy-700 text-sunGold-300 border border-sunGold-400/40 font-display text-xs sm:text-sm font-bold rounded-xl active:scale-95 transition flex items-center gap-1.5">
-            <span>🖼️ Background Belakang</span>
+          <button type="button" onclick="printSingleStudentKtp()" class="py-2.5 px-3 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-display text-xs font-bold rounded-xl shadow-md active:scale-95 transition flex items-center gap-1">
+            <span>🖨️ Cetak / Simpan PDF</span>
           </button>
-          <button type="button" onclick="closeStudentKtpModal()" class="px-4 py-2.5 bg-slate-800 text-slate-300 font-display text-xs sm:text-sm font-bold rounded-xl hover:bg-slate-700 transition">
+          <button type="button" onclick="document.getElementById('ktp-modal-back-logo-input').click()" class="py-2 px-2.5 bg-sunNavy-800 hover:bg-sunNavy-700 text-sunGold-300 border border-sunGold-400/40 font-display text-xs font-bold rounded-xl active:scale-95 transition flex items-center gap-1" title="Pilih gambar logo memanjang untuk background belakang kartu">
+            <span>🖼️ Ganti Background Belakang</span>
+          </button>
+          <button type="button" onclick="closeStudentKtpModal()" class="px-3 py-2 bg-slate-800 text-slate-300 font-display text-xs font-bold rounded-xl hover:bg-slate-700 transition">
             Tutup
           </button>
         </div>
 
       </div>
     </div>
+    <!-- MODAL: TEMPEL MASSAL SOAL DARI GEMINI -->
+    <div id="modal-gemini-import" class="fixed inset-0 bg-slate-900/80 z-50 hidden flex items-center justify-center p-3">
+      <div class="bg-white rounded-3xl w-full max-w-xl flex flex-col shadow-2xl border-4 border-indigo-500 overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 p-4 flex items-center justify-between text-white">
+          <div class="flex items-center gap-2.5">
+            <span class="text-2xl">📋</span>
+            <div>
+              <h3 class="font-title font-black text-base leading-tight">Tempel Massal Soal Gemini (11 Soal Sekaligus)</h3>
+              <p class="text-xs text-indigo-100">Tempelkan teks soal langsung dari chat Gemini, sistem akan menyusunnya otomatis!</p>
+            </div>
+          </div>
+          <button onclick="closeGeminiImportModal()" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center font-bold">✕</button>
+        </div>
 
-    <!-- AREA CETAK KHUSUS TERISOLASI ANTIBLANK -->
-    <div id="dedicated-print-container" class="hidden"></div>
-    <div id="print-batch-a4-area" class="hidden"></div>
+        <div class="p-4 space-y-3">
+          <div class="flex items-center justify-between bg-indigo-50 border border-indigo-200 p-2.5 rounded-2xl text-xs">
+            <span class="font-bold text-indigo-950">💡 Format Gemini yang didukung otomatis:</span>
+            <button type="button" onclick="copyGeminiPromptFormat()" class="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold shadow-xs active:scale-95 transition">
+              Salin Format Prompt
+            </button>
+          </div>
+
+          <textarea id="gemini-bulk-paste-input" rows="8" placeholder="Contoh format soal dari Gemini:&#10;&#10;1. She ________ to the library yesterday.&#10;A. went&#10;B. goes&#10;C. go&#10;D. gone&#10;Kunci: A&#10;Tips: Bentuk lampau dari go adalah went.&#10;&#10;2. My brother is taller ________ me.&#10;A. than&#10;B. then&#10;C. from&#10;D. with&#10;Kunci: A&#10;Tips: Bandingkan dua hal gunakan than." class="w-full p-3 bg-slate-50 border-2 border-slate-300 focus:border-indigo-500 rounded-2xl text-xs font-mono font-medium outline-none"></textarea>
+
+          <div class="flex items-center justify-end gap-2 pt-1">
+            <button type="button" onclick="closeGeminiImportModal()" class="px-4 py-2.5 bg-slate-200 text-slate-700 rounded-xl font-bold text-xs hover:bg-slate-300 transition">Batal</button>
+            <button type="button" onclick="parseAndApplyGeminiQuestions()" class="px-5 py-2.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-xs font-bold rounded-xl shadow-bouncy-btn active:scale-95 transition flex items-center gap-1.5">
+              <span>✨ Terapkan & Simpan Semua Soal</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- MODAL: STREAK KEHADIRAN -->
     <div id="modal-streak" class="fixed inset-0 bg-slate-900/60 z-50 hidden flex items-center justify-center p-4">
@@ -1175,7 +1079,6 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
     <!-- TOAST NOTIFIKASI -->
     <div id="app-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2 bg-slate-900/90 text-white font-title text-xs rounded-2xl shadow-xl transition-all">Pesan</div>
   </div>
-
   <script>
     window.onerror = function(msg, url, line) {
       var errBox = document.getElementById("login-error-msg");
@@ -1247,7 +1150,6 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
         { text: "The opposite of 'big' is ________.", options: ["small", "huge", "tall", "long"], answer: 0, tip: "Lawan kata besar adalah kecil ('small')." }
       ]
     };
-
     function loadSavedAcademyLogos() {
       try {
         var savedFrontLogo = localStorage.getItem("MRAGUNG_SEA_LOGO");
@@ -1295,7 +1197,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
 
     function loadLocalCache() {
       try {
-        var raw = localStorage.getItem("MRAGUNG_V8_CONFIG") || localStorage.getItem("MRAGUNG_V7_CONFIG") || localStorage.getItem("MRAGUNG_V6_CONFIG");
+        var raw = localStorage.getItem("MRAGUNG_V8_CONFIG") || localStorage.getItem("MRAGUNG_V7_CONFIG");
         if (raw) {
           var parsed = JSON.parse(raw);
           if (parsed.studentRoster && parsed.studentRoster.length > 0) studentRoster = parsed.studentRoster;
@@ -1337,7 +1239,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
                 } catch (e) {}
               }
               var syncDot = document.getElementById("cloud-sync-status");
-              if (syncDot) syncDot.className = "w-2 h-2 rounded-full bg-emerald-500";
+              if (syncDot) syncDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500";
             }
           })
           .apiGetCloudData();
@@ -1357,21 +1259,21 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       try { localStorage.setItem("MRAGUNG_V8_CONFIG", jsonStr); } catch (e) {}
 
       var syncDot = document.getElementById("cloud-sync-status");
-      if (syncDot) syncDot.className = "w-2 h-2 rounded-full bg-amber-400 animate-pulse";
+      if (syncDot) syncDot.className = "w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse";
 
       if (typeof google !== "undefined" && google.script && google.script.run) {
         google.script.run
           .withSuccessHandler(function() {
-            if (syncDot) syncDot.className = "w-2 h-2 rounded-full bg-emerald-500";
+            if (syncDot) syncDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500";
             showToast("☁️ Tersimpan ke Google Cloud!");
           })
           .withFailureHandler(function() {
-            if (syncDot) syncDot.className = "w-2 h-2 rounded-full bg-emerald-500";
+            if (syncDot) syncDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500";
           })
           .apiSaveTeacherConfig(jsonStr);
       } else {
         setTimeout(function() {
-          if (syncDot) syncDot.className = "w-2 h-2 rounded-full bg-emerald-500";
+          if (syncDot) syncDot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500";
         }, 300);
       }
     }
@@ -1428,7 +1330,6 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       if (screenId === "screen-worlds") renderWorldsList();
       else if (screenId === "screen-levels") renderAdventureLevelMap();
     }
-
     function handleLogin() {
       try {
         var userEl = document.getElementById("login-username-input");
@@ -1447,6 +1348,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
         }
         errEl.classList.add("hidden");
 
+        // LOGIN KHUSUS GURU MR. AGUNG
         if ((userInp === "mragung" || userInp === "mr agung" || userInp === "guru" || userInp === "admin") && passInp === "2003") {
           gameState.isLoggedIn = true;
           gameState.isTeacher = true;
@@ -1458,6 +1360,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
           return;
         }
 
+        // LOGIN SISWA
         var student = null;
         for (var k = 0; k < studentRoster.length; k++) {
           var s = studentRoster[k];
@@ -1655,7 +1558,6 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       document.getElementById("header-streak-count").innerText = streakVal;
       document.getElementById("home-streak-display").innerText = streakVal + " Hari";
     }
-
     function renderWorldsList() {
       var container = document.getElementById("worlds-card-container");
       if (!container) return;
@@ -1667,37 +1569,37 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       var studentExamScore = gameState.examScore;
 
       var examCard = document.createElement("div");
-      examCard.className = "w-full rounded-3xl p-4 border-2 transition " + 
+      examCard.className = "w-full rounded-3xl p-4 md:p-5 border-2 transition " + 
         (hasTakenExam ? "bg-emerald-50/80 border-emerald-300" : (isExamOpen ? "bg-gradient-to-r from-purple-50 to-indigo-50 border-purple-300 shadow-sm" : "bg-slate-100 border-slate-300 opacity-80"));
 
       var examStatusBadge = "";
       if (hasTakenExam) {
-        examStatusBadge = '<span class="text-[10px] bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded-md font-bold">✓ Sudah Dikerjakan (Nilai: ' + studentExamScore + ')</span>';
+        examStatusBadge = '<span class="text-[9px] md:text-xs bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded-md font-bold">✓ Sudah Dikerjakan (Nilai: ' + studentExamScore + ')</span>';
       } else if (isExamOpen) {
-        examStatusBadge = '<span class="text-[10px] bg-purple-200 text-purple-900 px-2 py-0.5 rounded-md font-bold animate-pulse">● Ujian Dibuka Guru (1x Coba)</span>';
+        examStatusBadge = '<span class="text-[9px] md:text-xs bg-purple-200 text-purple-900 px-2 py-0.5 rounded-md font-bold animate-pulse">● Ujian Dibuka Guru (1x Coba)</span>';
       } else {
-        examStatusBadge = '<span class="text-[10px] bg-slate-200 text-slate-600 px-2 py-0.5 rounded-md font-bold">🔒 Ujian Dikunci Guru</span>';
+        examStatusBadge = '<span class="text-[9px] md:text-xs bg-slate-200 text-slate-600 px-2 py-0.5 rounded-md font-bold">🔒 Ujian Dikunci Guru</span>';
       }
 
       var examButtonHtml = "";
       if (hasTakenExam) {
-        examButtonHtml = '<button type="button" class="px-3.5 py-2 bg-slate-200 text-slate-500 font-title text-xs sm:text-sm font-bold rounded-xl cursor-not-allowed">Tuntas ✓</button>';
+        examButtonHtml = '<button type="button" class="px-3.5 py-2 bg-slate-200 text-slate-500 font-title text-xs font-bold rounded-xl cursor-not-allowed">Tuntas ✓</button>';
       } else if (isExamOpen) {
-        examButtonHtml = '<button onclick="startExamSession()" class="px-3.5 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-title text-xs sm:text-sm font-bold rounded-xl shadow-xs active:scale-95 transition">Mulai ⚡</button>';
+        examButtonHtml = '<button onclick="startExamSession()" class="px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-title text-xs md:text-sm font-bold rounded-xl shadow-xs active:scale-95 transition">Mulai ⚡</button>';
       } else {
-        examButtonHtml = '<span class="text-xl opacity-60">🔒</span>';
+        examButtonHtml = '<span class="text-2xl opacity-60">🔒</span>';
       }
 
       examCard.innerHTML = 
         '<div class="flex items-center justify-between">' +
           '<div class="flex items-center gap-3.5">' +
-            '<div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ' + (hasTakenExam ? 'bg-emerald-600' : 'bg-gradient-to-br from-purple-600 to-indigo-700') + ' flex items-center justify-center text-2xl text-white shadow-xs">⚡</div>' +
+            '<div class="w-13 h-13 md:w-14 md:h-14 rounded-2xl ' + (hasTakenExam ? 'bg-emerald-600' : 'bg-gradient-to-br from-purple-600 to-indigo-700') + ' flex items-center justify-center text-2xl md:text-3xl text-white shadow-xs">⚡</div>' +
             '<div>' +
-              '<div class="flex items-center gap-1.5 mb-0.5">' +
-                '<span class="text-[10px] font-bold px-2 py-0.5 rounded-md ' + (hasTakenExam ? 'bg-emerald-100 text-emerald-800' : 'bg-purple-100 text-purple-800') + '">ULANGAN BAB</span>' +
+              '<div class="flex items-center gap-1.5">' +
+                '<span class="text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-md ' + (hasTakenExam ? 'bg-emerald-100 text-emerald-800' : 'bg-purple-100 text-purple-800') + '">ULANGAN BAB</span>' +
                 examStatusBadge +
               '</div>' +
-              '<h3 class="font-title text-base sm:text-lg font-bold text-slate-800">Quiz / Ulangan Bab</h3>' +
+              '<h3 class="font-title text-base md:text-lg font-bold text-slate-800">Quiz / Ulangan Bab</h3>' +
               '<p class="text-xs text-slate-500 mt-0.5">Ujian dadakan resmi dari Mr. Agung (Hanya 1x Coba)</p>' +
             '</div>' +
           '</div>' +
@@ -1718,8 +1620,8 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
         for (var k = 0; k < arr.length; k++) stars += (Number(arr[k]) || 0);
 
         var card = document.createElement("div");
-        card.className = "w-full rounded-3xl p-4 border-2 transition cursor-pointer " + (isLocked ? "bg-slate-100 border-slate-300 opacity-80" : "bg-white border-sky-200");
-        card.innerHTML = '<div class="flex items-center justify-between"><div class="flex items-center gap-3.5"><div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br ' + (w.color || "from-sky-500 to-blue-600") + ' flex items-center justify-center text-2xl text-white shadow-xs">' + (w.subjectIcon || "📘") + '</div><div><div class="flex items-center gap-1.5 mb-0.5"><span class="text-[10px] font-bold px-2 py-0.5 rounded-md ' + (isLocked ? 'bg-slate-300' : 'bg-sky-100 text-sky-800') + '">' + w.tag + '</span><h3 class="font-title text-base sm:text-lg font-bold text-slate-800">' + w.name + '</h3></div><p class="text-xs text-slate-500 mt-0.5 truncate">' + (w.desc || "") + '</p><div class="text-xs font-bold text-amber-600 mt-1">⭐ ' + stars + ' / 30 Bintang</div></div></div><div>' + (isLocked ? '🔒' : '<span class="text-sky-600 font-bold text-xl">➔</span>') + '</div></div>';
+        card.className = "w-full rounded-3xl p-4 md:p-5 border-2 transition cursor-pointer " + (isLocked ? "bg-slate-100 border-slate-300 opacity-80" : "bg-white border-sky-200 hover:border-sky-400 hover:shadow-md");
+        card.innerHTML = '<div class="flex items-center justify-between"><div class="flex items-center gap-3.5"><div class="w-13 h-13 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ' + (w.color || "from-sky-500 to-blue-600") + ' flex items-center justify-center text-2xl md:text-3xl text-white shadow-xs">' + (w.subjectIcon || "📘") + '</div><div><div class="flex items-center gap-1.5"><span class="text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-md ' + (isLocked ? 'bg-slate-300' : 'bg-sky-100 text-sky-800') + '">' + w.tag + '</span><h3 class="font-title text-base md:text-lg font-bold text-slate-800">' + w.name + '</h3></div><p class="text-xs text-slate-500 mt-0.5 truncate">' + (w.desc || "") + '</p><div class="text-xs font-bold text-amber-600 mt-1">⭐ ' + stars + ' / 30 Bintang</div></div></div><div>' + (isLocked ? '🔒' : '<span class="text-sky-600 font-bold text-xl">➔</span>') + '</div></div>';
         
         card.onclick = (function(idx, locked) {
           return function() {
@@ -1734,7 +1636,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
 
       if (!hasBab) {
         var emptyNotice = document.createElement("div");
-        emptyNotice.className = "p-4 bg-slate-100 border-2 border-slate-200 rounded-2xl text-center text-slate-500 text-sm font-bold";
+        emptyNotice.className = "p-5 bg-slate-100 border-2 border-slate-200 rounded-3xl text-center text-slate-500 text-sm font-bold";
         emptyNotice.innerText = "Belum ada materi untuk Kelas " + gameState.grade + ".";
         container.appendChild(emptyNotice);
       }
@@ -1802,16 +1704,16 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
         var isBossLevel = (i === 9);
 
         var rowDiv = document.createElement("div");
-        rowDiv.className = "flex " + alignments[i % alignments.length] + " items-center relative my-3";
+        rowDiv.className = "flex " + alignments[i % alignments.length] + " items-center relative my-3.5";
 
         var nodeWrapper = document.createElement("div");
         nodeWrapper.className = "relative flex flex-col items-center";
 
         if (isSelected) {
           var mascotBalloon = document.createElement("div");
-          mascotBalloon.className = "absolute -top-12 z-20 flex flex-col items-center animate-bounce";
-          mascotBalloon.innerHTML = '<div class="bg-amber-400 text-amber-950 font-title text-xs font-bold px-2.5 py-0.5 rounded-full shadow-md border border-amber-200 whitespace-nowrap">Ayo, ' + (gameState.studentName ? gameState.studentName.split(" ")[0] : "Kamu") + '! 🚀</div>' +
-            '<div class="text-3xl -mt-1 filter drop-shadow">' + (gameState.avatar || "🦎") + '</div>';
+          mascotBalloon.className = "absolute -top-11 z-20 flex flex-col items-center animate-bounce";
+          mascotBalloon.innerHTML = '<div class="bg-amber-400 text-amber-950 font-title text-[10px] md:text-xs font-bold px-2.5 py-0.5 rounded-full shadow-md border border-amber-200 whitespace-nowrap">Ayo, ' + (gameState.studentName ? gameState.studentName.split(" ")[0] : "Kamu") + '! 🚀</div>' +
+            '<div class="text-2xl md:text-3xl -mt-1 filter drop-shadow">' + (gameState.avatar || "🦎") + '</div>';
           nodeWrapper.appendChild(mascotBalloon);
         }
 
@@ -1829,23 +1731,23 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
           nodeBg = "bg-gradient-to-b from-sky-400 to-blue-600 border-2 border-blue-700 text-white shadow-bouncy-node cursor-pointer";
         }
 
-        var nodeSize = isBossLevel ? "w-18 h-18 text-2xl" : "w-14 h-14 sm:w-16 sm:h-16 text-lg";
+        var nodeSize = isBossLevel ? "w-16 h-16 md:w-18 md:h-18 text-xl" : "w-14 h-14 md:w-16 md:h-16 text-base md:text-lg";
         nodeCircle.className = nodeSize + " rounded-3xl flex items-center justify-center font-title font-bold transition-all active:scale-90 " + nodeBg + " " + ringClass;
 
-        if (isLocked) nodeCircle.innerHTML = '<span class="text-xl">🔒</span>';
-        else if (isBossLevel) nodeCircle.innerHTML = st > 0 ? '<span class="text-3xl">🏆</span>' : '<span class="text-3xl">🏰</span>';
+        if (isLocked) nodeCircle.innerHTML = '<span class="text-lg md:text-xl">🔒</span>';
+        else if (isBossLevel) nodeCircle.innerHTML = st > 0 ? '<span class="text-2xl md:text-3xl">🏆</span>' : '<span class="text-2xl md:text-3xl">🏰</span>';
         else nodeCircle.innerHTML = '<span>' + (i + 1) + '</span>';
 
         var starRow = document.createElement("div");
-        starRow.className = "flex items-center gap-0.5 mt-1 bg-white/90 px-2.5 py-0.5 rounded-full border border-slate-200 shadow-2xs";
+        starRow.className = "flex items-center gap-0.5 mt-1 bg-white/90 px-2 py-0.5 rounded-full border border-slate-200 shadow-2xs";
         var sHtml = "";
         for (var starIdx = 0; starIdx < 3; starIdx++) {
-          sHtml += (starIdx < st) ? '<span class="text-sm text-amber-400">★</span>' : '<span class="text-sm text-slate-300">★</span>';
+          sHtml += (starIdx < st) ? '<span class="text-xs text-amber-400">★</span>' : '<span class="text-xs text-slate-300">★</span>';
         }
         starRow.innerHTML = sHtml;
 
         var themeLabel = document.createElement("span");
-        themeLabel.className = "text-xs font-bold text-slate-700 max-w-[130px] truncate text-center mt-1 " + (isSelected ? "text-sky-900 font-extrabold" : "");
+        themeLabel.className = "text-[10px] md:text-xs font-bold text-slate-700 max-w-[130px] truncate text-center mt-0.5 " + (isSelected ? "text-sky-900 font-extrabold" : "");
         themeLabel.innerText = isBossLevel ? "🏆 Final Boss" : themeName;
 
         nodeWrapper.appendChild(nodeCircle);
@@ -1854,11 +1756,11 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
 
         if (isSelected && !isLocked) {
           var launchBox = document.createElement("div");
-          launchBox.className = "mt-2.5 z-30 flex flex-col items-center animate-pop-in";
+          launchBox.className = "mt-2 z-30 flex flex-col items-center animate-pop-in";
           launchBox.innerHTML = 
             '<div class="w-0 h-0 border-x-6 border-x-transparent border-b-6 border-b-emerald-600 -mb-0.5"></div>' +
-            '<button onclick="launchSelectedLevel()" class="px-5 py-3 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-sm sm:text-base font-bold rounded-2xl shadow-bouncy-btn active:translate-y-1 transition flex items-center gap-2 whitespace-nowrap ring-2 ring-white">' +
-              '<span>Mulai Level ' + (i + 1) + '</span><span class="text-base">▶</span>' +
+            '<button onclick="launchSelectedLevel()" class="px-5 py-2.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-xs font-bold rounded-2xl shadow-bouncy-btn active:translate-y-1 transition flex items-center gap-1.5 whitespace-nowrap ring-2 ring-white">' +
+              '<span>Mulai Level ' + (i + 1) + '</span><span class="text-sm">▶</span>' +
             '</button>';
           nodeWrapper.appendChild(launchBox);
         }
@@ -1877,7 +1779,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
 
         if (i < 9) {
           var stepConnector = document.createElement("div");
-          stepConnector.className = "w-full flex justify-center -my-1.5 opacity-50 pointer-events-none";
+          stepConnector.className = "w-full flex justify-center -my-1 opacity-50 pointer-events-none";
           stepConnector.innerHTML = '<div class="h-6 w-1 border-r-2 border-dashed border-sky-400"></div>';
           container.appendChild(stepConnector);
         }
@@ -1895,18 +1797,20 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       navigate("screen-gameplay");
       renderCurrentQuestion();
     }
-
-    function getLevelQuestionsCount(wIdx, lIdx) {
+    function getQuestionCountForCurrentSession() {
       if (gameState.isExamMode) {
-        return (window.examConfig.questions && window.examConfig.questions.length > 0) 
-          ? window.examConfig.questions.length 
-          : 10;
+        return (window.examConfig && window.examConfig.questions && window.examConfig.questions.length > 0) ? window.examConfig.questions.length : 10;
       }
-      var countKey = "w" + wIdx + "_l" + lIdx + "_count";
-      if (window.customQuestionsBank && window.customQuestionsBank[countKey]) {
-        return Number(window.customQuestionsBank[countKey]);
+      var count = 0;
+      while (true) {
+        var key = "w" + gameState.selectedWorldIdx + "_l" + gameState.selectedLevelIdx + "_q" + count;
+        if (window.customQuestionsBank && window.customQuestionsBank[key]) {
+          count++;
+        } else {
+          break;
+        }
       }
-      return 10;
+      return count > 0 ? count : 10;
     }
 
     function getQuestion(wIdx, lIdx, qIdx) {
@@ -1960,7 +1864,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
     function renderCurrentQuestion() {
       gameState.answered = false;
       gameState.selectedOptionIdx = null;
-      var totalQ = getLevelQuestionsCount(gameState.selectedWorldIdx, gameState.selectedLevelIdx);
+      var totalQ = getQuestionCountForCurrentSession();
       var q = getQuestion(gameState.selectedWorldIdx, gameState.selectedLevelIdx, gameState.currentQuestionIdx);
 
       document.getElementById("game-q-counter").innerText = (gameState.currentQuestionIdx + 1) + " / " + totalQ;
@@ -1974,7 +1878,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       for (var i = 0; i < q.options.length; i++) {
         var btn = document.createElement("button");
         btn.type = "button";
-        btn.className = "option-btn p-3.5 sm:p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-title text-sm sm:text-base font-bold text-slate-800 text-center transition active:scale-95";
+        btn.className = "option-btn p-3.5 bg-slate-50 hover:bg-slate-100 border-2 border-slate-200 rounded-2xl font-title text-sm md:text-base font-bold text-slate-800 text-center transition active:scale-95";
         btn.innerText = q.options[i];
         btn.onclick = (function(idx, el) {
           return function() {
@@ -1991,16 +1895,16 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       document.getElementById("answer-feedback-banner").classList.add("hidden");
       var checkBtn = document.getElementById("btn-check-or-next");
       checkBtn.innerText = "Periksa ✓";
-      checkBtn.className = "flex-1 py-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base sm:text-lg font-bold rounded-xl shadow-bouncy-btn active:translate-y-1 text-center transition";
+      checkBtn.className = "flex-1 py-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base font-bold rounded-xl text-center shadow-bouncy-btn active:translate-y-1 transition";
     }
 
     function checkOrNextQuestion() {
-      var totalQ = getLevelQuestionsCount(gameState.selectedWorldIdx, gameState.selectedLevelIdx);
+      var totalQ = getQuestionCountForCurrentSession();
       var q = getQuestion(gameState.selectedWorldIdx, gameState.selectedLevelIdx, gameState.currentQuestionIdx);
       var checkBtn = document.getElementById("btn-check-or-next");
 
       if (gameState.answered) {
-        if (gameState.currentQuestionIdx < totalQ - 1) {
+        if (gameState.currentQuestionIdx < (totalQ - 1)) {
           gameState.currentQuestionIdx++;
           renderCurrentQuestion();
         } else {
@@ -2020,18 +1924,20 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       var btns = document.querySelectorAll(".option-btn");
 
       if (isCorrect) {
-        gameState.sessionScore += 10;
+        gameState.sessionScore += Math.round(100 / totalQ);
         gameState.correctCount++;
         playSfx("correct");
-        btns[gameState.selectedOptionIdx].className = "option-btn p-3.5 sm:p-4 bg-emerald-100 border-2 border-emerald-500 rounded-2xl font-title text-sm sm:text-base font-bold text-emerald-900 text-center";
-        banner.className = "mt-4 p-4 rounded-2xl border-2 bg-emerald-50 border-emerald-300 block";
+        btns[gameState.selectedOptionIdx].className = "option-btn p-3.5 bg-emerald-100 border-2 border-emerald-500 rounded-2xl font-title text-sm md:text-base font-bold text-emerald-900 text-center";
+        banner.className = "mt-3.5 p-3.5 rounded-2xl border-2 bg-emerald-50 border-emerald-300 block";
         document.getElementById("feedback-title").innerText = "Benar Sekali! 🎉";
       } else {
         gameState.wrongCount++;
         playSfx("wrong");
-        btns[gameState.selectedOptionIdx].className = "option-btn p-3.5 sm:p-4 bg-rose-100 border-2 border-rose-400 rounded-2xl font-title text-sm sm:text-base font-bold text-rose-900 text-center";
-        btns[q.answer].className = "option-btn p-3.5 sm:p-4 bg-emerald-50 border-2 border-emerald-400 rounded-2xl font-title text-sm sm:text-base font-bold text-emerald-800 text-center";
-        banner.className = "mt-4 p-4 rounded-2xl border-2 bg-rose-50 border-rose-300 block";
+        btns[gameState.selectedOptionIdx].className = "option-btn p-3.5 bg-rose-100 border-2 border-rose-400 rounded-2xl font-title text-sm md:text-base font-bold text-rose-900 text-center";
+        if (btns[q.answer]) {
+          btns[q.answer].className = "option-btn p-3.5 bg-emerald-50 border-2 border-emerald-400 rounded-2xl font-title text-sm md:text-base font-bold text-emerald-800 text-center";
+        }
+        banner.className = "mt-3.5 p-3.5 rounded-2xl border-2 bg-rose-50 border-rose-300 block";
         document.getElementById("feedback-title").innerText = "Hampir Tepat!";
       }
 
@@ -2039,8 +1945,8 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       document.getElementById("feedback-tip-text").innerText = q.tip || "Terus semangat berlatih!";
       document.getElementById("game-score-val").innerText = gameState.sessionScore;
 
-      checkBtn.innerText = (gameState.currentQuestionIdx < totalQ - 1) ? "Lanjut ➔" : "Lihat Hasil ➔";
-      checkBtn.className = "flex-1 py-3.5 bg-blue-600 text-white font-title text-base sm:text-lg font-bold rounded-xl text-center";
+      checkBtn.innerText = (gameState.currentQuestionIdx < (totalQ - 1)) ? "Lanjut ➔" : "Lihat Hasil ➔";
+      checkBtn.className = "flex-1 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-title text-base font-bold rounded-xl text-center shadow-md active:translate-y-1 transition";
     }
 
     function playQuestionSpeech() {
@@ -2049,7 +1955,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
     }
 
     function finishLevelGame() {
-      var score = gameState.sessionScore;
+      var score = Math.min(100, gameState.sessionScore);
 
       if (gameState.isExamMode) {
         gameState.examTaken = true;
@@ -2063,7 +1969,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
 
         var examStars = score >= 80 ? 3 : (score >= 60 ? 2 : 1);
         var sHtmlExam = "";
-        for (var es = 0; es < 3; es++) sHtmlExam += (es < examStars) ? '<span class="text-5xl sm:text-6xl animate-bounce">⚡</span>' : '<span class="text-5xl sm:text-6xl opacity-40">⚡</span>';
+        for (var es = 0; es < 3; es++) sHtmlExam += (es < examStars) ? '<span class="text-5xl animate-bounce">⚡</span>' : '<span class="text-5xl opacity-40">⚡</span>';
         document.getElementById("result-stars-box").innerHTML = sHtmlExam;
 
         var retryBtn = document.getElementById("btn-result-retry");
@@ -2112,29 +2018,27 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       document.getElementById("result-wrong-count").innerText = gameState.wrongCount;
 
       var sHtml = "";
-      for (var i = 0; i < 3; i++) sHtml += (i < stars) ? '<span class="text-5xl sm:text-6xl animate-bounce">⭐</span>' : '<span class="text-5xl sm:text-6xl opacity-40">⭐</span>';
+      for (var i = 0; i < 3; i++) sHtml += (i < stars) ? '<span class="text-5xl animate-bounce">⭐</span>' : '<span class="text-5xl opacity-40">⭐</span>';
       document.getElementById("result-stars-box").innerHTML = sHtml;
 
       if (stars >= 2 && typeof confetti === "function") confetti({ particleCount: 60, spread: 70, origin: { y: 0.6 } });
 
       syncStudentScoreToCloud();
       updateStudentHomeCard();
-
       navigate("screen-result");
     }
-
     function switchTeacherTab(t) {
       var tabs = ["roster", "attendance", "bab", "editor", "locks", "exam", "scores"];
       for (var i = 0; i < tabs.length; i++) {
         var el = document.getElementById("teacher-tab-" + tabs[i]);
         if (el) el.classList.add("hidden");
         var btn = document.getElementById("tab-btn-" + tabs[i]);
-        if (btn) btn.className = "py-2 px-3 sm:px-4 rounded-xl text-slate-600 whitespace-nowrap hover:bg-slate-100";
+        if (btn) btn.className = "flex-1 py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap";
       }
       var aEl = document.getElementById("teacher-tab-" + t);
       if (aEl) aEl.classList.remove("hidden");
       var aBtn = document.getElementById("tab-btn-" + t);
-      if (aBtn) aBtn.className = "py-2 px-3 sm:px-4 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap";
+      if (aBtn) aBtn.className = "flex-1 py-2 px-3 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap";
 
       if (t !== "attendance") stopQrScannerCamera();
 
@@ -2157,35 +2061,41 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       for (var i = 0; i < studentRoster.length; i++) {
         var s = studentRoster[i];
         var item = document.createElement("div");
-        item.className = "p-3 border-b border-slate-100 flex items-center justify-between hover:bg-slate-50 text-xs sm:text-sm";
+        item.className = "p-3 border-b border-slate-100 flex items-center justify-between hover:bg-slate-50 text-xs";
         
         var leftDiv = document.createElement("div");
-        leftDiv.className = "flex items-center gap-2.5";
+        leftDiv.className = "flex items-center gap-3";
         leftDiv.innerHTML = '<span class="text-2xl">' + (s.avatar || "🦎") + '</span>' +
           '<div>' +
-            '<div class="flex items-center gap-2"><strong class="text-slate-800 text-sm sm:text-base">' + s.name + '</strong><span class="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-mono">#' + s.id + '</span></div>' +
-            '<div class="text-xs text-slate-500 mt-0.5">User: <span class="text-sky-700 font-mono font-bold">' + s.username + '</span> | Pass: <span class="font-mono font-bold text-amber-700">' + (s.password || "123") + '</span> | <span class="text-emerald-700 font-bold">' + s.grade + '</span></div>' +
+            '<div class="flex items-center gap-2"><strong class="text-slate-800 text-sm">' + s.name + '</strong><span class="text-[9px] bg-slate-200 text-slate-700 px-1.5 py-0.2 rounded font-mono">#' + s.id + '</span></div>' +
+            '<div class="text-[11px] text-slate-500 font-mono mt-0.5">User: <span class="text-sky-700 font-bold">' + s.username + '</span> | Pass: <span class="font-bold text-amber-700">' + (s.password || "123") + '</span> | <span class="text-emerald-700 font-bold">' + s.grade + '</span></div>' +
           '</div>';
 
         var actionDiv = document.createElement("div");
         actionDiv.className = "flex items-center gap-1.5";
 
         var ktpBtn = document.createElement("button");
-        ktpBtn.className = "px-2.5 py-1.5 bg-sunGold-400/20 text-sunNavy-900 border border-sunGold-500/50 rounded-lg font-display font-black text-xs active:scale-95 transition flex items-center gap-1";
+        ktpBtn.className = "px-2.5 py-1.5 bg-sunGold-400/20 text-sunNavy-900 border border-sunGold-500/50 rounded-xl font-display font-black text-xs active:scale-95 transition flex items-center gap-1";
         ktpBtn.innerHTML = '<span>🪪</span><span>KTP</span>';
         ktpBtn.onclick = (function(stId) { return function() { openSpecificStudentKtpModal(stId); }; })(s.id);
 
+        var docBtn = document.createElement("button");
+        docBtn.className = "px-2.5 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-900 border border-blue-300 rounded-xl font-display font-bold text-xs active:scale-95 transition flex items-center gap-1";
+        docBtn.innerHTML = '<span>📄 Dokumen</span>';
+        docBtn.onclick = (function(stId) { return function() { downloadStudentRosterDocument(stId, 'doc'); }; })(s.id);
+
         var editBtn = document.createElement("button");
-        editBtn.className = "px-2.5 py-1.5 bg-amber-100 text-amber-900 rounded-lg font-bold text-xs active:scale-95";
+        editBtn.className = "px-2.5 py-1.5 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-xl font-bold text-xs active:scale-95 transition";
         editBtn.innerText = "Edit";
         editBtn.onclick = (function(stId) { return function() { startEditStudentForm(stId); }; })(s.id);
 
         var delBtn = document.createElement("button");
-        delBtn.className = "px-2 py-1.5 bg-rose-100 text-rose-700 rounded-lg font-bold text-xs active:scale-95";
+        delBtn.className = "px-2 py-1.5 bg-rose-100 hover:bg-rose-200 text-rose-700 rounded-xl font-bold text-xs active:scale-95 transition";
         delBtn.innerText = "🗑️";
         delBtn.onclick = (function(stId) { return function() { adminDeleteStudent(stId); }; })(s.id);
 
         actionDiv.appendChild(ktpBtn);
+        actionDiv.appendChild(docBtn);
         actionDiv.appendChild(editBtn);
         actionDiv.appendChild(delBtn);
 
@@ -2195,6 +2105,227 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       }
     }
 
+    function downloadStudentRosterDocument(stId, docType) {
+      openSpecificStudentKtpModal(stId);
+      downloadStudentKtpDocument(docType, stId);
+    }
+    function generateStudentKtpDocumentHtml(studentData) {
+      var s = studentData;
+      var logoEl = document.querySelector(".app-global-logo");
+      var logoSrc = (logoEl && logoEl.src) ? logoEl.src : "https://placehold.co/120x120/ffffff/0b1b36?text=SEA";
+      var photoSrc = s.photo || "https://images.unsplash.com/photo-1544717305-2782549b5136?w=240&auto=format&fit=crop&q=80";
+      var cleanGrade = (s.grade || "Basic").replace("Kelas ", "").toUpperCase() + " LEVEL";
+      var qrPayload = "MRAGUNG:ABSEN:" + s.id + ":" + s.username;
+      var qrSrc = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=0&data=" + encodeURIComponent(qrPayload);
+
+      return '<!DOCTYPE html>' +
+        '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
+        '<head>' +
+          '<meta charset="utf-8">' +
+          '<title>Official Student Smart Card - ' + s.name + '</title>' +
+          '<style>' +
+            '@page { size: A4 portrait; margin: 15mm; }' +
+            'body { font-family: "Segoe UI", Arial, sans-serif; background-color: #f1f5f9; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }' +
+            '.doc-container { width: 450px; margin: 20px auto; }' +
+            '.id-card { width: 450px; height: 282px; background: linear-gradient(135deg, #0b1b36 0%, #0f2347 50%, #060e1d 100%); border-radius: 24px; border: 1.5px solid #dfb743; box-shadow: 0 15px 35px rgba(6,14,29,0.45); color: #ffffff; position: relative; overflow: hidden; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; font-family: "Segoe UI", Tahoma, sans-serif; }' +
+            '.card-header { padding: 10px 16px; background-color: rgba(6, 14, 29, 0.75); border-bottom: 1px solid rgba(223, 183, 67, 0.35); display: flex; align-items: center; justify-content: space-between; }' +
+            '.header-left { display: flex; align-items: center; gap: 10px; }' +
+            '.logo-box { width: 42px; height: 42px; background: #ffffff; border: 1.5px solid #dfb743; border-radius: 10px; padding: 2px; display: flex; align-items: center; justify-content: center; overflow: hidden; }' +
+            '.logo-box img { width: 100%; height: 100%; object-fit: contain; }' +
+            '.title-group { line-height: 1.2; text-align: left; }' +
+            '.school-title { font-size: 12px; font-weight: 900; letter-spacing: 0.5px; color: #ffffff; text-transform: uppercase; }' +
+            '.smart-badge { font-size: 7px; background: rgba(223, 183, 67, 0.25); color: #edd06d; padding: 1px 4px; border-radius: 4px; border: 1px solid rgba(223, 183, 67, 0.4); font-weight: bold; margin-left: 4px; }' +
+            '.school-sub { font-size: 7.5px; font-weight: 800; color: #dfb743; letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }' +
+            '.header-right { text-align: right; }' +
+            '.grade-pill { background: linear-gradient(90deg, #f7e396, #dfb743, #c59a27); color: #060e1d; font-size: 9px; font-weight: 900; padding: 3px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; }' +
+            '.acad-year { font-size: 7.5px; color: #edd06d; margin-top: 2px; display: block; }' +
+            '.card-body { padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex: 1; }' +
+            '.photo-col { width: 88px; display: flex; flex-direction: column; align-items: center; gap: 6px; }' +
+            '.photo-frame { width: 76px; height: 92px; border-radius: 12px; border: 2px solid #dfb743; overflow: hidden; background: #1e293b; position: relative; }' +
+            '.photo-frame img { width: 100%; height: 100%; object-fit: cover; }' +
+            '.photo-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(6, 14, 29, 0.85); color: #edd06d; font-size: 6.5px; font-weight: 800; text-align: center; padding: 2px 0; border-top: 1px solid #dfb743; }' +
+            '.chip-emv { width: 32px; height: 20px; background: linear-gradient(135deg, #f7e396, #dfb743, #9c7616); border-radius: 4px; border: 1px solid #edd06d; }' +
+            '.info-col { flex: 1; text-align: left; display: flex; flex-direction: column; justify-content: center; gap: 3px; }' +
+            '.name-header { display: flex; justify-content: space-between; align-items: center; }' +
+            '.std-label { font-size: 7.5px; color: #cbd5e1; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }' +
+            '.std-id { font-size: 8.5px; color: #edd06d; background: rgba(255,255,255,0.1); padding: 1px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); font-weight: bold; }' +
+            '.student-name { font-size: 15px; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; margin: 2px 0; }' +
+            '.creds-box { background: rgba(6, 14, 29, 0.8); border: 1px solid rgba(223, 183, 67, 0.4); border-radius: 10px; padding: 5px 8px; margin: 2px 0; }' +
+            '.creds-header { font-size: 6.5px; color: #cbd5e1; font-weight: 800; text-transform: uppercase; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 2px; margin-bottom: 4px; }' +
+            '.creds-grid { display: flex; gap: 6px; }' +
+            '.cred-item { flex: 1; background: rgba(255,255,255,0.05); padding: 3px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); }' +
+            '.cred-label { font-size: 6px; color: #94a3b8; font-weight: bold; text-transform: uppercase; display: block; }' +
+            '.cred-value { font-size: 11px; font-weight: 900; color: #edd06d; font-family: monospace; display: block; }' +
+            '.status-row { display: flex; align-items: center; gap: 6px; margin-top: 2px; }' +
+            '.status-badge { font-size: 7.5px; font-weight: bold; color: #6ee7b7; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.5); padding: 2px 6px; border-radius: 5px; }' +
+            '.qr-col { width: 88px; display: flex; flex-direction: column; align-items: center; gap: 4px; }' +
+            '.qr-frame { width: 78px; height: 78px; background: #ffffff; border: 2px solid #dfb743; border-radius: 12px; padding: 3px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; }' +
+            '.qr-frame img { width: 100%; height: 100%; object-fit: contain; }' +
+            '.qr-tag { font-size: 7.5px; font-weight: 800; color: #edd06d; background: rgba(223, 183, 67, 0.2); border: 1px solid rgba(223, 183, 67, 0.4); padding: 2px 6px; border-radius: 5px; text-transform: uppercase; }' +
+            '.card-footer { padding: 6px 16px; background-color: rgba(6, 14, 29, 0.9); border-top: 1px solid rgba(223, 183, 67, 0.35); display: flex; align-items: center; justify-content: space-between; font-size: 8px; }' +
+            '.reg-code { color: #94a3b8; font-family: monospace; }' +
+            '.motto { font-weight: 900; font-style: italic; color: #edd06d; letter-spacing: 0.5px; }' +
+            '.signature-tag { font-weight: bold; color: #e2e8f0; }' +
+            '@media print { body { background: white !important; padding: 0 !important; } .doc-container { margin: 0 auto !important; } }' +
+          '</style>' +
+        '</head>' +
+        '<body>' +
+          '<div class="doc-container">' +
+            '<div class="id-card">' +
+              '<div class="card-header">' +
+                '<div class="header-left">' +
+                  '<div class="logo-box"><img src="' + logoSrc + '" alt="Logo"></div>' +
+                  '<div class="title-group">' +
+                    '<div><span class="school-title">MR. AGUNG\'S CLASS</span><span class="smart-badge">SMART ID</span></div>' +
+                    '<div class="school-sub">STUDENT SMART CARD &bull; Sunshine English Academy</div>' +
+                  '</div>' +
+                '</div>' +
+                '<div class="header-right">' +
+                  '<div class="grade-pill">' + cleanGrade + '</div>' +
+                  '<span class="acad-year">ACADEMIC 2026/2027</span>' +
+                '</div>' +
+              '</div>' +
+
+              '<div class="card-body">' +
+                '<div class="photo-col">' +
+                  '<div class="photo-frame">' +
+                    '<img src="' + photoSrc + '" alt="Photo">' +
+                    '<div class="photo-label">STUDENT PHOTO</div>' +
+                  '</div>' +
+                  '<div class="chip-emv"></div>' +
+                '</div>' +
+
+                '<div class="info-col">' +
+                  '<div class="name-header">' +
+                    '<span class="std-label">Student Name</span>' +
+                    '<span class="std-id">ID: #' + s.id + '</span>' +
+                  '</div>' +
+                  '<div class="student-name">' + s.name + '</div>' +
+
+                  '<div class="creds-box">' +
+                    '<div class="creds-header"><span>Akses Login Web App:</span><span>Active</span></div>' +
+                    '<div class="creds-grid">' +
+                      '<div class="cred-item">' +
+                        '<span class="cred-label">Username</span>' +
+                        '<span class="cred-value">' + s.username + '</span>' +
+                      '</div>' +
+                      '<div class="cred-item">' +
+                        '<span class="cred-label">Password</span>' +
+                        '<span class="cred-value">' + (s.password || "123") + '</span>' +
+                      '</div>' +
+                    '</div>' +
+                  '</div>' +
+
+                  '<div class="status-row">' +
+                    '<span class="status-badge">&check; Official Active Learner</span>' +
+                    '<span style="font-size: 7px; color: #94a3b8;">English Class</span>' +
+                  '</div>' +
+                '</div>' +
+
+                '<div class="qr-col">' +
+                  '<div class="qr-frame"><img src="' + qrSrc + '" alt="QR"></div>' +
+                  '<div class="qr-tag">&bull; SCAN ABSEN</div>' +
+                '</div>' +
+              '</div>' +
+
+              '<div class="card-footer">' +
+                '<span class="reg-code">SEC-2026-REG</span>' +
+                '<span class="motto">&ldquo;It\'s time to rise and shine&rdquo;</span>' +
+                '<span class="signature-tag">MR. AGUNG &check;</span>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</body>' +
+        '</html>';
+    }
+
+    function downloadStudentKtpDocument(docType, targetStudentId) {
+      var sId = targetStudentId || activeViewingStudentKtpId || gameState.studentId;
+      var s = null;
+      for (var i = 0; i < studentRoster.length; i++) {
+        if (String(studentRoster[i].id) === String(sId)) {
+          s = studentRoster[i];
+          break;
+        }
+      }
+      if (!s) s = { id: gameState.studentId, name: gameState.studentName, username: gameState.username, password: "123", grade: gameState.grade, photo: gameState.photo };
+
+      var docHtml = generateStudentKtpDocumentHtml(s);
+      var safeName = s.name.trim().replace(/[^a-zA-Z0-9]/g, "_");
+
+      if (docType === "doc") {
+        showToast("Menyiapkan dokumen Word KTP " + s.name + "...");
+        var blob = new Blob([docHtml], { type: "application/msword;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = "Dokumen_KTP_" + s.id + "_" + safeName + ".doc";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setTimeout(function() { URL.revokeObjectURL(url); }, 2000);
+        showToast("Dokumen KTP (.doc) berhasil diunduh! Buka di Word atau WPS.");
+      } else if (docType === "html") {
+        showToast("Membuka Dokumen Cetak Mandiri...");
+        var newWindow = window.open("", "_blank");
+        if (newWindow) {
+          newWindow.document.open();
+          newWindow.document.write(docHtml);
+          newWindow.document.close();
+        } else {
+          var blobHtml = new Blob([docHtml], { type: "text/html;charset=utf-8" });
+          var urlHtml = URL.createObjectURL(blobHtml);
+          var linkHtml = document.createElement("a");
+          linkHtml.href = urlHtml;
+          linkHtml.download = "Dokumen_KTP_" + s.id + "_" + safeName + ".html";
+          document.body.appendChild(linkHtml);
+          linkHtml.click();
+          document.body.removeChild(linkHtml);
+        }
+      }
+    }
+
+    function printSingleStudentKtp() {
+      var sId = activeViewingStudentKtpId || gameState.studentId;
+      var s = null;
+      for (var i = 0; i < studentRoster.length; i++) {
+        if (String(studentRoster[i].id) === String(sId)) {
+          s = studentRoster[i];
+          break;
+        }
+      }
+      if (!s) s = { id: gameState.studentId, name: gameState.studentName, username: gameState.username, password: "123", grade: gameState.grade, photo: gameState.photo };
+
+      var docHtml = generateStudentKtpDocumentHtml(s);
+      var printWindow = window.open("", "_blank");
+      if (printWindow) {
+        printWindow.document.open();
+        printWindow.document.write(docHtml);
+        printWindow.document.close();
+        setTimeout(function() {
+          printWindow.focus();
+          printWindow.print();
+        }, 500);
+      } else {
+        var frame = document.createElement("iframe");
+        frame.style.position = "fixed";
+        frame.style.right = "0";
+        frame.style.bottom = "0";
+        frame.style.width = "0";
+        frame.style.height = "0";
+        frame.style.border = "none";
+        document.body.appendChild(frame);
+        var frameDoc = frame.contentWindow || frame.contentDocument.document || frame.contentDocument;
+        frameDoc.document.open();
+        frameDoc.document.write(docHtml);
+        frameDoc.document.close();
+        setTimeout(function() {
+          frame.contentWindow.focus();
+          frame.contentWindow.print();
+          setTimeout(function() { document.body.removeChild(frame); }, 1500);
+        }, 500);
+      }
+    }
     function openCurrentStudentKtpModal() {
       openSpecificStudentKtpModal(gameState.studentId);
     }
@@ -2301,178 +2432,178 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
 
       if (!targetElement) return;
 
+      var sandbox = document.createElement("div");
+      sandbox.style.position = "fixed";
+      sandbox.style.left = "-9999px";
+      sandbox.style.top = "0";
+      sandbox.style.width = "450px";
+      sandbox.style.height = "282px";
+      sandbox.style.zIndex = "-9999";
+      sandbox.style.background = "#060e1d";
+
+      var clone = targetElement.cloneNode(true);
+      clone.classList.remove("hidden");
+      clone.style.transform = "none";
+      clone.style.width = "450px";
+      clone.style.height = "282px";
+      clone.style.borderRadius = "24px";
+      clone.style.margin = "0";
+
+      sandbox.appendChild(clone);
+      document.body.appendChild(sandbox);
+
       var sName = (document.getElementById("ktp-student-name").innerText || "Siswa").trim().replace(/[^a-zA-Z0-9]/g, "_");
       var sId = (document.getElementById("ktp-student-id-tag").innerText || "").replace(/[^0-9]/g, "");
 
       var readyPromise = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
 
       readyPromise.then(function() {
-        return html2canvas(targetElement, {
+        return html2canvas(clone, {
           scale: 3,
           useCORS: true,
           allowTaint: true,
           backgroundColor: "#060e1d",
+          width: 450,
+          height: 282,
+          windowWidth: 450,
+          windowHeight: 282,
           logging: false
         });
       }).then(function(canvas) {
+        document.body.removeChild(sandbox);
         var link = document.createElement("a");
         link.download = "KTP_" + (side === "front" ? "DEPAN" : "BELAKANG") + "_" + (sId ? sId + "_" : "") + sName + ".png";
         link.href = canvas.toDataURL("image/png");
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        showToast("KTP sisi " + side.toUpperCase() + " berhasil diunduh format PNG HD!");
-      }).catch(function() {
+        showToast("KTP sisi " + side.toUpperCase() + " berhasil diunduh dalam format PNG HD!");
+      }).catch(function(err) {
+        if (document.body.contains(sandbox)) document.body.removeChild(sandbox);
         showToast("Gagal mengunduh gambar.");
       });
     }
+    function openGeminiImportModal() {
+      document.getElementById("gemini-bulk-paste-input").value = "";
+      document.getElementById("modal-gemini-import").classList.remove("hidden");
+    }
 
-    // FUNGSI UNDUH PDF DEPAN SAJA (PAS UKURAN ASLI TAMPILAN, BEBAS BLANK)
-    function downloadStudentKtpFrontPdf(targetStudentId) {
-      var sId = targetStudentId || activeViewingStudentKtpId || gameState.studentId;
-      var s = null;
-      for (var i = 0; i < studentRoster.length; i++) {
-        if (String(studentRoster[i].id) === String(sId)) {
-          s = studentRoster[i];
+    function closeGeminiImportModal() {
+      document.getElementById("modal-gemini-import").classList.add("hidden");
+    }
+
+    function copyGeminiPromptFormat() {
+      var samplePrompt = "Buatkan 11 soal bahasa Inggris kelas " + (worldsInfo[parseInt(document.getElementById('admin-editor-world').value) || 0].grade || "Basic") + " dengan format persis seperti ini:\n\n" +
+        "1. She ________ to the market.\nA. goes\nB. go\nC. went\nD. going\nKunci: A\nTips: Subjek she menggunakan goes.\n\n" +
+        "2. They are ________ soccer now.\nA. playing\nB. plays\nC. play\nD. played\nKunci: A\nTips: Present continuous menggunakan V-ing.";
+      
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(samplePrompt).then(function() {
+          showToast("Format Prompt berhasil disalin! Silakan paste ke Gemini.");
+        }).catch(function() {
+          showToast("Silakan salin manual dari kotak teks.");
+        });
+      } else {
+        showToast("Format Prompt berhasil disalin! Silakan paste ke Gemini.");
+      }
+    }
+
+    function parseAndApplyGeminiQuestions() {
+      var raw = document.getElementById("gemini-bulk-paste-input").value.trim();
+      if (!raw) {
+        showToast("Tempelkan teks soal dari Gemini terlebih dahulu!");
+        return;
+      }
+
+      var lines = raw.split("\n");
+      var parsedList = [];
+      var curQ = null;
+
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].trim();
+        if (!line) continue;
+
+        var numMatch = line.match(/^(\d+)[\.\)]\s*(.*)/);
+        if (numMatch) {
+          if (curQ && curQ.text && curQ.options.length >= 2) {
+            parsedList.push(curQ);
+          }
+          curQ = {
+            text: numMatch[2].trim(),
+            options: [],
+            answer: 0,
+            tip: "Perhatikan tata bahasa dengan teliti!"
+          };
+          continue;
+        }
+
+        var optMatch = line.match(/^([A-Da-d])[\.\)]\s*(.*)/);
+        if (optMatch && curQ) {
+          curQ.options.push(optMatch[2].trim());
+          continue;
+        }
+
+        var keyMatch = line.match(/^(?:Kunci|Jawaban|Answer|Key)[\s:]*([A-Da-d])/i);
+        if (keyMatch && curQ) {
+          var letter = keyMatch[1].toUpperCase();
+          var idxMap = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+          if (idxMap[letter] !== undefined) curQ.answer = idxMap[letter];
+          continue;
+        }
+
+        var tipMatch = line.match(/^(?:Tips|Tip|Penjelasan|Explanation)[\s:]*(.*)/i);
+        if (tipMatch && curQ) {
+          curQ.tip = tipMatch[1].trim();
+          continue;
+        }
+
+        if (curQ && curQ.options.length === 0 && !curQ.text.includes("________")) {
+          curQ.text += " " + line;
+        }
+      }
+
+      if (curQ && curQ.text && curQ.options.length >= 2) {
+        parsedList.push(curQ);
+      }
+
+      if (parsedList.length === 0) {
+        showToast("Format soal belum terbaca. Pastikan ada nomor soal dan pilihan A, B, C, D!");
+        return;
+      }
+
+      var wVal = document.getElementById("admin-editor-world").value;
+      var lIdx = parseInt(document.getElementById("admin-editor-level").value || 0);
+
+      var clearIdx = 0;
+      while (true) {
+        var keyToDel = "w" + wVal + "_l" + lIdx + "_q" + clearIdx;
+        if (window.customQuestionsBank && window.customQuestionsBank[keyToDel]) {
+          delete window.customQuestionsBank[keyToDel];
+          clearIdx++;
+        } else {
           break;
         }
       }
-      var sName = s ? s.name : (document.getElementById("ktp-student-name").innerText || "Siswa");
-      var sNo = s ? s.id : (document.getElementById("ktp-student-id-tag").innerText || "01").replace(/[^0-9]/g, "");
 
-      var jsPdfLib = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
-      if (!jsPdfLib) {
-        showToast("Pustaka PDF sedang dimuat, mohon tunggu...");
-        return;
+      for (var k = 0; k < parsedList.length; k++) {
+        var qObj = parsedList[k];
+        while (qObj.options.length < 4) qObj.options.push("-");
+        var saveKey = "w" + wVal + "_l" + lIdx + "_q" + k;
+        window.customQuestionsBank[saveKey] = {
+          instruction: "Lengkapi kalimat:",
+          text: qObj.text,
+          options: qObj.options,
+          answer: qObj.answer,
+          speech: qObj.text.replace("________", qObj.options[qObj.answer]),
+          tip: qObj.tip
+        };
       }
 
-      showToast("Menyusun PDF KTP Depan " + sName + "...");
-
-      var frontView = document.getElementById("ktp-card-front-view");
-      if (!frontView) return;
-
-      // Pastikan tampilan depan sedang aktif terlihat agar html2canvas tidak menghasilkan kanvas kosong
-      frontView.classList.remove("hidden");
-      var backView = document.getElementById("ktp-card-back-view");
-      if (backView) backView.classList.add("hidden");
-
-      var readyPromise = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-
-      readyPromise.then(function() {
-        return html2canvas(frontView, {
-          scale: 3,
-          useCORS: true,
-          allowTaint: true,
-          backgroundColor: "#060e1d",
-          logging: false
-        });
-      }).then(function(canvas) {
-        var imgData = canvas.toDataURL("image/jpeg", 0.98);
-
-        // Ukuran dokumen PDF langsung pas dengan ukuran rasio gambar kartu (Landscape)
-        var cardWidthMm = 150;
-        var cardHeightMm = (canvas.height / canvas.width) * cardWidthMm;
-
-        var doc = new jsPdfLib({
-          orientation: "landscape",
-          unit: "mm",
-          format: [cardWidthMm + 10, cardHeightMm + 10]
-        });
-
-        doc.addImage(imgData, "JPEG", 5, 5, cardWidthMm, cardHeightMm);
-
-        var cleanFileName = sName.trim().replace(/[^a-zA-Z0-9]/g, "_");
-        var fileName = "KTP_DEPAN_" + (sNo ? sNo + "_" : "") + cleanFileName + ".pdf";
-
-        doc.save(fileName);
-        showToast("PDF KTP Depan berhasil diunduh!");
-      }).catch(function(err) {
-        showToast("Gagal menyusun PDF: " + err.message);
-      });
+      syncTeacherConfigToCloud();
+      loadAdminQuestionsList();
+      closeGeminiImportModal();
+      showToast("Berhasil menerapkan " + parsedList.length + " soal dari Gemini sekaligus!");
     }
-
-    function printSingleStudentKtp() {
-      var frontView = document.getElementById("ktp-card-front-view").cloneNode(true);
-      frontView.classList.remove("hidden");
-
-      var printContainer = document.getElementById("dedicated-print-container");
-      printContainer.innerHTML = "";
-      printContainer.appendChild(frontView);
-      printContainer.classList.remove("hidden");
-
-      setTimeout(function() {
-        window.print();
-        setTimeout(function() {
-          printContainer.innerHTML = "";
-          printContainer.classList.add("hidden");
-        }, 1000);
-      }, 300);
-    }
-
-    function printAllStudentsKtpA4() {
-      if (!studentRoster || studentRoster.length === 0) {
-        showToast("Belum ada data murid!");
-        return;
-      }
-
-      showToast("Menyiapkan lembar A4 seluruh murid...");
-      var printArea = document.getElementById("print-batch-a4-area");
-      printArea.innerHTML = "";
-
-      var total = studentRoster.length;
-      var pages = Math.ceil(total / 3);
-
-      for (var p = 0; p < pages; p++) {
-        var pageSheet = document.createElement("div");
-        pageSheet.className = "a4-page-sheet";
-
-        for (var r = 0; r < 3; r++) {
-          var sIdx = p * 3 + r;
-          if (sIdx >= total) break;
-          var s = studentRoster[sIdx];
-
-          var row = document.createElement("div");
-          row.className = "a4-student-row";
-
-          var frontClone = document.getElementById("ktp-card-front-view").cloneNode(true);
-          frontClone.classList.remove("hidden");
-          frontClone.style.transform = "none";
-          frontClone.querySelector("#ktp-student-name").innerText = s.name;
-          frontClone.querySelector("#ktp-student-id-tag").innerText = "ID: #" + s.id;
-          frontClone.querySelector("#ktp-student-username").innerText = s.username;
-          frontClone.querySelector("#ktp-student-password").innerText = s.password || "123";
-          frontClone.querySelector("#ktp-badge-grade").innerText = (s.grade || "Basic").replace("Kelas ", "").toUpperCase() + " LEVEL";
-          frontClone.querySelector("#ktp-student-photo").src = s.photo || "https://images.unsplash.com/photo-1544717305-2782549b5136?w=240&auto=format&fit=crop&q=80";
-          frontClone.querySelector("#ktp-qr-code-img").src = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=0&data=" + encodeURIComponent("MRAGUNG:ABSEN:" + s.id + ":" + s.username);
-
-          var cutter = document.createElement("div");
-          cutter.className = "flex flex-col items-center justify-center text-slate-400 text-xs font-mono select-none";
-          cutter.innerHTML = '<span>✂️ GUNTING ✂️</span><div class="h-28 w-px border-r-2 border-dashed border-slate-500 my-1"></div><span>✂️ LIPAT ✂️</span>';
-
-          var backClone = document.getElementById("ktp-card-back-view").cloneNode(true);
-          backClone.classList.remove("hidden");
-          backClone.style.transform = "none";
-          backClone.querySelector("#ktp-back-barcode-label").innerText = "SEC-2026-STD-" + s.id;
-
-          row.appendChild(frontClone);
-          row.appendChild(cutter);
-          row.appendChild(backClone);
-          pageSheet.appendChild(row);
-        }
-
-        printArea.appendChild(pageSheet);
-      }
-
-      printArea.classList.remove("hidden");
-      setTimeout(function() {
-        window.print();
-        setTimeout(function() {
-          printArea.innerHTML = "";
-          printArea.classList.add("hidden");
-        }, 1000);
-      }, 300);
-    }
-
     function startEditStudentForm(id) {
       var s = null;
       for (var i = 0; i < studentRoster.length; i++) {
@@ -2570,20 +2701,20 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
         var streakVal = Number(s.streak || 0);
 
         var row = document.createElement("div");
-        row.className = "flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm";
+        row.className = "flex items-center justify-between p-2.5 rounded-2xl bg-slate-50 border border-slate-200 text-xs";
         row.innerHTML = 
           '<div class="flex items-center gap-2.5">' +
             '<span class="text-2xl">' + (s.avatar || "🦎") + '</span>' +
             '<div>' +
-              '<strong class="text-slate-800 text-sm sm:text-base">' + s.name + '</strong>' +
-              '<div class="text-xs text-slate-500 font-mono">No: #' + s.id + ' | <span class="text-amber-600 font-bold">' + s.grade + '</span></div>' +
+              '<strong class="text-slate-800 text-sm">' + s.name + '</strong>' +
+              '<div class="text-[11px] text-slate-500 font-mono">No: #' + s.id + ' | <span class="text-amber-600 font-bold">' + s.grade + '</span></div>' +
             '</div>' +
           '</div>' +
-          '<div class="flex items-center gap-2.5">' +
+          '<div class="flex items-center gap-2">' +
             '<span class="inline-flex items-center gap-1 bg-orange-100 text-orange-800 px-2.5 py-1 rounded-full text-xs font-bold border border-orange-200">' +
               '<span class="animate-flame-flicker">🔥</span><span>' + streakVal + '</span>' +
             '</span>' +
-            '<button onclick="adminMarkAttendance(\'' + s.id + '\')" class="px-3 py-1.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white rounded-lg text-xs font-title font-bold shadow-xs active:scale-95 transition">Absen 🔥</button>' +
+            '<button onclick="adminMarkAttendance(\'' + s.id + '\')" class="px-3 py-1.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white rounded-xl text-xs font-title font-bold shadow-xs active:scale-95 transition">Absen 🔥</button>' +
           '</div>';
 
         manualList.appendChild(row);
@@ -2801,7 +2932,6 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       document.getElementById("modal-streak").classList.remove("hidden");
     }
     function closeStreakModal() { document.getElementById("modal-streak").classList.add("hidden"); }
-
     function renderTeacherBabList() {
       var c = document.getElementById("admin-bab-list-container");
       if (!c) return;
@@ -2810,11 +2940,11 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       for (var i = 0; i < worldsInfo.length; i++) {
         var w = worldsInfo[i];
         var d = document.createElement("div");
-        d.className = "p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between text-xs sm:text-sm";
-        d.innerHTML = '<div><strong>' + w.tag + ': ' + w.name + '</strong> <span class="text-[10px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold uppercase">' + w.grade + '</span></div>' +
+        d.className = "p-3 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between text-xs";
+        d.innerHTML = '<div><strong class="text-sm">' + w.tag + ': ' + w.name + '</strong> <span class="text-[9px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold uppercase ml-1">' + w.grade + '</span></div>' +
           '<div class="flex gap-1.5">' +
-            '<button onclick="startEditBab(' + i + ')" class="bg-amber-100 px-2.5 py-1 rounded text-xs font-bold text-amber-900">Edit</button>' +
-            '<button onclick="adminDeleteBab(' + i + ')" class="bg-rose-100 px-2 py-1 rounded text-xs font-bold text-rose-700">🗑️</button>' +
+            '<button onclick="startEditBab(' + i + ')" class="bg-amber-100 hover:bg-amber-200 px-2.5 py-1 rounded-xl text-xs font-bold text-amber-900 transition">Edit</button>' +
+            '<button onclick="adminDeleteBab(' + i + ')" class="bg-rose-100 hover:bg-rose-200 px-2 py-1 rounded-xl text-xs font-bold text-rose-700 transition">🗑️</button>' +
           '</div>';
         c.appendChild(d);
       }
@@ -2896,7 +3026,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       for (var i = 0; i < 10; i++) {
         var r = document.createElement("div");
         r.className = "flex gap-2 items-center";
-        r.innerHTML = '<span class="text-xs w-12 font-bold">Lvl ' + (i + 1) + ':</span><input type="text" id="input-theme-lvl-' + i + '" value="' + (w.levelThemes[i] || ("Level " + (i + 1))) + '" class="border p-2 text-xs sm:text-sm w-full rounded-xl bg-slate-50">';
+        r.innerHTML = '<span class="text-xs w-12 font-bold text-slate-600">Lvl ' + (i + 1) + ':</span><input type="text" id="input-theme-lvl-' + i + '" value="' + (w.levelThemes[i] || ("Level " + (i + 1))) + '" class="border p-2 text-xs w-full rounded-xl bg-slate-50 font-bold">';
         grid.appendChild(r);
       }
     }
@@ -2947,14 +3077,23 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       if (!c) return;
       c.innerHTML = "";
 
-      var totalQ = getLevelQuestionsCount(parseInt(wVal), lIdx);
+      var count = 0;
+      while (true) {
+        var key = "w" + wVal + "_l" + lIdx + "_q" + count;
+        if (window.customQuestionsBank && window.customQuestionsBank[key]) {
+          count++;
+        } else {
+          break;
+        }
+      }
+      var totalToDisplay = Math.max(10, count);
 
-      for (var i = 0; i < totalQ; i++) {
+      for (var i = 0; i < totalToDisplay; i++) {
         var q = getQuestion(parseInt(wVal), lIdx, i);
         var d = document.createElement("div");
-        d.className = "p-2.5 bg-slate-50 border text-xs rounded-xl flex justify-between items-center";
-        d.innerHTML = '<div class="truncate max-w-[220px]"><strong>S' + (i + 1) + ':</strong> ' + q.text + '</div>' +
-          '<button onclick="editQuestionInForm(' + wVal + ', ' + lIdx + ', ' + i + ')" class="bg-sky-100 text-sky-800 px-2.5 py-1 rounded-lg font-bold">Edit</button>';
+        d.className = "p-2 bg-slate-50 border border-slate-200 text-xs rounded-xl flex justify-between items-center";
+        d.innerHTML = '<div class="truncate max-w-[280px]"><strong>S' + (i + 1) + ':</strong> ' + q.text + '</div>' +
+          '<button onclick="editQuestionInForm(' + wVal + ', ' + lIdx + ', ' + i + ')" class="bg-sky-100 hover:bg-sky-200 text-sky-800 px-2.5 py-1 rounded-lg font-bold text-xs transition">Edit</button>';
         c.appendChild(d);
       }
       editQuestionInForm(wVal, lIdx, 0);
@@ -3003,145 +3142,6 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       showToast("Soal Berhasil Disimpan!");
     }
 
-    // MODAL DAN PARSER TEMPEL SOAL GEMINI MASSAL
-    function openBulkGeminiModal() {
-      var wVal = document.getElementById("admin-editor-world").value;
-      var lIdx = parseInt(document.getElementById("admin-editor-level").value || 0);
-      var w = worldsInfo[parseInt(wVal)] || worldsInfo[0];
-      
-      document.getElementById("bulk-gemini-target-label").innerText = w.tag + " - Level " + (lIdx + 1);
-      document.getElementById("gemini-bulk-textarea").value = "";
-      document.getElementById("modal-gemini-bulk").classList.remove("hidden");
-    }
-
-    function closeBulkGeminiModal() {
-      document.getElementById("modal-gemini-bulk").classList.add("hidden");
-    }
-
-    function copyGeminiPromptTemplate() {
-      var wVal = document.getElementById("admin-editor-world").value;
-      var lIdx = parseInt(document.getElementById("admin-editor-level").value || 0);
-      var w = worldsInfo[parseInt(wVal)] || worldsInfo[0];
-      var themeName = (w.levelThemes && w.levelThemes[lIdx]) ? w.levelThemes[lIdx] : ("Level " + (lIdx + 1));
-
-      var promptText = "Buatkan 11 soal pilihan ganda bahasa Inggris untuk anak kelas " + w.grade + " dengan tema '" + themeName + "'. Gunakan format persis seperti ini:\n\n" +
-        "1. Kalimat soal dengan bagian kosong (\"________\").\n" +
-        "A. Pilihan A\n" +
-        "B. Pilihan B\n" +
-        "C. Pilihan C\n" +
-        "D. Pilihan D\n" +
-        "Jawaban: A (atau B / C / D)\n" +
-        "Tips: Penjelasan ringkas tata bahasa atau arti kata.\n\n" +
-        "Tolong buat lengkap sampai 11 soal tanpa teks pembuka atau penutup.";
-
-      var tempInput = document.createElement("textarea");
-      tempInput.value = promptText;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      document.execCommand("copy");
-      document.body.removeChild(tempInput);
-
-      showToast("Contoh prompt berhasil disalin ke clipboard! Silakan paste di Gemini.");
-    }
-
-    function processGeminiBulkQuestions() {
-      var rawText = document.getElementById("gemini-bulk-textarea").value.trim();
-      if (!rawText) {
-        showToast("Tempelkan teks soal dari Gemini terlebih dahulu!");
-        return;
-      }
-
-      var wVal = document.getElementById("admin-editor-world").value;
-      var lIdx = parseInt(document.getElementById("admin-editor-level").value || 0);
-
-      // Memecah soal berdasarkan nomor urut (misal: "1. ", "2. ", "Soal 1", dll.)
-      var questionBlocks = rawText.split(/(?:^|\n)(?:\d+[\.\)]|Soal\s*\d+[\:\.])/i).filter(function(block) {
-        return block.trim().length > 10;
-      });
-
-      if (questionBlocks.length === 0) {
-        // Fallback pemisah jika format nomor berbeda: split berdasarkan baris kosong ganda
-        questionBlocks = rawText.split(/\n\s*\n/).filter(function(block) {
-          return block.trim().length > 10;
-        });
-      }
-
-      var parsedQuestions = [];
-
-      for (var i = 0; i < questionBlocks.length; i++) {
-        var block = questionBlocks[i].trim();
-        var lines = block.split("\n").map(function(l) { return l.trim(); }).filter(function(l) { return l.length > 0; });
-        
-        var qText = "";
-        var options = ["", "", "", ""];
-        var answerIdx = 0;
-        var tipText = "";
-
-        // Baris pertama umumnya adalah teks pertanyaan
-        qText = lines[0].replace(/^\d+[\.\)]\s*/, "").replace(/^Soal\s*\d+[\:\.]\s*/i, "").trim();
-
-        for (var j = 0; j < lines.length; j++) {
-          var line = lines[j];
-          var optMatch = line.match(/^([A-D])[\.\)]\s*(.+)/i);
-          if (optMatch) {
-            var letter = optMatch[1].toUpperCase();
-            var val = optMatch[2].trim();
-            if (letter === "A") options[0] = val;
-            else if (letter === "B") options[1] = val;
-            else if (letter === "C") options[2] = val;
-            else if (letter === "D") options[3] = val;
-          }
-
-          var ansMatch = line.match(/(?:Jawaban|Kunci|Answer|Kunci Jawaban)\s*[\:\=]\s*([A-D])/i);
-          if (ansMatch) {
-            var ansLetter = ansMatch[1].toUpperCase();
-            answerIdx = (ansLetter === "A") ? 0 : (ansLetter === "B" ? 1 : (ansLetter === "C" ? 2 : 3));
-          }
-
-          var tipMatch = line.match(/(?:Tips|Tip|Penjelasan|Explanation)\s*[\:\=]\s*(.+)/i);
-          if (tipMatch) {
-            tipText = tipMatch[1].trim();
-          }
-        }
-
-        // Validasi kelayakan soal
-        if (qText && options[0] && options[1]) {
-          if (!options[2]) options[2] = "-";
-          if (!options[3]) options[3] = "-";
-          parsedQuestions.push({
-            instruction: "Lengkapi kalimat:",
-            text: qText,
-            options: options,
-            answer: answerIdx,
-            speech: qText.replace("________", options[answerIdx]),
-            tip: tipText || "Perhatikan tata bahasa dengan teliti!"
-          });
-        }
-      }
-
-      if (parsedQuestions.length === 0) {
-        showToast("Format soal tidak terbaca. Pastikan terdapat pilihan A, B, C, D dan Kunci Jawaban.");
-        return;
-      }
-
-      // Simpan seluruh soal hasil parse ke bank soal level ini
-      for (var qIdx = 0; qIdx < parsedQuestions.length; qIdx++) {
-        var key = "w" + wVal + "_l" + lIdx + "_q" + qIdx;
-        window.customQuestionsBank[key] = parsedQuestions[qIdx];
-      }
-
-      // Simpan jumlah total soal dinamis (misal 11 soal)
-      var countKey = "w" + wVal + "_l" + lIdx + "_count";
-      window.customQuestionsBank[countKey] = parsedQuestions.length;
-
-      syncTeacherConfigToCloud();
-      loadAdminQuestionsList();
-      closeBulkGeminiModal();
-
-      playSfx("correct");
-      showToast("Berhasil menerapkan " + parsedQuestions.length + " soal baru dari Gemini sekaligus!");
-    }
-
     function renderAdminLevelLocks() {
       var wIdx = parseInt(document.getElementById("admin-lock-world-select").value) || 0;
       document.getElementById("admin-world-lock-toggle").checked = !!window.gameLocks.worlds[wIdx];
@@ -3152,8 +3152,8 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
 
       for (var i = 0; i < 10; i++) {
         var box = document.createElement("label");
-        box.className = "flex justify-between p-2.5 border rounded-xl text-xs bg-white cursor-pointer font-bold";
-        box.innerHTML = 'Level ' + (i + 1) + ' <input type="checkbox" ' + (locks[i] ? "checked" : "") + ' onchange="toggleLevelLock(' + wIdx + ', ' + i + ', this.checked)" class="w-4 h-4 accent-amber-500 cursor-pointer">';
+        box.className = "flex justify-between p-2.5 border border-slate-200 rounded-xl text-xs bg-white cursor-pointer items-center";
+        box.innerHTML = 'Level ' + (i + 1) + ' <input type="checkbox" ' + (locks[i] ? "checked" : "") + ' onchange="toggleLevelLock(' + wIdx + ', ' + i + ', this.checked)" class="w-4 h-4 accent-amber-500">';
         grid.appendChild(box);
       }
     }
@@ -3240,7 +3240,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
           '<td class="p-3 font-bold text-blue-700">' + (scoreData.totalScore || 0) + ' Pts</td>' +
           '<td class="p-3">' + examValDisplay + '</td>' +
           '<td class="p-3 text-center">' +
-            (scoreData.examTaken ? '<button onclick="adminResetStudentExam(\'' + s.id + '\')" class="px-2.5 py-1 bg-amber-100 text-amber-900 rounded font-bold text-xs active:scale-95">🔄 Reset</button>' : '<span class="text-slate-300">-</span>') +
+            (scoreData.examTaken ? '<button onclick="adminResetStudentExam(\'' + s.id + '\')" class="px-2.5 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-lg font-bold text-[11px] active:scale-95 transition">🔄 Reset</button>' : '<span class="text-slate-300">-</span>') +
           '</td>';
         tbody.appendChild(tr);
       }
@@ -3268,7 +3268,6 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       renderTeacherScorebook();
       showToast("Akses ujian untuk murid #" + studentId + " berhasil di-reset!");
     }
-
     function openScoreboardModal() {
       document.getElementById("modal-scoreboard").classList.remove("hidden");
       filterLeaderboardClass("ALL");
@@ -3282,8 +3281,8 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       for (var i = 0; i < buttons.length; i++) {
         var btn = document.getElementById("tab-lb-class-" + buttons[i]);
         if (btn) {
-          if (buttons[i] === cls) btn.className = "px-3 py-1.5 rounded-lg bg-sky-500 text-white shadow-sm transition text-xs sm:text-sm";
-          else btn.className = "px-3 py-1.5 rounded-lg bg-slate-200 text-slate-600 hover:bg-slate-300 transition text-xs sm:text-sm";
+          if (buttons[i] === cls) btn.className = "px-2.5 py-1 rounded-lg bg-sky-500 text-white shadow-sm transition";
+          else btn.className = "px-2.5 py-1 rounded-lg bg-slate-200 text-slate-600 hover:bg-slate-300 transition";
         }
       }
 
@@ -3322,7 +3321,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
         var medal = (k === 0 ? "🥇" : (k === 1 ? "🥈" : (k === 2 ? "🥉" : "<span class='text-slate-400 font-mono font-bold'>#" + (k + 1) + "</span>")));
 
         var row = document.createElement("div");
-        row.className = "flex items-center justify-between p-2.5 rounded-xl border border-slate-100 hover:bg-slate-50 text-xs sm:text-sm";
+        row.className = "flex items-center justify-between p-2.5 rounded-2xl border border-slate-100 hover:bg-slate-50 text-xs";
         row.innerHTML = '<div class="flex items-center gap-2">' +
           medal + ' ' + (item.avatar || "🦎") +
           '<div class="leading-tight">' +
@@ -3330,7 +3329,7 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
             '<div class="flex items-center gap-1 mt-0.5"><span class="text-[9px] px-1.5 py-0.2 rounded border font-bold uppercase ' + badgeColor + '">' + cleanGrd + '</span><span class="text-[9px] text-orange-600 font-bold">🔥 ' + item.streak + '</span></div>' +
           '</div>' +
         '</div>' +
-        '<div class="text-blue-700 font-title font-bold text-sm sm:text-base">' + (item.totalScore || 0) + ' Pts</div>';
+        '<div class="text-blue-700 font-title font-bold text-sm">' + (item.totalScore || 0) + ' Pts</div>';
         c.appendChild(row);
       }
     }
@@ -3343,8 +3342,8 @@ Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-
       for (var i = 0; i < faunaMascots.length; i++) {
         var f = faunaMascots[i];
         var btn = document.createElement("button");
-        btn.className = "p-2.5 border rounded-xl flex items-center gap-2.5 " + (gameState.avatar === f.icon ? "bg-emerald-100 border-emerald-500" : "bg-slate-50");
-        btn.innerHTML = '<span class="text-2xl">' + f.icon + '</span><div class="text-left leading-tight"><span class="font-bold text-xs sm:text-sm block">' + f.name + '</span><span class="text-[10px] text-slate-500">' + f.origin + '</span></div>';
+        btn.className = "p-2.5 border border-slate-200 rounded-2xl flex items-center gap-2.5 hover:border-emerald-400 " + (gameState.avatar === f.icon ? "bg-emerald-100 border-emerald-500" : "bg-slate-50");
+        btn.innerHTML = '<span class="text-2xl">' + f.icon + '</span><div class="text-left leading-tight"><span class="font-bold text-xs block">' + f.name + '</span><span class="text-[10px] text-slate-500">' + f.origin + '</span></div>';
         btn.onclick = (function(av) {
           return function() {
             gameState.avatar = av;
