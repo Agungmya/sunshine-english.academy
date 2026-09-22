@@ -9,16 +9,14 @@
   <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Quicksand:wght@500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  <!-- PUSTAKA JSQR & QRCODEJS -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Quicksand:wght@500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- PUSTAKA JSQR -->
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <!-- PUSTAKA CONFETTI -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <!-- PUSTAKA HTML2CANVAS & JSPDF -->
+  <!-- PUSTAKA HTML2CANVAS -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
+  
   <script>
     tailwind.config = {
       theme: {
@@ -81,7 +79,6 @@
       }
     };
   </script>
-
   <style>
     body { font-family: "Quicksand", sans-serif; user-select: none; -webkit-tap-highlight-color: transparent; }
     .font-title { font-family: "Fredoka", cursive; }
@@ -101,7 +98,6 @@
       flex-shrink: 0;
       border-radius: 1.5rem;
       overflow: hidden;
-      box-sizing: border-box;
     }
 
     .ktp-scale-container {
@@ -143,17 +139,72 @@
     }
 
     .watermark-silhouette {
-      opacity: 0.18 !important;
+      opacity: 0.80 !important;
       pointer-events: none;
       user-select: none;
-      mix-blend-mode: screen;
     }
 
-    .student-name-text {
-      font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif !important;
-      line-height: 1.2 !important;
-      letter-spacing: 0.02em !important;
-      text-transform: uppercase !important;
+    /* PENGATURAN CETAK PDF / A4 YANG PRESISI UKURAN KARTU FISIK CR-80 (86mm x 54mm) */
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+      html, body {
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+      }
+      body > div:not(#print-batch-a4-area):not(#dedicated-print-container) {
+        display: none !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      #dedicated-print-container {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 10mm !important;
+        width: 100% !important;
+        min-height: 100vh !important;
+        background: white !important;
+      }
+      #dedicated-print-container .id-card-frame {
+        width: 86mm !important;
+        height: 54mm !important;
+        box-shadow: none !important;
+        border: 1px solid #c59a27 !important;
+        border-radius: 4mm !important;
+        transform: none !important;
+        display: flex !important;
+      }
+      #print-batch-a4-area {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 8mm !important;
+        box-sizing: border-box !important;
+      }
+      .a4-page-sheet {
+        page-break-after: always !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8mm !important;
+        height: 280mm !important;
+        box-sizing: border-box !important;
+      }
+      .a4-student-row {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8mm !important;
+        page-break-inside: avoid !important;
+      }
     }
   </style>
 </head>
@@ -174,7 +225,7 @@
             <span class="text-[8px] font-extrabold text-slate-400 uppercase tracking-wider block">Sunshine English Academy</span>
             <div class="flex items-center gap-1.5">
               <span class="font-title text-xs font-bold text-sky-900">Mr. Agung's Class</span>
-              <span id="cloud-sync-status" title="Status Lokal" class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span id="cloud-sync-status" title="Status Cloud" class="w-2 h-2 rounded-full bg-emerald-500"></span>
             </div>
           </div>
         </div>
@@ -208,7 +259,7 @@
           <div>
             <label class="text-[11px] font-bold text-slate-600 block mb-1">Username atau Nomor Absen</label>
             <div class="relative"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">👤</span>
-              <input id="login-username-input" type="text" placeholder="Masukkan username atau no absen..." class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border-2 border-slate-200 focus:border-sky-500 rounded-2xl text-xs font-bold text-slate-800 outline-none">
+              <input id="login-username-input" type="text" placeholder="Masukkan username..." class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border-2 border-slate-200 focus:border-sky-500 rounded-2xl text-xs font-bold text-slate-800 outline-none">
             </div>
           </div>
           <div>
@@ -481,7 +532,6 @@
         <button id="btn-result-back" onclick="navigate('screen-levels')" class="w-full py-3 bg-slate-100 text-slate-700 font-title text-base font-bold rounded-2xl">🗺️ Kembali ke Peta Level</button>
       </div>
     </main>
-
     <!-- SCREEN 7: PORTAL GURU -->
     <main id="screen-teacher" class="flex-1 flex flex-col justify-between hidden overflow-hidden bg-slate-100">
       <div class="bg-amber-500 text-white p-3.5 shadow-md flex items-center justify-between">
@@ -497,21 +547,20 @@
 
       <!-- Tab Bar Guru -->
       <div class="bg-white border-b border-slate-200 p-1.5 flex gap-1 text-[11px] font-bold font-title overflow-x-auto custom-scroll shadow-xs">
-        <button onclick="switchTeacherTab('roster')" id="tab-btn-roster" class="flex-1 py-1.5 px-2 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap">👥 Murid</button>
+        <button onclick="switchTeacherTab('roster')" id="tab-btn-roster" class="flex-1 py-1.5 px-2 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap">👥 Murid & KTP</button>
         <button onclick="switchTeacherTab('attendance')" id="tab-btn-attendance" class="flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap">📷 Absen QR</button>
         <button onclick="switchTeacherTab('bab')" id="tab-btn-bab" class="flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap">📚 Bab</button>
         <button onclick="switchTeacherTab('editor')" id="tab-btn-editor" class="flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap">✏️ Soal</button>
         <button onclick="switchTeacherTab('locks')" id="tab-btn-locks" class="flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap">🔒 Kunci</button>
         <button onclick="switchTeacherTab('exam')" id="tab-btn-exam" class="flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap">📝 Ujian</button>
         <button onclick="switchTeacherTab('scores')" id="tab-btn-scores" class="flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap">📊 Nilai</button>
-        <button onclick="switchTeacherTab('pdfcards')" id="tab-btn-pdfcards" class="flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap bg-emerald-50 text-emerald-800 border border-emerald-300">🪪 Cetak PDF KTP</button>
       </div>
 
       <div class="flex-1 overflow-y-auto p-4 space-y-4 custom-scroll" id="teacher-content-container">
-        <!-- TAB 1: ROSTER MURID & KELOLA KTP -->
+        <!-- TAB 1: ROSTER MURID & CETAK KTP -->
         <div id="teacher-tab-roster" class="space-y-3">
           
-          <!-- BANNER UPLOAD LOGO -->
+          <!-- BANNER UPLOAD LOGO DEPAN & LOGO BELAKANG (WATERMARK) -->
           <div class="bg-gradient-to-r from-sunNavy-900 to-sunNavy-850 p-3 rounded-2xl border border-sunGold-400 text-white flex flex-col gap-2.5 shadow-xs">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
@@ -529,6 +578,7 @@
               </label>
             </div>
 
+            <!-- Bagian Upload Gambar Latar Belakang KTP (Watermark Belakang) -->
             <div class="flex items-center justify-between pt-2 border-t border-white/10">
               <div class="flex items-center gap-2">
                 <div class="w-12 h-6 rounded-lg bg-white p-0.5 border border-sunGold-400 flex items-center justify-center shrink-0 overflow-hidden">
@@ -536,7 +586,7 @@
                 </div>
                 <div>
                   <strong class="font-display text-[11px] text-amber-300 block">Gambar Latar Belakang KTP (Belakang)</strong>
-                  <span class="text-[8px] text-slate-300">Logo memanjang transparan di balik teks</span>
+                  <span class="text-[8px] text-slate-300">Logo memanjang transparan 80% di balik teks</span>
                 </div>
               </div>
               <label class="px-2.5 py-1.5 bg-sunNavy-800 hover:bg-sunNavy-700 text-sunGold-300 border border-sunGold-400/60 rounded-xl font-display text-[9.5px] font-bold shadow-xs cursor-pointer active:scale-95 transition">
@@ -544,6 +594,17 @@
                 <input type="file" accept="image/*" class="hidden" onchange="uploadGlobalBackLogoFile(event)">
               </label>
             </div>
+          </div>
+
+          <!-- Banner Cetak Masal Seluruh KTP A4 -->
+          <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-3 rounded-2xl text-white flex items-center justify-between shadow-xs">
+            <div>
+              <strong class="font-title text-xs block">🖨️ Cetak Semua KTP Siswa (Format A4)</strong>
+              <span class="text-[9.5px] text-amber-100">1 Lembar = 3 Siswa (Kiri Depan, Kanan Belakang + Garis Gunting ✂️)</span>
+            </div>
+            <button type="button" onclick="printAllStudentsKtpA4()" class="px-3 py-1.5 bg-white text-orange-950 rounded-xl font-title text-[11px] font-bold shadow-sm active:scale-95 transition">
+              <span>📄 Cetak PDF</span>
+            </button>
           </div>
 
           <!-- Form Tambah Murid -->
@@ -567,6 +628,7 @@
             <button type="button" onclick="adminSaveStudentForm()" class="w-full py-2 bg-blue-600 text-white font-title text-xs font-bold rounded-xl shadow-xs"><span id="btn-save-roster-label">Simpan Akun Murid ✓</span></button>
           </div>
           
+          <!-- Daftar Seluruh Murid -->
           <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs">
             <div class="p-2.5 bg-slate-50 border-b text-xs font-bold text-slate-700 flex justify-between items-center">
               <span>Daftar Seluruh Murid:</span>
@@ -734,37 +796,14 @@
             </table>
           </div>
         </div>
-
-        <!-- TAB 8: CETAK PDF KARTU BELAJAR (KTP) -->
-        <div id="teacher-tab-pdfcards" class="space-y-3 hidden">
-          <div class="bg-gradient-to-r from-emerald-600 to-teal-700 rounded-2xl p-4 text-white shadow-md space-y-1.5">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span class="text-2xl">🪪</span>
-                <div>
-                  <h3 class="font-title text-sm font-bold leading-tight">Pusat Pratinjau & Download PDF Kartu Belajar</h3>
-                  <p class="text-[10px] text-emerald-100">Klik siswa untuk membuka pratinjau lembar kartu (Depan & Belakang) lalu unduh berkas PDF A4</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white border-2 border-slate-200 rounded-2xl p-3 shadow-xs space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="font-title text-xs font-bold text-slate-800">Daftar Seluruh Murid Siap Pratinjau PDF:</span>
-              <span class="text-[9px] text-slate-400 font-mono" id="pdfcards-student-count">0 Murid</span>
-            </div>
-            <div class="max-h-72 overflow-y-auto custom-scroll divide-y divide-slate-100" id="admin-pdfcards-list-container"></div>
-          </div>
-        </div>
       </div>
     </main>
-
-    <!-- MODAL: KTP SISWA RESMI -->
-    <div id="modal-student-ktp" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 hidden flex flex-col items-center justify-center p-3 overflow-y-auto">
+    <!-- MODAL: KTP SISWA RESMI (BOLAK-BALIK DENGAN WATERMARK 80% & NO HP ANDA) -->
+    <div id="modal-student-ktp" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex flex-col items-center justify-center p-3 overflow-y-auto">
+      
       <div class="modal-ktp-box w-full max-w-lg bg-sunNavy-950/95 border border-sunGold-500/40 rounded-3xl p-4 shadow-2xl flex flex-col items-center gap-3 text-center">
         
-        <div class="w-full flex items-center justify-between border-b border-sunGold-500/20 pb-2">
+        <div class="w-full flex items-center justify-between border-b border-sunGold-500/20 pb-2 no-print">
           <div class="flex items-center gap-2">
             <span class="text-xl">🪪</span>
             <div class="text-left">
@@ -773,6 +812,7 @@
             </div>
           </div>
           <div class="flex items-center gap-1.5">
+            <!-- Tombol Balik Kartu -->
             <button type="button" onclick="toggleStudentKtpSide()" id="btn-toggle-ktp-flip" class="px-2.5 py-1 bg-amber-400 text-sunNavy-950 rounded-xl font-display text-[10px] font-black shadow-xs active:scale-95 transition flex items-center gap-1">
               <span>🔄</span><span id="ktp-flip-btn-label">Lihat Belakang</span>
             </button>
@@ -780,16 +820,19 @@
           </div>
         </div>
 
+        <!-- INPUT TERSEMBUNYI UNTUK GANTI WATERMARK BELAKANG DARI MODAL KTP -->
         <input type="file" id="ktp-modal-back-logo-input" accept="image/*" class="hidden" onchange="uploadGlobalBackLogoFile(event)">
 
         <!-- KONTEN KARTU KTP (CR-80: 450px x 282px) -->
         <div class="ktp-scale-container my-1">
           
-          <!-- SISI 1: TAMPAK DEPAN -->
+          <!-- SISI 1: TAMPAK DEPAN (PRESISI TANPA CACAT) -->
           <div id="ktp-card-front-view" class="id-card-frame rounded-3xl shadow-card-vip gold-foil-border overflow-hidden text-white flex flex-col justify-between relative bg-gradient-to-br from-sunNavy-900 via-sunNavy-850 to-sunNavy-950 text-left">
+            
             <div class="absolute inset-0 security-guilloche opacity-70 pointer-events-none"></div>
             <div class="absolute inset-0 gold-holographic-ribbon pointer-events-none"></div>
 
+            <!-- HEADER DEPAN -->
             <div class="relative z-10 px-4 pt-3 pb-2 flex items-center justify-between border-b border-sunGold-500/30 bg-sunNavy-950/60 backdrop-blur-xs">
               <div class="flex items-center gap-2.5">
                 <div class="w-11 h-11 rounded-xl bg-white p-0.5 shadow-md border-2 border-sunGold-400/80 flex items-center justify-center shrink-0 overflow-hidden">
@@ -813,14 +856,17 @@
               </div>
             </div>
 
+            <!-- BODY DEPAN (DIATUR ULANG PRESISI AGAR NAMA TIDAK TURUN) -->
             <div class="relative z-10 px-4 py-2 flex items-center justify-between gap-3 flex-1">
+              
+              <!-- Kiri: Foto Siswa 3x4 + Chip EMV -->
               <div class="flex flex-col items-center justify-center gap-1.5 w-24 shrink-0">
-                <div id="ktp-photo-wrapper" class="relative group" onclick="triggerStudentPhotoUploadIfTeacher()">
+                <div class="relative group cursor-pointer" onclick="triggerStudentPhotoUpload()" title="Klik untuk ganti foto murid">
                   <div class="w-20 h-24 rounded-xl bg-slate-800 border-2 border-sunGold-400/80 shadow-md overflow-hidden relative">
                     <img id="ktp-student-photo" src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=240&auto=format&fit=crop&q=80" alt="Pasfoto Siswa" class="w-full h-full object-cover">
-                    <div class="absolute bottom-0 inset-x-0 bg-sunNavy-950/85 backdrop-blur-xs text-sunGold-300 text-[6.5px] font-display font-extrabold text-center py-0.5 border-t border-sunGold-500/40">STUDENT PHOTO</div>
+                    <div class="absolute bottom-0 inset-x-0 bg-sunNavy-950/85 backdrop-blur-xs text-sunGold-300 text-[6.5px] font-display font-extrabold text-center py-0.5 border-t border-sunGold-500/40" data-html2canvas-ignore="true">STUDENT PHOTO</div>
                   </div>
-                  <div id="ktp-teacher-camera-badge" class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-sunGold-500 text-sunNavy-950 flex items-center justify-center text-[9px] font-bold shadow border border-white hidden">📸</div>
+                  <div data-html2canvas-ignore="true" class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-sunGold-500 text-sunNavy-950 flex items-center justify-center text-[9px] font-bold shadow border border-white">📸</div>
                 </div>
                 <input type="file" id="ktp-single-photo-input" accept="image/*" class="hidden" onchange="handleStudentPhotoSelected(event)">
 
@@ -831,13 +877,14 @@
                 </div>
               </div>
 
+              <!-- Tengah: Identitas & Akun Web App (Posisi nama di-fix agar tepat di bawah label) -->
               <div class="flex-1 flex flex-col justify-center space-y-1 text-left pl-1">
                 <div class="flex items-center justify-between">
                   <span class="text-[7.5px] uppercase tracking-wider text-slate-300 font-extrabold">Student Name</span>
                   <span id="ktp-student-id-tag" class="font-code text-[8.5px] font-extrabold text-sunGold-300 bg-white/10 px-1.5 py-0.2 rounded border border-white/15">ID: #01</span>
                 </div>
-                <div class="py-0.5 overflow-hidden">
-                  <h3 id="ktp-student-name" class="student-name-text text-[13px] font-black text-white leading-tight">Budi Pratama</h3>
+                <div>
+                  <h3 id="ktp-student-name" class="font-display text-base font-black text-white leading-tight drop-shadow-sm truncate pb-0.5">Budi Pratama</h3>
                 </div>
 
                 <div class="p-1.5 rounded-xl bg-sunNavy-950/80 border border-sunGold-500/40 shadow-inner">
@@ -867,17 +914,20 @@
                 </div>
               </div>
 
+              <!-- Kanan: QR Code Absensi Tajam Presisi 80px x 80px -->
               <div class="shrink-0 flex flex-col items-center justify-center pl-1 w-24">
                 <div class="p-1 bg-white rounded-2xl shadow-xl border-2 border-sunGold-400 flex items-center justify-center">
-                  <div id="ktp-qr-code-box" class="w-20 h-20 rounded-lg overflow-hidden flex items-center justify-center bg-white"></div>
+                  <img id="ktp-qr-code-img" src="" alt="QR Absensi" class="w-20 h-20 rounded-lg object-contain block">
                 </div>
-                <div class="inline-flex items-center gap-0.5 mt-1 bg-sunGold-400/20 text-sunGold-300 px-2 py-0.5 rounded-md border border-sunGold-400/40">
+                <div class="inline-flex items-center gap-0.5 mt-1 bg-sunGold-400/20 text-sunGold-300 px-2 py-0.5 rounded-md border border-sunGold-400/40" data-html2canvas-ignore="true">
                   <span class="text-[8px]">📷</span>
                   <span class="text-[7.5px] font-extrabold uppercase tracking-wider font-display block">SCAN ABSEN</span>
                 </div>
               </div>
+
             </div>
 
+            <!-- FOOTER DEPAN -->
             <div class="relative z-10 px-4 py-1.5 bg-sunNavy-950/90 border-t border-sunGold-500/30 flex items-center justify-between text-[8px]">
               <span class="font-code text-slate-400 tracking-wider">SEC-2026-REG</span>
               <div class="flex items-center gap-1 text-sunGold-300 font-display font-black tracking-wide italic">
@@ -885,23 +935,30 @@
               </div>
               <span class="font-display font-bold text-slate-300">MR. AGUNG ✓</span>
             </div>
+
           </div>
 
-          <!-- SISI 2: TAMPAK BELAKANG -->
+          <!-- SISI 2: TAMPAK BELAKANG (DENGAN WATERMARK 80% & NO HP ANDA 085759420950) -->
           <div id="ktp-card-back-view" class="id-card-frame rounded-3xl shadow-card-vip gold-foil-border overflow-hidden text-white flex flex-col justify-between hidden relative bg-gradient-to-br from-sunNavy-950 via-sunNavy-900 to-sunNavy-850 text-left">
+            
             <div class="absolute inset-0 security-guilloche opacity-50 pointer-events-none"></div>
 
+            <!-- LOGO WATERMARK MEMANJANG LATAR BELAKANG - OPACITY 80% (0.80) & TATA LETAK PRESISI -->
             <div class="absolute inset-0 flex items-center justify-center p-4 watermark-silhouette">
               <img class="app-global-back-logo w-full max-h-32 object-contain filter drop-shadow-md" src="https://placehold.co/400x160/ffffff/0b1b36?text=SUNSHINE+ENGLISH+ACADEMY" alt="Watermark Belakang">
             </div>
 
+            <!-- PITA MAGNETIK HITAM ATAS -->
             <div class="relative z-10 w-full h-7 bg-black/90 mt-2 border-y border-sunGold-500/20 flex items-center px-4">
               <span class="text-[6.5px] font-code text-sunGold-300/70 tracking-widest">
                 MR. AGUNG'S CLASS &bull; SUNSHINE ENGLISH ACADEMY &bull; STUDENT SMART ID CR-80
               </span>
             </div>
 
+            <!-- KONTEN UTAMA BELAKANG (DIPERBAIKI AGAR PRESISI & TIDAK BERTUMPUK) -->
             <div class="relative z-10 px-4 py-1 flex items-center justify-between gap-2.5 flex-1">
+              
+              <!-- Sisi Kiri: Ketentuan & No HP 085759420950 -->
               <div class="flex-1 space-y-1">
                 <span class="text-[8px] font-display font-extrabold text-sunGold-300 uppercase tracking-wider block">
                   Ketentuan Pemegang Kartu:
@@ -919,6 +976,7 @@
                 </div>
               </div>
 
+              <!-- Sisi Kanan: Barcode Digital & Tanda Tangan Verifikasi -->
               <div class="w-32 shrink-0 flex flex-col items-center justify-center text-center space-y-1">
                 <div class="bg-white p-1 rounded-md border border-sunGold-400 shadow-xs flex flex-col items-center">
                   <div class="flex items-end h-6 gap-0.5 px-0.5">
@@ -940,8 +998,10 @@
                   </div>
                 </div>
               </div>
+
             </div>
 
+            <!-- FOOTER BELAKANG -->
             <div class="relative z-10 px-4 py-1.5 bg-sunNavy-950/90 border-t border-sunGold-500/30 flex items-center justify-between text-[7.5px]">
               <div class="flex items-center gap-1.5">
                 <div class="w-4 h-4 rounded bg-white p-0.5 shrink-0">
@@ -952,17 +1012,26 @@
               <span class="font-display italic text-slate-300">“It’s time to rise and shine”</span>
               <span class="font-code text-sunGold-400 font-bold">SMART ID</span>
             </div>
+
           </div>
 
         </div>
 
-        <div class="w-full flex items-center justify-center gap-2 pt-2 border-t border-sunGold-500/20">
-          <div id="ktp-teacher-actions-container" class="hidden">
-            <button type="button" onclick="document.getElementById('ktp-modal-back-logo-input').click()" class="py-2 px-3 bg-sunNavy-800 hover:bg-sunNavy-700 text-sunGold-300 border border-sunGold-400/40 font-display text-xs font-bold rounded-xl active:scale-95 transition flex items-center gap-1">
-              <span>🖼️ Background Belakang</span>
-            </button>
-          </div>
-          <button type="button" onclick="closeStudentKtpModal()" class="px-5 py-2 bg-slate-800 text-slate-200 font-display text-xs font-bold rounded-xl hover:bg-slate-700 active:scale-95 transition">
+        <!-- TOMBOL AKSI MODAL KTP -->
+        <div class="w-full flex flex-wrap items-center justify-center gap-2 pt-2 border-t border-sunGold-500/20 no-print">
+          <button type="button" onclick="downloadStudentKtpSidePng('front')" class="py-2 px-3 bg-gradient-to-r from-amber-400 via-sunGold-400 to-amber-500 text-sunNavy-950 font-display text-xs font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1">
+            <span>📥 Unduh Depan (PNG HD)</span>
+          </button>
+          <button type="button" onclick="downloadStudentKtpSidePng('back')" class="py-2 px-3 bg-gradient-to-r from-amber-500 to-orange-500 text-sunNavy-950 font-display text-xs font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1">
+            <span>📥 Unduh Belakang (PNG HD)</span>
+          </button>
+          <button type="button" onclick="printSingleStudentKtp()" class="py-2 px-3 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-display text-xs font-bold rounded-xl shadow-md active:scale-95 transition flex items-center gap-1">
+            <span>🖨️ Cetak / Simpan PDF</span>
+          </button>
+          <button type="button" onclick="document.getElementById('ktp-modal-back-logo-input').click()" class="py-2 px-2.5 bg-sunNavy-800 hover:bg-sunNavy-700 text-sunGold-300 border border-sunGold-400/40 font-display text-xs font-bold rounded-xl active:scale-95 transition flex items-center gap-1" title="Pilih gambar logo memanjang untuk background belakang kartu">
+            <span>🖼️ Ganti Background Belakang</span>
+          </button>
+          <button type="button" onclick="closeStudentKtpModal()" class="px-3 py-2 bg-slate-800 text-slate-300 font-display text-xs font-bold rounded-xl hover:bg-slate-700 transition">
             Tutup
           </button>
         </div>
@@ -970,32 +1039,23 @@
       </div>
     </div>
 
-    <!-- MODAL: PRATINJAU PDF KTP -->
-    <div id="modal-pdf-preview" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 hidden flex flex-col items-center justify-center p-3 overflow-y-auto">
-      <div class="w-full max-w-lg bg-sunNavy-950/95 border-2 border-emerald-400/60 rounded-3xl p-4 shadow-2xl flex flex-col items-center gap-3 text-center">
-        <div class="w-full flex items-center justify-between border-b border-emerald-500/20 pb-2">
-          <div class="flex items-center gap-2">
-            <span class="text-xl">🪪</span>
-            <div class="text-left">
-              <h3 class="font-display font-black text-sm text-white leading-tight">Pratinjau Lembar Cetak KTP</h3>
-              <p class="text-[10px] text-emerald-300">Atas: Tampak Depan | Bawah: Tampak Belakang</p>
-            </div>
-          </div>
-          <button onclick="closePdfPreviewModal()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center transition">✕</button>
+    <!-- AREA CETAK KHUSUS TERISOLASI ANTIBLANK -->
+    <div id="dedicated-print-container" class="hidden"></div>
+    <div id="print-batch-a4-area" class="hidden"></div>
+    <!-- MODAL: STREAK KEHADIRAN -->
+    <div id="modal-streak" class="fixed inset-0 bg-slate-900/60 z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-white rounded-3xl w-full max-w-xs flex flex-col shadow-2xl border-4 border-orange-400 overflow-hidden text-center p-5">
+        <div class="w-16 h-16 mx-auto rounded-full bg-orange-100 flex items-center justify-center text-4xl shadow-flame mb-2">
+          <span class="animate-flame-flicker">🔥</span>
         </div>
-
-        <div id="pdf-preview-canvas-box" class="w-full bg-slate-900 rounded-2xl p-4 flex flex-col items-center gap-4 max-h-[60vh] overflow-y-auto custom-scroll border border-slate-700">
-          <!-- Render preview canvas or card clones here -->
-        </div>
-
-        <div class="w-full flex items-center justify-center gap-2 pt-2 border-t border-emerald-500/20">
-          <button type="button" onclick="executePdfDownloadFromPreview()" class="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-display text-xs font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1.5">
-            <span>📥 Unduh File PDF Sekarang</span>
-          </button>
-          <button type="button" onclick="closePdfPreviewModal()" class="px-4 py-2.5 bg-slate-800 text-slate-300 font-display text-xs font-bold rounded-xl hover:bg-slate-700 transition">
-            Batal
-          </button>
-        </div>
+        <h3 class="font-title text-xl font-black text-slate-800 mt-1">Api Kehadiran!</h3>
+        <p class="text-xs text-orange-600 font-bold mt-0.5"><span id="streak-modal-days">0</span> Hari Beruntun</p>
+        <p class="text-xs text-slate-500 my-3 leading-relaxed">
+          Pertahankan apimu dengan selalu hadir di kelas Mr. Agung! Tunjukkan kartu KTP fisikmu untuk dipindai guru saat kelas dimulai!
+        </p>
+        <button onclick="closeStreakModal()" class="w-full py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-title text-xs font-bold rounded-xl shadow-xs">
+          Semangat Belajar! 🚀
+        </button>
       </div>
     </div>
 
@@ -1033,10 +1093,8 @@
       </div>
     </div>
 
-    <!-- TOAST NOTIFIKASI -->
     <div id="app-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2 bg-slate-900/90 text-white font-title text-xs rounded-2xl shadow-xl transition-all">Pesan</div>
   </div>
-
   <script>
     window.onerror = function(msg, url, line) {
       var errBox = document.getElementById("login-error-msg");
@@ -1056,7 +1114,6 @@
     var qrScannerLiveStream = null;
     var activeViewingStudentKtpId = null;
     var currentKtpViewSide = "front";
-    var previewTargetStudentId = null;
 
     var faunaMascots = [
       { icon: "🦎", name: "Komodo", origin: "NTT" }, { icon: "🦧", name: "Orangutan", origin: "Sumatera" },
@@ -1078,8 +1135,7 @@
       { id: "03", name: "Aisyah Putri", username: "aisyah03", password: "123", grade: "Kelas Advance", avatar: "🦏", streak: 0, photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=240&auto=format&fit=crop&q=80" },
       { id: "04", name: "Bima Satria", username: "bima04", password: "123", grade: "Kelas Advance", avatar: "🐅", streak: 0, photo: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=240&auto=format&fit=crop&q=80" },
       { id: "05", name: "Rafa Pratama", username: "rafa05", password: "123", grade: "Kelas Champion", avatar: "🦅", streak: 0, photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=240&auto=format&fit=crop&q=80" },
-      { id: "06", name: "Putri Anggraini", username: "putri06", password: "123", grade: "Kelas Basic", avatar: "🦌", streak: 0, photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=240&auto=format&fit=crop&q=80" },
-      { id: "19", name: "Sabila Aditya", username: "sabila19", password: "2004", grade: "Kelas Basic", avatar: "🦎", streak: 0, photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=240&auto=format&fit=crop&q=80" }
+      { id: "06", name: "Putri Anggraini", username: "putri06", password: "123", grade: "Kelas Basic", avatar: "🦌", streak: 0, photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=240&auto=format&fit=crop&q=80" }
     ];
 
     var defaultWorldsInfo = [
@@ -1156,25 +1212,17 @@
     }
 
     function loadLocalCache() {
-      var found = false;
-      var keys = ["MRAGUNG_V8_CONFIG", "MRAGUNG_V7_CONFIG", "MRAGUNG_V6_CONFIG", "MRAGUNG_CONFIG_DATA"];
-      for (var i = 0; i < keys.length; i++) {
-        try {
-          var raw = localStorage.getItem(keys[i]);
-          if (raw) {
-            var parsed = JSON.parse(raw);
-            if (parsed.studentRoster && parsed.studentRoster.length > 0) {
-              studentRoster = parsed.studentRoster;
-              found = true;
-            }
-            if (parsed.worldsInfo && parsed.worldsInfo.length > 0) worldsInfo = parsed.worldsInfo;
-            if (parsed.customQuestionsBank) window.customQuestionsBank = parsed.customQuestionsBank;
-            if (parsed.gameLocks) window.gameLocks = parsed.gameLocks;
-            if (parsed.examConfig) window.examConfig = parsed.examConfig;
-            if (found) break;
-          }
-        } catch (e) {}
-      }
+      try {
+        var raw = localStorage.getItem("MRAGUNG_V8_CONFIG");
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          if (parsed.studentRoster && parsed.studentRoster.length > 0) studentRoster = parsed.studentRoster;
+          if (parsed.worldsInfo && parsed.worldsInfo.length > 0) worldsInfo = parsed.worldsInfo;
+          if (parsed.customQuestionsBank) window.customQuestionsBank = parsed.customQuestionsBank;
+          if (parsed.gameLocks) window.gameLocks = parsed.gameLocks;
+          if (parsed.examConfig) window.examConfig = parsed.examConfig;
+        }
+      } catch (e) {}
 
       try {
         var rawSc = localStorage.getItem("MRAGUNG_V8_SCORES");
@@ -1308,8 +1356,6 @@
         var userInp = (userEl.value || "").trim().toLowerCase();
         var passInp = (passEl.value || "").trim();
 
-        if (userInp.startsWith("@")) userInp = userInp.substring(1).trim();
-
         if (!userInp || !passInp) {
           errEl.innerText = "Ketik username dan password!";
           errEl.classList.remove("hidden");
@@ -1331,28 +1377,14 @@
         var student = null;
         for (var k = 0; k < studentRoster.length; k++) {
           var s = studentRoster[k];
-          var sUser = (s.username || "").toLowerCase();
-          var sName = (s.name || "").toLowerCase();
-          var sId = String(s.id).toLowerCase();
-
-          if (sUser === userInp || sId === userInp || ("0" + sId) === userInp || sName === userInp) {
+          if ((s.username && s.username.toLowerCase() === userInp) || String(s.id) === userInp || ("0" + s.id) === userInp) {
             student = s;
             break;
           }
         }
 
-        if (!student) {
-          errEl.innerText = "Akun murid tidak ditemukan!";
-          errEl.classList.remove("hidden");
-          playSfx("wrong");
-          return;
-        }
-
-        var validPass = String(student.password || "123");
-        var isPassMatch = (passInp === validPass || passInp === "123" || (String(student.id) === "19" && passInp === "2004"));
-
-        if (!isPassMatch) {
-          errEl.innerText = "Password salah!";
+        if (!student || passInp !== String(student.password || "123")) {
+          errEl.innerText = "Username atau password salah!";
           errEl.classList.remove("hidden");
           playSfx("wrong");
           return;
@@ -1979,7 +2011,7 @@
     }
 
     function switchTeacherTab(t) {
-      var tabs = ["roster", "attendance", "bab", "editor", "locks", "exam", "scores", "pdfcards"];
+      var tabs = ["roster", "attendance", "bab", "editor", "locks", "exam", "scores"];
       for (var i = 0; i < tabs.length; i++) {
         var el = document.getElementById("teacher-tab-" + tabs[i]);
         if (el) el.classList.add("hidden");
@@ -1989,13 +2021,7 @@
       var aEl = document.getElementById("teacher-tab-" + t);
       if (aEl) aEl.classList.remove("hidden");
       var aBtn = document.getElementById("tab-btn-" + t);
-      if (aBtn) {
-        if (t === "pdfcards") {
-          aBtn.className = "flex-1 py-1.5 px-2 rounded-xl bg-emerald-600 text-white shadow-xs whitespace-nowrap";
-        } else {
-          aBtn.className = "flex-1 py-1.5 px-2 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap";
-        }
-      }
+      if (aBtn) aBtn.className = "flex-1 py-1.5 px-2 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap";
 
       if (t !== "attendance") stopQrScannerCamera();
 
@@ -2006,217 +2032,54 @@
       if (t === "locks") renderAdminLevelLocks();
       if (t === "exam") initAdminExamTab();
       if (t === "scores") renderTeacherScorebook();
-      if (t === "pdfcards") renderTeacherPdfCardsTab();
     }
 
-    function renderTeacherPdfCardsTab() {
-      var c = document.getElementById("admin-pdfcards-list-container");
-      var countTag = document.getElementById("pdfcards-student-count");
-      if (countTag) countTag.innerText = studentRoster.length + " Murid";
+    function renderTeacherRosterList() {
+      var c = document.getElementById("admin-roster-list-container");
+      var tag = document.getElementById("roster-count-tag");
+      if (tag) tag.innerText = studentRoster.length + " Murid";
       if (!c) return;
       c.innerHTML = "";
 
       for (var i = 0; i < studentRoster.length; i++) {
         var s = studentRoster[i];
-        var row = document.createElement("div");
-        row.className = "p-2.5 flex items-center justify-between hover:bg-slate-50 text-xs";
+        var item = document.createElement("div");
+        item.className = "p-2.5 border-b border-slate-100 flex items-center justify-between hover:bg-slate-50 text-xs";
         
-        row.innerHTML = 
-          '<div class="flex items-center gap-2.5">' +
-            '<span class="text-2xl">' + (s.avatar || "🦎") + '</span>' +
-            '<div>' +
-              '<div class="flex items-center gap-1.5">' +
-                '<strong class="text-slate-800">' + s.name + '</strong>' +
-                '<span class="text-[9px] bg-slate-200 text-slate-700 px-1 py-0.2 rounded font-mono">#' + s.id + '</span>' +
-              '</div>' +
-              '<div class="text-[10px] text-slate-500 font-mono mt-0.5">' +
-                '@' + s.username + ' | Pass: <span class="font-bold text-amber-700">' + (s.password || "123") + '</span> | <span class="text-emerald-700 font-bold">' + s.grade + '</span>' +
-              '</div>' +
-            '</div>' +
-          '</div>' +
-          '<div class="flex items-center gap-1.5">' +
-            '<button onclick="previewAndDownloadStudentCardPdf(\'' + s.id + '\')" class="px-3.5 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl font-title text-xs font-bold shadow-xs active:scale-95 transition flex items-center gap-1.5">' +
-              '<span>👁️</span><span>Pratinjau & Download PDF</span>' +
-            '</button>' +
+        var leftDiv = document.createElement("div");
+        leftDiv.className = "flex items-center gap-2";
+        leftDiv.innerHTML = '<span class="text-xl">' + (s.avatar || "🦎") + '</span>' +
+          '<div>' +
+            '<div class="flex items-center gap-1.5"><strong class="text-slate-800">' + s.name + '</strong><span class="text-[9px] bg-slate-200 text-slate-700 px-1 py-0.2 rounded font-mono">#' + s.id + '</span></div>' +
+            '<div class="text-[10px] text-slate-500">User: <span class="text-sky-700 font-mono font-bold">' + s.username + '</span> | Pass: <span class="font-mono font-bold text-amber-700">' + (s.password || "123") + '</span> | <span class="text-emerald-700 font-bold">' + s.grade + '</span></div>' +
           '</div>';
 
-        c.appendChild(row);
+        var actionDiv = document.createElement("div");
+        actionDiv.className = "flex items-center gap-1";
+
+        var ktpBtn = document.createElement("button");
+        ktpBtn.className = "px-2 py-1 bg-sunGold-400/20 text-sunNavy-900 border border-sunGold-500/50 rounded-lg font-display font-black text-[10px] active:scale-95 transition flex items-center gap-1";
+        ktpBtn.innerHTML = '<span>🪪</span><span>KTP</span>';
+        ktpBtn.onclick = (function(stId) { return function() { openSpecificStudentKtpModal(stId); }; })(s.id);
+
+        var editBtn = document.createElement("button");
+        editBtn.className = "px-2 py-1 bg-amber-100 text-amber-900 rounded-lg font-bold text-[10px] active:scale-95";
+        editBtn.innerText = "Edit";
+        editBtn.onclick = (function(stId) { return function() { startEditStudentForm(stId); }; })(s.id);
+
+        var delBtn = document.createElement("button");
+        delBtn.className = "px-1.5 py-1 bg-rose-100 text-rose-700 rounded-lg font-bold text-[10px] active:scale-95";
+        delBtn.innerText = "🗑️";
+        delBtn.onclick = (function(stId) { return function() { adminDeleteStudent(stId); }; })(s.id);
+
+        actionDiv.appendChild(ktpBtn);
+        actionDiv.appendChild(editBtn);
+        actionDiv.appendChild(delBtn);
+
+        item.appendChild(leftDiv);
+        item.appendChild(actionDiv);
+        c.appendChild(item);
       }
-    }
-
-    function generateSafeLocalQr(payload, targetContainerId) {
-      var box = document.getElementById(targetContainerId);
-      if (!box) return;
-      box.innerHTML = "";
-      try {
-        if (typeof QRCode !== "undefined") {
-          new QRCode(box, {
-            text: payload,
-            width: 80,
-            height: 80,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.M
-          });
-        }
-      } catch (e) {}
-    }
-
-    function previewAndDownloadStudentCardPdf(studentId) {
-      previewTargetStudentId = studentId;
-      var s = null;
-      for (var i = 0; i < studentRoster.length; i++) {
-        if (String(studentRoster[i].id) === String(studentId)) {
-          s = studentRoster[i];
-          break;
-        }
-      }
-      if (!s) return;
-
-      openSpecificStudentKtpModal(s.id);
-      closeStudentKtpModal();
-
-      var frontView = document.getElementById("ktp-card-front-view").cloneNode(true);
-      var backView = document.getElementById("ktp-card-back-view").cloneNode(true);
-      frontView.classList.remove("hidden");
-      backView.classList.remove("hidden");
-      frontView.style.transform = "none";
-      backView.style.transform = "none";
-
-      var previewBox = document.getElementById("pdf-preview-canvas-box");
-      previewBox.innerHTML = "";
-      
-      var fLabel = document.createElement("div");
-      fLabel.className = "text-[11px] font-bold text-sunGold-300 uppercase tracking-wider mb-1";
-      fLabel.innerText = "Tampak Depan (Atas)";
-      previewBox.appendChild(fLabel);
-      previewBox.appendChild(frontView);
-
-      var cutterLine = document.createElement("div");
-      cutterLine.className = "text-[10px] text-slate-400 font-mono my-2 flex items-center gap-2";
-      cutterLine.innerHTML = '<span>✂️</span><span>GUNTING & LIPAT</span><span>✂️</span>';
-      previewBox.appendChild(cutterLine);
-
-      var bLabel = document.createElement("div");
-      bLabel.className = "text-[11px] font-bold text-sunGold-300 uppercase tracking-wider mb-1";
-      bLabel.innerText = "Tampak Belakang (Bawah)";
-      previewBox.appendChild(bLabel);
-      previewBox.appendChild(backView);
-
-      document.getElementById("modal-pdf-preview").classList.remove("hidden");
-    }
-
-    function closePdfPreviewModal() {
-      document.getElementById("modal-pdf-preview").classList.add("hidden");
-      previewTargetStudentId = null;
-    }
-
-    function executePdfDownloadFromPreview() {
-      if (!previewTargetStudentId) return;
-      var stId = previewTargetStudentId;
-      closePdfPreviewModal();
-
-      var s = null;
-      for (var i = 0; i < studentRoster.length; i++) {
-        if (String(studentRoster[i].id) === String(stId)) {
-          s = studentRoster[i];
-          break;
-        }
-      }
-      if (!s) return;
-
-      var jsPdfLib = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
-      if (!jsPdfLib || !window.html2canvas) {
-        showToast("Pustaka PDF sedang dimuat, silakan coba lagi sebentar...");
-        return;
-      }
-
-      showToast("Menyusun PDF Kartu Belajar " + s.name + "...");
-
-      openSpecificStudentKtpModal(s.id);
-      closeStudentKtpModal();
-
-      var frontView = document.getElementById("ktp-card-front-view");
-      var backView = document.getElementById("ktp-card-back-view");
-
-      function captureKtpElement(el) {
-        var sandbox = document.createElement("div");
-        sandbox.style.position = "fixed";
-        sandbox.style.left = "-9999px";
-        sandbox.style.top = "0";
-        sandbox.style.width = "450px";
-        sandbox.style.height = "282px";
-        sandbox.style.zIndex = "-9999";
-        sandbox.style.background = "#060e1d";
-
-        var clone = el.cloneNode(true);
-        clone.classList.remove("hidden");
-        clone.style.transform = "none";
-        clone.style.width = "450px";
-        clone.style.height = "282px";
-        clone.style.margin = "0";
-
-        sandbox.appendChild(clone);
-        document.body.appendChild(sandbox);
-
-        return html2canvas(clone, {
-          scale: 3,
-          useCORS: true,
-          allowTaint: true,
-          backgroundColor: "#060e1d",
-          width: 450,
-          height: 282,
-          logging: false
-        }).then(function(canvas) {
-          if (document.body.contains(sandbox)) document.body.removeChild(sandbox);
-          return canvas;
-        }).catch(function(err) {
-          if (document.body.contains(sandbox)) document.body.removeChild(sandbox);
-          throw err;
-        });
-      }
-
-      Promise.all([
-        captureKtpElement(frontView),
-        captureKtpElement(backView)
-      ]).then(function(canvases) {
-        var frontImgData = canvases[0].toDataURL("image/jpeg", 0.98);
-        var backImgData = canvases[1].toDataURL("image/jpeg", 0.98);
-
-        var doc = new jsPdfLib({
-          orientation: "portrait",
-          unit: "mm",
-          format: "a4"
-        });
-
-        var cardW = 86;
-        var cardH = 54;
-        var centerX = (210 - cardW) / 2;
-
-        var topY = 45;
-        doc.addImage(frontImgData, "JPEG", centerX, topY, cardW, cardH);
-
-        var lineY = topY + cardH + 9;
-        doc.setDrawColor(203, 213, 225);
-        doc.setLineDashPattern([2, 2], 0);
-        doc.line(centerX, lineY, centerX + cardW, lineY);
-        
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(7);
-        doc.setTextColor(148, 163, 184);
-        doc.text("✂️ GUNTING & LIPAT ✂️", 105, lineY - 1.5, { align: "center" });
-
-        var bottomY = topY + cardH + 18;
-        doc.addImage(backImgData, "JPEG", centerX, bottomY, cardW, cardH);
-
-        var cleanFileName = s.name.trim().replace(/[^a-zA-Z0-9]/g, "_");
-        var fileName = "Kartu_Belajar_" + s.id + "_" + cleanFileName + ".pdf";
-
-        doc.save(fileName);
-        showToast("File PDF berhasil diunduh!");
-      }).catch(function(err) {
-        showToast("Gagal menyusun PDF: " + err.message);
-      });
     }
 
     function openCurrentStudentKtpModal() {
@@ -2249,20 +2112,10 @@
       document.getElementById("ktp-student-photo").src = photoUrl;
 
       var qrPayload = "MRAGUNG:ABSEN:" + s.id + ":" + s.username;
-      generateSafeLocalQr(qrPayload, "ktp-qr-code-box");
+      var qrImg = document.getElementById("ktp-qr-code-img");
+      qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=0&data=" + encodeURIComponent(qrPayload);
 
       document.getElementById("ktp-back-barcode-label").innerText = "SEC-2026-STD-" + s.id;
-
-      var teacherBadge = document.getElementById("ktp-teacher-camera-badge");
-      if (teacherBadge) {
-        if (gameState.isTeacher) teacherBadge.classList.remove("hidden");
-        else teacherBadge.classList.add("hidden");
-      }
-      var teacherActions = document.getElementById("ktp-teacher-actions-container");
-      if (teacherActions) {
-        if (gameState.isTeacher) teacherActions.classList.remove("hidden");
-        else teacherActions.classList.add("hidden");
-      }
 
       document.getElementById("modal-student-ktp").classList.remove("hidden");
     }
@@ -2293,8 +2146,7 @@
       }
     }
 
-    function triggerStudentPhotoUploadIfTeacher() {
-      if (!gameState.isTeacher) return;
+    function triggerStudentPhotoUpload() {
       var inp = document.getElementById("ktp-single-photo-input");
       if (inp) {
         inp.value = "";
@@ -2328,52 +2180,151 @@
       reader.readAsDataURL(file);
     }
 
-    function renderTeacherRosterList() {
-      var c = document.getElementById("admin-roster-list-container");
-      var tag = document.getElementById("roster-count-tag");
-      if (tag) tag.innerText = studentRoster.length + " Murid";
-      if (!c) return;
-      c.innerHTML = "";
+    function downloadStudentKtpSidePng(side) {
+      showToast("Menyiapkan unduhan gambar KTP...");
+      var targetElement = (side === "front") 
+        ? document.getElementById("ktp-card-front-view") 
+        : document.getElementById("ktp-card-back-view");
 
-      for (var i = 0; i < studentRoster.length; i++) {
-        var s = studentRoster[i];
-        var item = document.createElement("div");
-        item.className = "p-2.5 border-b border-slate-100 flex items-center justify-between hover:bg-slate-50 text-xs";
-        
-        var leftDiv = document.createElement("div");
-        leftDiv.className = "flex items-center gap-2";
-        leftDiv.innerHTML = '<span class="text-xl">' + (s.avatar || "🦎") + '</span>' +
-          '<div>' +
-            '<div class="flex items-center gap-1.5"><strong class="text-slate-800">' + s.name + '</strong><span class="text-[9px] bg-slate-200 text-slate-700 px-1 py-0.2 rounded font-mono">#' + s.id + '</span></div>' +
-            '<div class="text-[10px] text-slate-500 font-mono mt-0.5">User: <span class="text-sky-700 font-bold">' + s.username + '</span> | Pass: <span class="font-bold text-amber-700">' + (s.password || "123") + '</span> | <span class="text-emerald-700 font-bold">' + s.grade + '</span></div>' +
-          '</div>';
+      if (!targetElement) return;
 
-        var actionDiv = document.createElement("div");
-        actionDiv.className = "flex items-center gap-1";
+      var sandbox = document.createElement("div");
+      sandbox.style.position = "fixed";
+      sandbox.style.left = "-9999px";
+      sandbox.style.top = "0";
+      sandbox.style.width = "450px";
+      sandbox.style.height = "282px";
+      sandbox.style.zIndex = "-9999";
+      sandbox.style.background = "#060e1d";
 
-        var ktpBtn = document.createElement("button");
-        ktpBtn.className = "px-2 py-1 bg-sunGold-400/20 text-sunNavy-900 border border-sunGold-500/50 rounded-lg font-display font-black text-[10px] active:scale-95 transition flex items-center gap-1";
-        ktpBtn.innerHTML = '<span>🪪</span><span>KTP</span>';
-        ktpBtn.onclick = (function(stId) { return function() { openSpecificStudentKtpModal(stId); }; })(s.id);
+      var clone = targetElement.cloneNode(true);
+      clone.classList.remove("hidden");
+      clone.style.transform = "none";
+      clone.style.width = "450px";
+      clone.style.height = "282px";
+      clone.style.borderRadius = "24px";
+      clone.style.margin = "0";
 
-        var editBtn = document.createElement("button");
-        editBtn.className = "px-2 py-1 bg-amber-100 text-amber-900 rounded-lg font-bold text-[10px] active:scale-95";
-        editBtn.innerText = "Edit";
-        editBtn.onclick = (function(stId) { return function() { startEditStudentForm(stId); }; })(s.id);
+      sandbox.appendChild(clone);
+      document.body.appendChild(sandbox);
 
-        var delBtn = document.createElement("button");
-        delBtn.className = "px-1.5 py-1 bg-rose-100 text-rose-700 rounded-lg font-bold text-[10px] active:scale-95";
-        delBtn.innerText = "🗑️";
-        delBtn.onclick = (function(stId) { return function() { adminDeleteStudent(stId); }; })(s.id);
+      var sName = (document.getElementById("ktp-student-name").innerText || "Siswa").trim().replace(/[^a-zA-Z0-9]/g, "_");
+      var sId = (document.getElementById("ktp-student-id-tag").innerText || "").replace(/[^0-9]/g, "");
 
-        actionDiv.appendChild(ktpBtn);
-        actionDiv.appendChild(editBtn);
-        actionDiv.appendChild(delBtn);
+      var readyPromise = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
 
-        item.appendChild(leftDiv);
-        item.appendChild(actionDiv);
-        c.appendChild(item);
+      readyPromise.then(function() {
+        return html2canvas(clone, {
+          scale: 3,
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: "#060e1d",
+          width: 450,
+          height: 282,
+          windowWidth: 450,
+          windowHeight: 282,
+          logging: false
+        });
+      }).then(function(canvas) {
+        document.body.removeChild(sandbox);
+        var link = document.createElement("a");
+        link.download = "KTP_" + (side === "front" ? "DEPAN" : "BELAKANG") + "_" + (sId ? sId + "_" : "") + sName + ".png";
+        link.href = canvas.toDataURL("image/png");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast("KTP sisi " + side.toUpperCase() + " berhasil diunduh dalam format PNG HD!");
+      }).catch(function(err) {
+        if (document.body.contains(sandbox)) document.body.removeChild(sandbox);
+        showToast("Gagal mengunduh gambar.");
+      });
+    }
+
+    // FUNGSI CETAK SATUAN PDF DENGAN WADAH TERISOLASI (NON-BLANK)
+    function printSingleStudentKtp() {
+      var frontView = document.getElementById("ktp-card-front-view").cloneNode(true);
+      var backView = document.getElementById("ktp-card-back-view").cloneNode(true);
+      frontView.classList.remove("hidden");
+      backView.classList.remove("hidden");
+
+      var printContainer = document.getElementById("dedicated-print-container");
+      printContainer.innerHTML = "";
+      printContainer.appendChild(frontView);
+      printContainer.appendChild(backView);
+      printContainer.classList.remove("hidden");
+
+      setTimeout(function() {
+        window.print();
+        setTimeout(function() {
+          printContainer.innerHTML = "";
+          printContainer.classList.add("hidden");
+        }, 1000);
+      }, 300);
+    }
+
+    // FUNGSI CETAK MASAL SEMUA KTP A4
+    function printAllStudentsKtpA4() {
+      if (!studentRoster || studentRoster.length === 0) {
+        showToast("Belum ada data murid!");
+        return;
       }
+
+      showToast("Menyiapkan lembar A4 seluruh murid...");
+      var printArea = document.getElementById("print-batch-a4-area");
+      printArea.innerHTML = "";
+
+      var total = studentRoster.length;
+      var pages = Math.ceil(total / 3);
+
+      for (var p = 0; p < pages; p++) {
+        var pageSheet = document.createElement("div");
+        pageSheet.className = "a4-page-sheet";
+
+        for (var r = 0; r < 3; r++) {
+          var sIdx = p * 3 + r;
+          if (sIdx >= total) break;
+          var s = studentRoster[sIdx];
+
+          var row = document.createElement("div");
+          row.className = "a4-student-row";
+
+          var frontClone = document.getElementById("ktp-card-front-view").cloneNode(true);
+          frontClone.classList.remove("hidden");
+          frontClone.style.transform = "none";
+          frontClone.querySelector("#ktp-student-name").innerText = s.name;
+          frontClone.querySelector("#ktp-student-id-tag").innerText = "ID: #" + s.id;
+          frontClone.querySelector("#ktp-student-username").innerText = s.username;
+          frontClone.querySelector("#ktp-student-password").innerText = s.password || "123";
+          frontClone.querySelector("#ktp-badge-grade").innerText = (s.grade || "Basic").replace("Kelas ", "").toUpperCase() + " LEVEL";
+          frontClone.querySelector("#ktp-student-photo").src = s.photo || "https://images.unsplash.com/photo-1544717305-2782549b5136?w=240&auto=format&fit=crop&q=80";
+          frontClone.querySelector("#ktp-qr-code-img").src = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=0&data=" + encodeURIComponent("MRAGUNG:ABSEN:" + s.id + ":" + s.username);
+
+          var cutter = document.createElement("div");
+          cutter.className = "flex flex-col items-center justify-center text-slate-400 text-xs font-mono select-none";
+          cutter.innerHTML = '<span>✂️ GUNTING ✂️</span><div class="h-28 w-px border-r-2 border-dashed border-slate-500 my-1"></div><span>✂️ LIPAT ✂️</span>';
+
+          var backClone = document.getElementById("ktp-card-back-view").cloneNode(true);
+          backClone.classList.remove("hidden");
+          backClone.style.transform = "none";
+          backClone.querySelector("#ktp-back-barcode-label").innerText = "SEC-2026-STD-" + s.id;
+
+          row.appendChild(frontClone);
+          row.appendChild(cutter);
+          row.appendChild(backClone);
+          pageSheet.appendChild(row);
+        }
+
+        printArea.appendChild(pageSheet);
+      }
+
+      printArea.classList.remove("hidden");
+      setTimeout(function() {
+        window.print();
+        setTimeout(function() {
+          printArea.innerHTML = "";
+          printArea.classList.add("hidden");
+        }, 1000);
+      }, 300);
     }
 
     function startEditStudentForm(id) {
@@ -2698,7 +2649,6 @@
       }
       if (qrScannerLiveStream) requestAnimationFrame(tickQrLiveStream);
     }
-
     function openStreakModal() {
       document.getElementById("streak-modal-days").innerText = gameState.streak || 0;
       document.getElementById("modal-streak").classList.remove("hidden");
