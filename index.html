@@ -210,9 +210,10 @@
 </head>
 <body class="bg-gradient-to-b from-sky-100 via-white to-sky-50 min-h-screen text-slate-800 flex flex-col items-center justify-between">
   
-  <div class="w-full max-w-md min-h-screen flex flex-col bg-white shadow-2xl relative border-x border-sky-200">
+  <!-- CONTAINER UTAMA RESPONSIF UNTUK SEMUA DEVICE (HP, TABLET, LAPTOP, IPHONE) -->
+  <div class="w-full sm:max-w-md md:max-w-xl lg:max-w-2xl min-h-screen sm:min-h-[90vh] sm:my-auto flex flex-col bg-white shadow-2xl sm:rounded-3xl relative border-x sm:border border-sky-200 overflow-hidden">
     
-    <header class="bg-white/95 backdrop-blur-md px-3 py-2.5 flex items-center justify-between border-b border-sky-100 sticky top-0 z-30 shadow-xs">
+    <header class="bg-white/95 backdrop-blur-md px-3 sm:px-5 py-2.5 sm:py-3.5 flex items-center justify-between border-b border-sky-100 sticky top-0 z-30 shadow-xs">
       <div class="flex items-center gap-2">
         <button id="btn-header-back" onclick="handleHeaderBack()" class="hidden w-8 h-8 rounded-xl bg-slate-100 hover:bg-sky-100 active:scale-95 flex items-center justify-center text-slate-700 transition">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
@@ -222,15 +223,15 @@
             <img class="app-global-logo w-full h-full object-contain" src="https://placehold.co/100x100/ffffff/0b1b36?text=SEA" alt="Logo SEA">
           </div>
           <div class="leading-tight">
-            <span class="text-[8px] font-extrabold text-slate-400 uppercase tracking-wider block">Sunshine English Academy</span>
+            <span class="text-[8px] sm:text-[9px] font-extrabold text-slate-400 uppercase tracking-wider block">Sunshine English Academy</span>
             <div class="flex items-center gap-1.5">
-              <span class="font-title text-xs font-bold text-sky-900">Mr. Agung's Class</span>
+              <span class="font-title text-xs sm:text-sm font-bold text-sky-900">Mr. Agung's Class</span>
               <span id="cloud-sync-status" title="Status Cloud" class="w-2 h-2 rounded-full bg-emerald-500"></span>
             </div>
           </div>
         </div>
       </div>
-      <div class="flex items-center gap-1.5">
+      <div class="flex items-center gap-1.5 sm:gap-2">
         <div id="header-streak-badge" onclick="openStreakModal()" class="hidden cursor-pointer flex items-center gap-1 bg-gradient-to-r from-orange-500 to-amber-500 text-white px-2.5 py-1 rounded-xl font-title text-xs font-bold shadow-xs active:scale-95 transition">
           <span class="animate-flame-flicker text-sm">🔥</span>
           <span id="header-streak-count">0</span>
@@ -241,193 +242,193 @@
     </header>
 
     <!-- SCREEN 1: LOGIN -->
-    <main id="screen-login" class="flex-1 p-5 flex flex-col justify-between overflow-y-auto custom-scroll">
+    <main id="screen-login" class="flex-1 p-4 sm:p-8 flex flex-col justify-between overflow-y-auto custom-scroll">
       <div class="text-center pt-2">
-        <div class="w-20 h-20 mx-auto rounded-3xl bg-white p-2 flex items-center justify-center shadow-futuristic border-2 border-sunGold-400/80 overflow-hidden">
+        <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-3xl bg-white p-2 flex items-center justify-center shadow-futuristic border-2 border-sunGold-400/80 overflow-hidden">
           <img class="app-global-logo w-full h-full object-contain" src="https://placehold.co/150x150/ffffff/0b1b36?text=LOGO+SEA" alt="Logo Sunshine English Academy">
         </div>
-        <h1 class="font-title text-2xl font-black text-sky-900 leading-tight mt-3">Welcome to Mr Agung Class</h1>
-        <p class="text-xs text-slate-500 font-semibold mt-0.5">Sunshine English Academy &bull; Masuk untuk belajar!</p>
+        <h1 class="font-title text-2xl sm:text-3xl font-black text-sky-900 leading-tight mt-3">Welcome to Mr Agung Class</h1>
+        <p class="text-xs sm:text-sm text-slate-500 font-semibold mt-0.5">Sunshine English Academy &bull; Masuk untuk belajar!</p>
       </div>
 
-      <div class="bg-white rounded-3xl p-5 border-2 border-sky-200 shadow-bouncy space-y-4 my-auto">
+      <div class="bg-white rounded-3xl p-5 sm:p-6 border-2 border-sky-200 shadow-bouncy space-y-4 my-auto max-w-md mx-auto w-full">
         <div class="border-b border-slate-100 pb-2 flex items-center justify-between">
-          <span class="text-xs font-bold text-slate-700 flex items-center gap-1.5"><span>🔑</span> <span>Masuk ke Kelas</span></span>
-          <span id="system-ready-dot" class="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-md flex items-center gap-1">● Sistem Siap</span>
+          <span class="text-xs sm:text-sm font-bold text-slate-700 flex items-center gap-1.5"><span>🔑</span> <span>Masuk ke Kelas</span></span>
+          <span id="system-ready-dot" class="text-[10px] sm:text-xs text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-md flex items-center gap-1">● Sistem Siap</span>
         </div>
-        <div class="space-y-3">
+        <div class="space-y-3 sm:space-y-4">
           <div>
-            <label class="text-[11px] font-bold text-slate-600 block mb-1">Username atau Nomor Absen</label>
+            <label class="text-[11px] sm:text-xs font-bold text-slate-600 block mb-1">Username atau Nomor Absen</label>
             <div class="relative"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">👤</span>
-              <input id="login-username-input" type="text" placeholder="Masukkan username..." class="w-full pl-9 pr-3 py-2.5 bg-slate-50 border-2 border-slate-200 focus:border-sky-500 rounded-2xl text-xs font-bold text-slate-800 outline-none">
+              <input id="login-username-input" type="text" placeholder="Masukkan username..." class="w-full pl-9 pr-3 py-2.5 sm:py-3 bg-slate-50 border-2 border-slate-200 focus:border-sky-500 rounded-2xl text-xs sm:text-sm font-bold text-slate-800 outline-none">
             </div>
           </div>
           <div>
-            <label class="text-[11px] font-bold text-slate-600 block mb-1">Password</label>
+            <label class="text-[11px] sm:text-xs font-bold text-slate-600 block mb-1">Password</label>
             <div class="relative"><span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">🔒</span>
-              <input id="login-password-input" type="password" placeholder="Masukkan password..." class="w-full pl-9 pr-10 py-2.5 bg-slate-50 border-2 border-slate-200 focus:border-sky-500 rounded-2xl text-xs font-bold text-slate-800 outline-none">
-              <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 text-xs"><span id="pwd-toggle-icon">👁️</span></button>
+              <input id="login-password-input" type="password" placeholder="Masukkan password..." class="w-full pl-9 pr-10 py-2.5 sm:py-3 bg-slate-50 border-2 border-slate-200 focus:border-sky-500 rounded-2xl text-xs sm:text-sm font-bold text-slate-800 outline-none">
+              <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 text-xs sm:text-sm"><span id="pwd-toggle-icon">👁️</span></button>
             </div>
           </div>
 
-          <div id="login-error-msg" class="hidden p-2.5 bg-rose-50 border border-rose-200 rounded-xl text-center text-[11px] font-bold text-rose-600"></div>
+          <div id="login-error-msg" class="hidden p-2.5 bg-rose-50 border border-rose-200 rounded-xl text-center text-xs font-bold text-rose-600"></div>
 
-          <button onclick="handleLogin()" id="btn-login-submit" class="w-full py-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base font-bold rounded-2xl shadow-bouncy-btn active:translate-y-1 transition flex items-center justify-center gap-2">
+          <button onclick="handleLogin()" id="btn-login-submit" class="w-full py-3.5 sm:py-4 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base sm:text-lg font-bold rounded-2xl shadow-bouncy-btn active:translate-y-1 transition flex items-center justify-center gap-2">
             <span>Masuk ke Kelas</span><span>🚀</span>
           </button>
         </div>
       </div>
 
       <div class="text-center pt-2">
-        <p class="text-[11px] text-slate-400 font-semibold italic">“It’s time to <span class="text-amber-500 font-bold">rise and shine!</span>”</p>
+        <p class="text-xs text-slate-400 font-semibold italic">“It’s time to <span class="text-amber-500 font-bold">rise and shine!</span>”</p>
       </div>
     </main>
 
     <!-- SCREEN 2: HOME SISWA -->
-    <main id="screen-home" class="flex-1 p-4 flex flex-col justify-start gap-3.5 hidden overflow-y-auto custom-scroll">
-      <div class="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 rounded-3xl p-4 text-white shadow-md relative overflow-hidden">
+    <main id="screen-home" class="flex-1 p-4 sm:p-6 flex flex-col justify-start gap-4 hidden overflow-y-auto custom-scroll max-w-2xl mx-auto w-full">
+      <div class="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 rounded-3xl p-4 sm:p-6 text-white shadow-md relative overflow-hidden">
         <div class="flex items-center justify-between relative z-10">
           <div>
-            <div class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold text-amber-300">
+            <div class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold text-amber-300">
               <span>✨</span><span>Sunshine English Academy</span>
             </div>
-            <h1 class="font-title text-xl font-black text-white mt-1 leading-tight">
+            <h1 class="font-title text-xl sm:text-2xl font-black text-white mt-1 leading-tight">
               Learning with <span class="text-amber-300">Mr. Agung</span>
             </h1>
-            <p class="text-[10px] text-sky-100 mt-0.5">Petualangan Bahasa Inggris Interaktif</p>
+            <p class="text-[10px] sm:text-xs text-sky-100 mt-0.5">Petualangan Bahasa Inggris Interaktif</p>
           </div>
-          <div class="w-12 h-12 rounded-2xl bg-white p-1 shadow-md border-2 border-sunGold-400 shrink-0 flex items-center justify-center overflow-hidden">
+          <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-white p-1 shadow-md border-2 border-sunGold-400 shrink-0 flex items-center justify-center overflow-hidden">
             <img class="app-global-logo w-full h-full object-contain" src="https://placehold.co/100x100/ffffff/0b1b36?text=SEA" alt="Logo SEA">
           </div>
         </div>
       </div>
 
       <!-- Kartu Profil VIP Siswa -->
-      <div class="bg-gradient-to-br from-sunNavy-900 via-sunNavy-850 to-sunNavy-950 rounded-3xl p-4 text-white shadow-card-vip border-2 border-sunGold-500/40 relative overflow-hidden space-y-3">
+      <div class="bg-gradient-to-br from-sunNavy-900 via-sunNavy-850 to-sunNavy-950 rounded-3xl p-4 sm:p-6 text-white shadow-card-vip border-2 border-sunGold-500/40 relative overflow-hidden space-y-3">
         <div class="absolute inset-0 security-guilloche opacity-40 pointer-events-none"></div>
 
         <div class="flex items-center justify-between relative z-10 border-b border-sunGold-500/25 pb-3">
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-3 sm:gap-4">
             <div class="relative cursor-pointer" onclick="openAvatarModal()" title="Ganti Maskot">
-              <div id="home-avatar-display" class="w-13 h-13 rounded-2xl bg-white/10 backdrop-blur-md border-2 border-sunGold-400 shadow-inner flex items-center justify-center text-3xl">🦎</div>
+              <div id="home-avatar-display" class="w-13 h-13 sm:w-16 sm:h-16 rounded-2xl bg-white/10 backdrop-blur-md border-2 border-sunGold-400 shadow-inner flex items-center justify-center text-3xl sm:text-4xl">🦎</div>
               <div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-sunGold-500 text-sunNavy-950 flex items-center justify-center text-[10px] shadow-sm font-bold border border-white">✏️</div>
             </div>
             <div>
               <div class="flex items-center gap-1.5">
-                <span id="home-avatar-name" class="text-[9px] bg-sunGold-400/25 text-sunGold-300 border border-sunGold-400/40 px-2 py-0.2 rounded font-bold uppercase">Komodo</span>
-                <span class="text-[9px] text-slate-300 font-code">#<span id="card-display-id">01</span></span>
+                <span id="home-avatar-name" class="text-[9px] sm:text-xs bg-sunGold-400/25 text-sunGold-300 border border-sunGold-400/40 px-2 py-0.2 rounded font-bold uppercase">Komodo</span>
+                <span class="text-[9px] sm:text-xs text-slate-300 font-code">#<span id="card-display-id">01</span></span>
               </div>
-              <h2 class="font-display text-base font-black text-white leading-tight mt-0.5">
+              <h2 class="font-display text-base sm:text-xl font-black text-white leading-tight mt-0.5">
                 Hai, <span id="welcome-student-name" class="text-sunGold-300">Budi Pratama</span>!
               </h2>
-              <span class="text-[9px] text-slate-400 font-code block">@<span id="home-username-tag">budi01</span></span>
+              <span class="text-[9px] sm:text-xs text-slate-400 font-code block">@<span id="home-username-tag">budi01</span></span>
             </div>
           </div>
           <div class="text-right flex flex-col items-end gap-1">
-            <div onclick="openStreakModal()" class="cursor-pointer inline-flex items-center gap-1.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white px-2.5 py-1 rounded-full text-[11px] font-bold shadow-flame border border-amber-300 active:scale-95 transition">
+            <div onclick="openStreakModal()" class="cursor-pointer inline-flex items-center gap-1.5 bg-gradient-to-r from-orange-500 to-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-flame border border-amber-300 active:scale-95 transition">
               <span class="animate-flame-flicker">🔥</span>
               <span id="home-streak-display">0 Hari</span>
             </div>
-            <span class="text-[8px] text-slate-400 uppercase tracking-wider font-code">Streak Api</span>
+            <span class="text-[8px] sm:text-[10px] text-slate-400 uppercase tracking-wider font-code">Streak Api</span>
           </div>
         </div>
         
         <div class="relative z-10 flex items-center gap-2">
           <div class="flex-1 bg-white/10 backdrop-blur-md rounded-2xl py-2 px-3 border border-sunGold-500/30 flex items-center justify-center gap-2">
             <span class="text-lg">🎓</span>
-            <span class="font-display font-black text-xs text-white tracking-wide uppercase" id="display-student-grade-badge">Kelas Basic</span>
+            <span class="font-display font-black text-xs sm:text-sm text-white tracking-wide uppercase" id="display-student-grade-badge">Kelas Basic</span>
           </div>
-          <button onclick="openCurrentStudentKtpModal()" class="py-2 px-3.5 bg-gradient-to-r from-amber-400 via-sunGold-400 to-amber-500 text-sunNavy-950 rounded-2xl border border-white/60 font-display text-xs font-black shadow-md active:scale-95 transition flex items-center gap-1.5">
+          <button onclick="openCurrentStudentKtpModal()" class="py-2 px-4 bg-gradient-to-r from-amber-400 via-sunGold-400 to-amber-500 text-sunNavy-950 rounded-2xl border border-white/60 font-display text-xs sm:text-sm font-black shadow-md active:scale-95 transition flex items-center gap-1.5">
             <span>🪪</span>
             <span>Buka KTP Siswa</span>
           </button>
         </div>
 
-        <div class="relative z-10 pt-2 border-t border-sunGold-500/20 grid grid-cols-3 gap-2 text-center text-[10px] font-bold">
-          <div class="bg-white/5 rounded-xl py-2 border border-white/10">
-            <span class="block text-sunGold-300 text-xs font-title" id="home-stat-stars">⭐ 0</span>
-            <span class="text-[9px] text-slate-300">Bintang</span>
+        <div class="relative z-10 pt-2 border-t border-sunGold-500/20 grid grid-cols-3 gap-2 text-center text-xs font-bold">
+          <div class="bg-white/5 rounded-xl py-2.5 border border-white/10">
+            <span class="block text-sunGold-300 text-sm sm:text-base font-title" id="home-stat-stars">⭐ 0</span>
+            <span class="text-[9px] sm:text-xs text-slate-300">Bintang</span>
           </div>
-          <div class="bg-white/5 rounded-xl py-2 border border-white/10">
-            <span class="block text-emerald-300 text-xs font-title" id="home-stat-levels">0 Level</span>
-            <span class="text-[9px] text-slate-300">Selesai</span>
+          <div class="bg-white/5 rounded-xl py-2.5 border border-white/10">
+            <span class="block text-emerald-300 text-sm sm:text-base font-title" id="home-stat-levels">0 Level</span>
+            <span class="text-[9px] sm:text-xs text-slate-300">Selesai</span>
           </div>
-          <div class="bg-white/5 rounded-xl py-2 border border-white/10">
-            <span class="block text-white text-xs font-title" id="home-stat-score">0 Pts</span>
-            <span class="text-[9px] text-slate-300">Total Skor</span>
+          <div class="bg-white/5 rounded-xl py-2.5 border border-white/10">
+            <span class="block text-white text-sm sm:text-base font-title" id="home-stat-score">0 Pts</span>
+            <span class="text-[9px] sm:text-xs text-slate-300">Total Skor</span>
           </div>
         </div>
       </div>
 
       <!-- Widget Word of the Day -->
-      <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-3xl p-3.5 border-2 border-amber-300 shadow-xs flex items-center justify-between">
+      <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-3xl p-4 border-2 border-amber-300 shadow-xs flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <div class="w-11 h-11 rounded-2xl bg-amber-400 text-amber-950 flex items-center justify-center text-xl shadow-xs shrink-0">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-amber-400 text-amber-950 flex items-center justify-center text-2xl shadow-xs shrink-0">
             <span>🌟</span>
           </div>
           <div>
             <div class="flex items-center gap-1.5">
-              <span class="text-[9px] font-extrabold uppercase tracking-wider bg-amber-200 text-amber-900 px-1.5 py-0.2 rounded font-code">Word of the Day</span>
-              <span class="text-[9px] text-slate-400 font-bold">/ʃaɪn/</span>
+              <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider bg-amber-200 text-amber-900 px-1.5 py-0.2 rounded font-code">Word of the Day</span>
+              <span class="text-[9px] sm:text-[10px] text-slate-400 font-bold">/ʃaɪn/</span>
             </div>
-            <h4 class="font-title text-sm font-bold text-slate-800 mt-0.5">Shine <span class="text-xs font-normal text-slate-600 font-sans">&bull; Bersinar</span></h4>
-            <p class="text-[10px] text-amber-800 font-semibold italic mt-0.5">“It’s time to rise and shine!”</p>
+            <h4 class="font-title text-sm sm:text-base font-bold text-slate-800 mt-0.5">Shine <span class="text-xs font-normal text-slate-600 font-sans">&bull; Bersinar</span></h4>
+            <p class="text-[10px] sm:text-xs text-amber-800 font-semibold italic mt-0.5">“It’s time to rise and shine!”</p>
           </div>
         </div>
-        <button onclick="speakText('Shine. It is time to rise and shine!')" class="p-2.5 bg-white border border-amber-300 rounded-xl text-sm shadow-xs active:scale-95 transition text-amber-700" title="Dengarkan pengucapan">
+        <button onclick="speakText('Shine. It is time to rise and shine!')" class="p-3 bg-white border border-amber-300 rounded-xl text-base shadow-xs active:scale-95 transition text-amber-700" title="Dengarkan pengucapan">
           🔊
         </button>
       </div>
 
       <!-- Target Harian -->
-      <div class="bg-white rounded-3xl p-3.5 border-2 border-sky-200 shadow-xs space-y-2">
+      <div class="bg-white rounded-3xl p-4 border-2 border-sky-200 shadow-xs space-y-2">
         <div class="flex items-center justify-between">
-          <span class="font-title text-xs font-bold text-slate-800 flex items-center gap-1.5">
+          <span class="font-title text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-1.5">
             <span>🎯</span><span>Target Petualangan Hari Ini</span>
           </span>
-          <span class="text-[10px] bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded-full">Tantangan Harian</span>
+          <span class="text-[10px] sm:text-xs bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded-full">Tantangan Harian</span>
         </div>
         <div class="space-y-1.5">
-          <div class="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-xs sm:text-sm">
             <div class="flex items-center gap-2">
-              <span class="text-base">🚀</span>
-              <span class="font-bold text-slate-700 text-[11px]">Selesaikan minimal 1 Level baru</span>
+              <span class="text-base sm:text-lg">🚀</span>
+              <span class="font-bold text-slate-700">Selesaikan minimal 1 Level baru</span>
             </div>
-            <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">Aktif</span>
+            <span class="text-[10px] sm:text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-md">Aktif</span>
           </div>
-          <div class="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-xs sm:text-sm">
             <div class="flex items-center gap-2">
-              <span class="text-base">🔥</span>
-              <span class="font-bold text-slate-700 text-[11px]">Tunjukkan KTP ke Mr. Agung untuk Absen</span>
+              <span class="text-base sm:text-lg">🔥</span>
+              <span class="font-bold text-slate-700">Tunjukkan KTP ke Mr. Agung untuk Absen</span>
             </div>
-            <span class="text-[10px] font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-md">Absen</span>
+            <span class="text-[10px] sm:text-xs font-bold text-orange-600 bg-orange-50 px-2.5 py-0.5 rounded-md">Absen</span>
           </div>
         </div>
       </div>
 
       <!-- Tombol Aksi Utama -->
-      <div class="w-full space-y-2.5 pt-1 pb-4">
-        <button onclick="navigate('screen-worlds')" class="w-full py-4 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-xl font-bold rounded-2xl shadow-bouncy-btn active:translate-y-1 transition flex items-center justify-center gap-2.5">
-          <span class="text-2xl animate-bounce">▶</span>
+      <div class="w-full space-y-3 pt-1 pb-4">
+        <button onclick="navigate('screen-worlds')" class="w-full py-4 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-xl sm:text-2xl font-bold rounded-2xl shadow-bouncy-btn active:translate-y-1 transition flex items-center justify-center gap-2.5">
+          <span class="text-2xl sm:text-3xl animate-bounce">▶</span>
           <span>Mulai Petualangan</span>
         </button>
-        <div class="grid grid-cols-3 gap-2">
-          <button onclick="openScoreboardModal()" class="py-3 px-2 bg-white border-2 border-sky-200 rounded-2xl flex flex-col items-center justify-center shadow-bouncy-sm active:scale-95 transition">
-            <span class="text-xl mb-0.5">🏆</span>
-            <span class="font-title text-[11px] font-bold text-slate-700">Papan Skor</span>
+        <div class="grid grid-cols-3 gap-2 sm:gap-3">
+          <button onclick="openScoreboardModal()" class="py-3.5 px-2 bg-white border-2 border-sky-200 rounded-2xl flex flex-col items-center justify-center shadow-bouncy-sm active:scale-95 transition">
+            <span class="text-2xl mb-1">🏆</span>
+            <span class="font-title text-xs sm:text-sm font-bold text-slate-700">Papan Skor</span>
           </button>
-          <button onclick="openCurrentStudentKtpModal()" class="py-3 px-2 bg-white border-2 border-amber-300 rounded-2xl flex flex-col items-center justify-center shadow-bouncy-sm active:scale-95 transition">
-            <span class="text-xl mb-0.5">🪪</span>
-            <span class="font-title text-[11px] font-bold text-slate-700">KTP Siswa</span>
+          <button onclick="openCurrentStudentKtpModal()" class="py-3.5 px-2 bg-white border-2 border-amber-300 rounded-2xl flex flex-col items-center justify-center shadow-bouncy-sm active:scale-95 transition">
+            <span class="text-2xl mb-1">🪪</span>
+            <span class="font-title text-xs sm:text-sm font-bold text-slate-700">KTP Siswa</span>
           </button>
-          <button onclick="openGuideModal()" class="py-3 px-2 bg-white border-2 border-sky-200 rounded-2xl flex flex-col items-center justify-center shadow-bouncy-sm active:scale-95 transition">
-            <span class="text-xl mb-0.5">📖</span>
-            <span class="font-title text-[11px] font-bold text-slate-700">Petunjuk</span>
+          <button onclick="openGuideModal()" class="py-3.5 px-2 bg-white border-2 border-sky-200 rounded-2xl flex flex-col items-center justify-center shadow-bouncy-sm active:scale-95 transition">
+            <span class="text-2xl mb-1">📖</span>
+            <span class="font-title text-xs sm:text-sm font-bold text-slate-700">Petunjuk</span>
           </button>
         </div>
 
         <div class="text-center pt-2">
-          <p class="text-[11px] text-sunGold-600 font-display font-bold italic tracking-wide">
+          <p class="text-xs sm:text-sm text-sunGold-600 font-display font-bold italic tracking-wide">
             ✨ “It’s time to rise and shine” ✨
           </p>
         </div>
@@ -435,39 +436,39 @@
     </main>
 
     <!-- SCREEN 3: DAFTAR BAB -->
-    <main id="screen-worlds" class="flex-1 p-4 flex flex-col justify-between hidden overflow-y-auto custom-scroll">
+    <main id="screen-worlds" class="flex-1 p-4 sm:p-6 flex flex-col justify-between hidden overflow-y-auto custom-scroll max-w-2xl mx-auto w-full">
       <div>
-        <div class="text-center mb-3">
-          <h2 class="font-title text-xl font-bold text-sky-900">Pilih Bab Petualangan</h2>
-          <p class="text-xs text-slate-500 font-semibold mt-1">Materi Khusus <span id="worlds-grade-badge" class="text-sky-700 font-bold bg-sky-100 px-1.5 py-0.5 rounded">Kelas Basic</span></p>
+        <div class="text-center mb-4">
+          <h2 class="font-title text-xl sm:text-2xl font-bold text-sky-900">Pilih Bab Petualangan</h2>
+          <p class="text-xs sm:text-sm text-slate-500 font-semibold mt-1">Materi Khusus <span id="worlds-grade-badge" class="text-sky-700 font-bold bg-sky-100 px-2 py-0.5 rounded">Kelas Basic</span></p>
         </div>
-        <div class="space-y-3" id="worlds-card-container"></div>
+        <div class="space-y-3.5" id="worlds-card-container"></div>
       </div>
     </main>
 
     <!-- SCREEN 4: PETA JALUR LEVEL -->
-    <main id="screen-levels" class="flex-1 flex flex-col justify-between hidden overflow-hidden bg-slate-50">
-      <div class="p-3 bg-white border-b border-sky-100 shadow-xs z-10">
-        <div class="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 rounded-3xl p-3.5 text-white shadow-md relative overflow-hidden">
+    <main id="screen-levels" class="flex-1 flex flex-col justify-between hidden overflow-hidden bg-slate-50 max-w-2xl mx-auto w-full">
+      <div class="p-3 sm:p-4 bg-white border-b border-sky-100 shadow-xs z-10">
+        <div class="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 rounded-3xl p-4 text-white shadow-md relative overflow-hidden">
           <div class="flex items-center justify-between relative z-10">
-            <div class="flex items-center gap-2.5">
-              <div id="level-map-world-mascot-icon" class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-2xl shadow-inner animate-float">📘</div>
+            <div class="flex items-center gap-3">
+              <div id="level-map-world-mascot-icon" class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-2xl sm:text-3xl shadow-inner animate-float">📘</div>
               <div>
-                <span id="level-map-world-tag" class="text-[9px] font-extrabold uppercase bg-amber-400 text-amber-950 px-2 py-0.5 rounded-md tracking-wider">Bab 1</span>
-                <h2 id="level-map-world-name" class="font-title text-base font-black text-white leading-tight mt-0.5">Judul Bab</h2>
-                <p id="level-map-world-desc" class="text-[10px] text-sky-100 font-medium">Petualangan Bahasa Inggris</p>
+                <span id="level-map-world-tag" class="text-[9px] sm:text-[10px] font-extrabold uppercase bg-amber-400 text-amber-950 px-2 py-0.5 rounded-md tracking-wider">Bab 1</span>
+                <h2 id="level-map-world-name" class="font-title text-base sm:text-lg font-black text-white leading-tight mt-0.5">Judul Bab</h2>
+                <p id="level-map-world-desc" class="text-[10px] sm:text-xs text-sky-100 font-medium">Petualangan Bahasa Inggris</p>
               </div>
             </div>
             <div class="text-right">
-              <div class="inline-flex items-center gap-1 bg-white/20 backdrop-blur-md border border-white/30 px-2.5 py-1 rounded-full text-xs font-title font-bold text-amber-300">
+              <div class="inline-flex items-center gap-1 bg-white/20 backdrop-blur-md border border-white/30 px-3 py-1 rounded-full text-xs sm:text-sm font-title font-bold text-amber-300">
                 <span id="level-map-stars-count">⭐ 0 / 30</span>
               </div>
-              <span id="level-map-student-badge" class="block text-[9px] text-sky-200 mt-1 font-mono font-bold">@budi01</span>
+              <span id="level-map-student-badge" class="block text-[10px] text-sky-200 mt-1 font-mono font-bold">@budi01</span>
             </div>
           </div>
-          <div class="mt-2.5 pt-2 border-t border-white/20 flex items-center gap-2">
-            <span class="text-[9px] font-bold text-sky-100 whitespace-nowrap" id="adventure-progress-label">0/10 Selesai</span>
-            <div class="flex-1 bg-white/20 h-2 rounded-full overflow-hidden">
+          <div class="mt-3 pt-2.5 border-t border-white/20 flex items-center gap-3">
+            <span class="text-[10px] sm:text-xs font-bold text-sky-100 whitespace-nowrap" id="adventure-progress-label">0/10 Selesai</span>
+            <div class="flex-1 bg-white/20 h-2.5 rounded-full overflow-hidden">
               <div id="adventure-progress-fill" class="bg-gradient-to-r from-amber-400 to-yellow-300 h-full rounded-full transition-all duration-500" style="width: 10%;"></div>
             </div>
           </div>
@@ -475,11 +476,11 @@
       </div>
 
       <div class="flex-1 overflow-y-auto custom-scroll p-4 pb-12 adventure-bg relative" id="adventure-path-scroll-area">
-        <div class="sticky top-0 z-20 flex justify-center mb-2">
-          <div class="bg-white/95 backdrop-blur-md border-2 border-amber-300 px-3 py-1 rounded-full shadow-md flex items-center gap-2 text-xs">
+        <div class="sticky top-0 z-20 flex justify-center mb-3">
+          <div class="bg-white/95 backdrop-blur-md border-2 border-amber-300 px-4 py-1.5 rounded-full shadow-md flex items-center gap-2 text-xs sm:text-sm">
             <span class="animate-bounce">🎯</span>
             <span class="font-bold text-slate-700">Target:</span>
-            <span id="floating-level-theme-tag" class="font-title font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200">Level 1</span>
+            <span id="floating-level-theme-tag" class="font-title font-bold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-md border border-sky-200">Level 1</span>
           </div>
         </div>
         <div class="relative max-w-xs mx-auto py-2" id="adventure-trail-nodes-container"></div>
@@ -487,310 +488,306 @@
     </main>
 
     <!-- SCREEN 5: GAMEPLAY -->
-    <main id="screen-gameplay" class="flex-1 p-4 flex flex-col justify-between hidden overflow-y-auto custom-scroll">
+    <main id="screen-gameplay" class="flex-1 p-4 sm:p-6 flex flex-col justify-between hidden overflow-y-auto custom-scroll max-w-2xl mx-auto w-full">
       <div>
-        <div class="flex items-center justify-between gap-2 mb-2">
-          <div class="flex items-center gap-1.5"><span class="text-xs font-bold text-slate-500" id="game-q-counter">1 / 10</span><div class="w-28 bg-slate-200 h-2.5 rounded-full"><div id="game-progress-bar" class="bg-gameGreen h-full transition-all" style="width: 10%"></div></div></div>
-          <span class="bg-amber-100 text-amber-800 font-bold text-xs px-2.5 py-0.5 rounded-full border border-amber-200 flex items-center gap-1">⭐ <span id="game-score-val">0</span></span>
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <div class="flex items-center gap-2"><span class="text-xs sm:text-sm font-bold text-slate-500" id="game-q-counter">1 / 10</span><div class="w-32 sm:w-48 bg-slate-200 h-3 rounded-full"><div id="game-progress-bar" class="bg-gameGreen h-full transition-all rounded-full" style="width: 10%"></div></div></div>
+          <span class="bg-amber-100 text-amber-800 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200 flex items-center gap-1">⭐ <span id="game-score-val">0</span></span>
         </div>
-        <div class="bg-white rounded-3xl p-3.5 border-2 border-sky-200 shadow-sm">
-          <div id="question-illustration-box" class="w-full h-44 bg-slate-50 rounded-2xl border border-sky-200 overflow-hidden flex items-center justify-center text-5xl">🖼️</div>
-          <div class="mt-3 text-center relative px-2">
-            <p id="question-instruction" class="text-xs font-bold text-sky-700 uppercase mb-1">Lengkapi kalimat:</p>
-            <h3 id="question-text" class="font-title text-xl font-bold text-slate-800">Soal</h3>
-            <button onclick="playQuestionSpeech()" class="inline-flex items-center gap-1 bg-sky-100 text-sky-700 px-3 py-1 rounded-full text-xs font-bold mt-2 active:scale-95 transition">🔊 Listen</button>
+        <div class="bg-white rounded-3xl p-4 sm:p-6 border-2 border-sky-200 shadow-sm">
+          <div id="question-illustration-box" class="w-full h-48 sm:h-56 bg-slate-50 rounded-2xl border border-sky-200 overflow-hidden flex items-center justify-center text-6xl">🖼️</div>
+          <div class="mt-4 text-center relative px-2">
+            <p id="question-instruction" class="text-xs sm:text-sm font-bold text-sky-700 uppercase mb-1">Lengkapi kalimat:</p>
+            <h3 id="question-text" class="font-title text-xl sm:text-2xl font-bold text-slate-800">Soal</h3>
+            <button onclick="playQuestionSpeech()" class="inline-flex items-center gap-1.5 bg-sky-100 text-sky-700 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold mt-3 active:scale-95 transition">🔊 Listen</button>
           </div>
         </div>
-        <div class="grid grid-cols-2 gap-2.5 mt-3" id="options-container"></div>
-        <div id="answer-feedback-banner" class="hidden mt-3 p-3 rounded-2xl border-2 transition-all">
-          <div class="flex items-start gap-2.5"><span id="feedback-icon" class="text-2xl">✅</span><div class="flex-1"><h4 id="feedback-title" class="font-title text-sm font-bold text-emerald-800">Jawaban Benar!</h4><p id="feedback-explanation" class="text-xs text-slate-600 mt-0.5"></p><div class="mt-1.5 p-2 bg-amber-50 border border-amber-200 rounded-xl text-[11px] text-amber-900 font-semibold"><span id="feedback-tip-text"></span></div></div></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4" id="options-container"></div>
+        <div id="answer-feedback-banner" class="hidden mt-4 p-4 rounded-2xl border-2 transition-all">
+          <div class="flex items-start gap-3"><span id="feedback-icon" class="text-3xl">✅</span><div class="flex-1"><h4 id="feedback-title" class="font-title text-base sm:text-lg font-bold text-emerald-800">Jawaban Benar!</h4><p id="feedback-explanation" class="text-xs sm:text-sm text-slate-600 mt-0.5"></p><div class="mt-2 p-2.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 font-semibold"><span id="feedback-tip-text"></span></div></div></div>
         </div>
       </div>
-      <div class="mt-3 pt-2 border-t border-sky-100 flex items-center gap-2">
-        <button onclick="navigate('screen-levels')" class="py-3 px-3 bg-slate-100 text-slate-600 font-title text-xs font-bold rounded-xl">Kembali</button>
-        <button id="btn-check-or-next" onclick="checkOrNextQuestion()" class="flex-1 py-3 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base font-bold rounded-xl shadow-bouncy-btn active:translate-y-1 text-center">Periksa ✓</button>
+      <div class="mt-4 pt-3 border-t border-sky-100 flex items-center gap-3">
+        <button onclick="navigate('screen-levels')" class="py-3.5 px-4 bg-slate-100 text-slate-600 font-title text-xs sm:text-sm font-bold rounded-xl">Kembali</button>
+        <button id="btn-check-or-next" onclick="checkOrNextQuestion()" class="flex-1 py-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base sm:text-lg font-bold rounded-xl shadow-bouncy-btn active:translate-y-1 text-center">Periksa ✓</button>
       </div>
     </main>
 
     <!-- SCREEN 6: RESULT -->
-    <main id="screen-result" class="flex-1 p-4 flex flex-col items-center justify-between hidden overflow-y-auto custom-scroll text-center">
+    <main id="screen-result" class="flex-1 p-4 sm:p-6 flex flex-col items-center justify-between hidden overflow-y-auto custom-scroll text-center max-w-2xl mx-auto w-full">
       <div class="w-full">
-        <div class="flex items-center justify-center gap-2 my-2" id="result-stars-box"></div>
-        <h2 id="result-title-text" class="font-title text-2xl font-extrabold text-slate-800 mt-1">Level Selesai!</h2>
-        <div class="bg-sky-50 border-2 border-sky-200 rounded-3xl p-4 my-3 text-left shadow-sm">
-          <div class="flex items-center justify-between border-b border-sky-200 pb-2">
-            <span class="text-xs font-bold text-slate-500">Skor:</span><span id="result-score-tag" class="font-title text-2xl font-bold text-blue-700">80 / 100</span>
+        <div class="flex items-center justify-center gap-3 my-3" id="result-stars-box"></div>
+        <h2 id="result-title-text" class="font-title text-2xl sm:text-3xl font-extrabold text-slate-800 mt-1">Level Selesai!</h2>
+        <div class="bg-sky-50 border-2 border-sky-200 rounded-3xl p-5 my-4 text-left shadow-sm max-w-md mx-auto">
+          <div class="flex items-center justify-between border-b border-sky-200 pb-3">
+            <span class="text-xs sm:text-sm font-bold text-slate-500">Skor:</span><span id="result-score-tag" class="font-title text-2xl sm:text-3xl font-bold text-blue-700">80 / 100</span>
           </div>
-          <div class="grid grid-cols-2 gap-2 pt-2.5 text-xs font-bold">
-            <div class="flex items-center gap-1.5 text-emerald-700 bg-emerald-50 p-2 rounded-xl border border-emerald-200">✅ <span id="result-correct-count">8</span> Benar</div>
-            <div class="flex items-center gap-1.5 text-rose-700 bg-rose-50 p-2 rounded-xl border border-rose-200">❌ <span id="result-wrong-count">2</span> Salah</div>
+          <div class="grid grid-cols-2 gap-3 pt-3 text-xs sm:text-sm font-bold">
+            <div class="flex items-center gap-2 text-emerald-700 bg-emerald-50 p-3 rounded-xl border border-emerald-200">✅ <span id="result-correct-count">8</span> Benar</div>
+            <div class="flex items-center gap-2 text-rose-700 bg-rose-50 p-3 rounded-xl border border-rose-200">❌ <span id="result-wrong-count">2</span> Salah</div>
           </div>
         </div>
       </div>
-      <div class="w-full space-y-2 my-2">
-        <button id="btn-result-retry" onclick="launchSelectedLevel()" class="w-full py-3 bg-blue-600 text-white font-title text-base font-bold rounded-2xl shadow-sm">🔄 Main Lagi</button>
-        <button id="btn-result-back" onclick="navigate('screen-levels')" class="w-full py-3 bg-slate-100 text-slate-700 font-title text-base font-bold rounded-2xl">🗺️ Kembali ke Peta Level</button>
+      <div class="w-full space-y-3 my-3 max-w-md mx-auto">
+        <button id="btn-result-retry" onclick="launchSelectedLevel()" class="w-full py-3.5 bg-blue-600 text-white font-title text-base sm:text-lg font-bold rounded-2xl shadow-sm">🔄 Main Lagi</button>
+        <button id="btn-result-back" onclick="navigate('screen-levels')" class="w-full py-3.5 bg-slate-100 text-slate-700 font-title text-base sm:text-lg font-bold rounded-2xl">🗺️ Kembali ke Peta Level</button>
       </div>
     </main>
+
     <!-- SCREEN 7: PORTAL GURU -->
-    <main id="screen-teacher" class="flex-1 flex flex-col justify-between hidden overflow-hidden bg-slate-100">
-      <div class="bg-amber-500 text-white p-3.5 shadow-md flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <span class="text-2xl">👨‍🏫</span>
+    <main id="screen-teacher" class="flex-1 flex flex-col justify-between hidden overflow-hidden bg-slate-100 max-w-4xl mx-auto w-full">
+      <div class="bg-amber-500 text-white p-3.5 sm:p-4 shadow-md flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="text-2xl sm:text-3xl">👨‍🏫</span>
           <div>
-            <h2 class="font-title text-base font-bold leading-tight">Portal Pengelolaan Guru</h2>
-            <p class="text-[10px] text-amber-100">Kelola Akun Murid, KTP Siswa, QR Absen, Bab, Soal, Ujian, & Nilai</p>
+            <h2 class="font-title text-base sm:text-lg font-bold leading-tight">Portal Pengelolaan Guru</h2>
+            <p class="text-[10px] sm:text-xs text-amber-100">Kelola Akun Murid, KTP Siswa, QR Absen, Bab, Soal, Ujian, & Nilai</p>
           </div>
         </div>
-        <button onclick="logoutSession()" class="px-2.5 py-1 bg-white/20 rounded-xl text-xs font-bold font-title">🚪 Keluar</button>
+        <button onclick="logoutSession()" class="px-3 py-1.5 bg-white/20 rounded-xl text-xs font-bold font-title active:scale-95 transition">🚪 Keluar</button>
       </div>
 
       <!-- Tab Bar Guru -->
-      <div class="bg-white border-b border-slate-200 p-1.5 flex gap-1 text-[11px] font-bold font-title overflow-x-auto custom-scroll shadow-xs">
-        <button onclick="switchTeacherTab('roster')" id="tab-btn-roster" class="flex-1 py-1.5 px-2 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap">👥 Murid & KTP</button>
-        <button onclick="switchTeacherTab('attendance')" id="tab-btn-attendance" class="flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap">📷 Absen QR</button>
-        <button onclick="switchTeacherTab('bab')" id="tab-btn-bab" class="flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap">📚 Bab</button>
-        <button onclick="switchTeacherTab('editor')" id="tab-btn-editor" class="flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap">✏️ Soal</button>
-        <button onclick="switchTeacherTab('locks')" id="tab-btn-locks" class="flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap">🔒 Kunci</button>
-        <button onclick="switchTeacherTab('exam')" id="tab-btn-exam" class="flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap">📝 Ujian</button>
-        <button onclick="switchTeacherTab('scores')" id="tab-btn-scores" class="flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap">📊 Nilai</button>
+      <div class="bg-white border-b border-slate-200 p-2 flex gap-1.5 text-xs sm:text-sm font-bold font-title overflow-x-auto custom-scroll shadow-xs">
+        <button onclick="switchTeacherTab('roster')" id="tab-btn-roster" class="py-2 px-3 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap">👥 Murid & KTP</button>
+        <button onclick="switchTeacherTab('attendance')" id="tab-btn-attendance" class="py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap">📷 Absen QR</button>
+        <button onclick="switchTeacherTab('bab')" id="tab-btn-bab" class="py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap">📚 Bab</button>
+        <button onclick="switchTeacherTab('editor')" id="tab-btn-editor" class="py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap">✏️ Soal</button>
+        <button onclick="switchTeacherTab('locks')" id="tab-btn-locks" class="py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap">🔒 Kunci</button>
+        <button onclick="switchTeacherTab('exam')" id="tab-btn-exam" class="py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap">📝 Ujian</button>
+        <button onclick="switchTeacherTab('scores')" id="tab-btn-scores" class="py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap">📊 Nilai</button>
+        <button onclick="switchTeacherTab('pdfcards')" id="tab-btn-pdfcards" class="py-2 px-3 rounded-xl text-emerald-800 bg-emerald-50 border border-emerald-300 whitespace-nowrap">🪪 Cetak PDF KTP</button>
       </div>
 
       <div class="flex-1 overflow-y-auto p-4 space-y-4 custom-scroll" id="teacher-content-container">
         <!-- TAB 1: ROSTER MURID & CETAK KTP -->
         <div id="teacher-tab-roster" class="space-y-3">
-          
-          <!-- BANNER UPLOAD LOGO DEPAN & LOGO BELAKANG (WATERMARK) -->
-          <div class="bg-gradient-to-r from-sunNavy-900 to-sunNavy-850 p-3 rounded-2xl border border-sunGold-400 text-white flex flex-col gap-2.5 shadow-xs">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <div class="w-8 h-8 rounded-xl bg-white p-0.5 border border-sunGold-400 flex items-center justify-center shrink-0">
+          <div class="bg-gradient-to-r from-sunNavy-900 to-sunNavy-850 p-4 rounded-2xl border border-sunGold-400 text-white flex flex-col gap-3 shadow-xs">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-white p-0.5 border border-sunGold-400 flex items-center justify-center shrink-0">
                   <img class="app-global-logo w-full h-full object-contain" src="https://placehold.co/100x100/ffffff/0b1b36?text=SEA" alt="Logo">
                 </div>
                 <div>
-                  <strong class="font-display text-xs text-sunGold-300 block">Logo Sunshine English Academy</strong>
-                  <span class="text-[8.5px] text-slate-300">Terapkan gambar resmi ke Header, Login, & KTP</span>
+                  <strong class="font-display text-xs sm:text-sm text-sunGold-300 block">Logo Sunshine English Academy</strong>
+                  <span class="text-[9px] sm:text-[10px] text-slate-300">Terapkan gambar resmi ke Header, Login, & KTP</span>
                 </div>
               </div>
-              <label class="px-2.5 py-1.5 bg-gradient-to-r from-amber-400 to-sunGold-500 text-sunNavy-950 rounded-xl font-display text-[9.5px] font-bold shadow-xs cursor-pointer active:scale-95 transition">
+              <label class="px-3 py-2 bg-gradient-to-r from-amber-400 to-sunGold-500 text-sunNavy-950 rounded-xl font-display text-xs font-bold shadow-xs cursor-pointer active:scale-95 transition text-center">
                 <span>🖼️ Upload Logo Depan</span>
                 <input type="file" accept="image/*" class="hidden" onchange="uploadGlobalLogoFile(event)">
               </label>
             </div>
 
-            <!-- Bagian Upload Gambar Latar Belakang KTP (Watermark Belakang) -->
-            <div class="flex items-center justify-between pt-2 border-t border-white/10">
-              <div class="flex items-center gap-2">
-                <div class="w-12 h-6 rounded-lg bg-white p-0.5 border border-sunGold-400 flex items-center justify-center shrink-0 overflow-hidden">
-                  <img class="app-global-back-logo w-full h-full object-contain" src="https://placehold.co/200x80/ffffff/0b1b36?text=LOGO+MEMANJANG" alt="Watermark Belakang">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pt-3 border-t border-white/10 gap-3">
+              <div class="flex items-center gap-2.5">
+                <div class="w-14 h-7 rounded-lg bg-white p-0.5 border border-sunGold-400 flex items-center justify-center shrink-0 overflow-hidden">
+                  <img class="app-global-back-logo w-full h-full object-contain" src="https://placehold.co/200x80/ffffff/0b1b36?text=LOGO" alt="Watermark Belakang">
                 </div>
                 <div>
-                  <strong class="font-display text-[11px] text-amber-300 block">Gambar Latar Belakang KTP (Belakang)</strong>
-                  <span class="text-[8px] text-slate-300">Logo memanjang transparan 80% di balik teks</span>
+                  <strong class="font-display text-xs sm:text-sm text-amber-300 block">Gambar Latar Belakang KTP (Belakang)</strong>
+                  <span class="text-[9px] sm:text-[10px] text-slate-300">Logo memanjang transparan di balik teks</span>
                 </div>
               </div>
-              <label class="px-2.5 py-1.5 bg-sunNavy-800 hover:bg-sunNavy-700 text-sunGold-300 border border-sunGold-400/60 rounded-xl font-display text-[9.5px] font-bold shadow-xs cursor-pointer active:scale-95 transition">
+              <label class="px-3 py-2 bg-sunNavy-800 hover:bg-sunNavy-700 text-sunGold-300 border border-sunGold-400/60 rounded-xl font-display text-xs font-bold shadow-xs cursor-pointer active:scale-95 transition text-center">
                 <span>✨ Upload Background Belakang</span>
                 <input type="file" accept="image/*" class="hidden" onchange="uploadGlobalBackLogoFile(event)">
               </label>
             </div>
           </div>
 
-          <!-- Banner Cetak Masal Seluruh KTP A4 -->
-          <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-3 rounded-2xl text-white flex items-center justify-between shadow-xs">
+          <div class="bg-gradient-to-r from-amber-500 to-orange-500 p-3.5 rounded-2xl text-white flex flex-col sm:flex-row sm:items-center justify-between shadow-xs gap-3">
             <div>
-              <strong class="font-title text-xs block">🖨️ Cetak Semua KTP Siswa (Format A4)</strong>
-              <span class="text-[9.5px] text-amber-100">1 Lembar = 3 Siswa (Kiri Depan, Kanan Belakang + Garis Gunting ✂️)</span>
+              <strong class="font-title text-sm block">🖨️ Cetak Semua KTP Siswa (Format A4)</strong>
+              <span class="text-xs text-amber-100">1 Lembar = 3 Siswa (Kiri Depan, Kanan Belakang + Garis Gunting ✂️)</span>
             </div>
-            <button type="button" onclick="printAllStudentsKtpA4()" class="px-3 py-1.5 bg-white text-orange-950 rounded-xl font-title text-[11px] font-bold shadow-sm active:scale-95 transition">
-              <span>📄 Cetak PDF</span>
+            <button type="button" onclick="printAllStudentsKtpA4()" class="px-4 py-2 bg-white text-orange-950 rounded-xl font-title text-xs font-bold shadow-sm active:scale-95 transition whitespace-nowrap">
+              <span>📄 Cetak PDF Masal</span>
             </button>
           </div>
 
-          <!-- Form Tambah Murid -->
-          <div class="bg-white p-3.5 rounded-2xl border-2 border-slate-200 shadow-xs space-y-2">
+          <div class="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-xs space-y-3">
             <div class="flex items-center justify-between">
-              <span id="form-roster-title" class="text-xs font-bold text-slate-800">➕ Tambah Murid Baru:</span>
-              <button type="button" id="btn-cancel-edit-roster" onclick="cancelEditStudentForm()" class="text-[10px] text-rose-600 font-bold hidden">✕ Batal</button>
+              <span id="form-roster-title" class="text-xs sm:text-sm font-bold text-slate-800">➕ Tambah Murid Baru:</span>
+              <button type="button" id="btn-cancel-edit-roster" onclick="cancelEditStudentForm()" class="text-xs text-rose-600 font-bold hidden">✕ Batal</button>
             </div>
-            <div class="grid grid-cols-6 gap-2">
-              <div class="col-span-2"><label class="text-[9px] font-bold text-slate-500 block mb-0.5">No. Absen</label><input id="form-roster-id" type="text" placeholder="01" class="w-full p-2 border border-slate-300 rounded-xl text-xs font-mono font-bold text-center"></div>
-              <div class="col-span-4"><label class="text-[9px] font-bold text-slate-500 block mb-0.5">Nama Lengkap</label><input id="form-roster-name" type="text" placeholder="Nama Murid..." class="w-full p-2 border border-slate-300 rounded-xl text-xs font-bold"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-6 gap-2.5">
+              <div class="sm:col-span-2"><label class="text-[10px] font-bold text-slate-500 block mb-0.5">No. Absen</label><input id="form-roster-id" type="text" placeholder="01" class="w-full p-2.5 border border-slate-300 rounded-xl text-xs sm:text-sm font-mono font-bold text-center"></div>
+              <div class="sm:col-span-4"><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Nama Lengkap</label><input id="form-roster-name" type="text" placeholder="Nama Murid..." class="w-full p-2.5 border border-slate-300 rounded-xl text-xs sm:text-sm font-bold"></div>
             </div>
-            <div class="grid grid-cols-2 gap-2 p-2 bg-blue-50/60 rounded-xl border border-blue-200">
-              <div><label class="text-[9px] font-bold text-blue-900 block mb-0.5">Username</label><input id="form-roster-username" type="text" placeholder="budi01" class="w-full p-1.5 border border-blue-300 rounded-lg text-xs font-mono font-bold"></div>
-              <div><label class="text-[9px] font-bold text-blue-900 block mb-0.5">Password</label><input id="form-roster-password" type="text" placeholder="123" class="w-full p-1.5 border border-blue-300 rounded-lg text-xs font-mono font-bold"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 p-3 bg-blue-50/60 rounded-xl border border-blue-200">
+              <div><label class="text-[10px] font-bold text-blue-900 block mb-0.5">Username</label><input id="form-roster-username" type="text" placeholder="budi01" class="w-full p-2 border border-blue-300 rounded-lg text-xs sm:text-sm font-mono font-bold"></div>
+              <div><label class="text-[10px] font-bold text-blue-900 block mb-0.5">Password</label><input id="form-roster-password" type="text" placeholder="123" class="w-full p-2 border border-blue-300 rounded-lg text-xs sm:text-sm font-mono font-bold"></div>
             </div>
-            <div class="grid grid-cols-6 gap-2">
-              <div class="col-span-3"><label class="text-[9px] font-bold text-slate-500 block mb-0.5">Penempatan Kelas</label><select id="form-roster-grade" class="w-full p-2 border border-slate-300 rounded-xl text-xs font-bold bg-amber-50 text-amber-900"><option value="Kelas Basic">Kelas Basic</option><option value="Kelas Advance">Kelas Advance</option><option value="Kelas Champion">Kelas Champion</option></select></div>
-              <div class="col-span-3"><label class="text-[9px] font-bold text-slate-500 block mb-0.5">Maskot</label><select id="form-roster-avatar" class="w-full p-2 border border-slate-300 rounded-xl text-xs font-bold"><option value="🦎">🦎 Komodo</option><option value="🦧">🦧 Orangutan</option><option value="🐅">🐅 Harimau</option><option value="🦏">🦏 Badak</option><option value="🦅">🦅 Elang</option><option value="🦌">🦌 Rusa</option><option value="🦜">🦜 Burung</option><option value="🐢">🐢 Penyu</option></select></div>
+            <div class="grid grid-cols-1 sm:grid-cols-6 gap-2.5">
+              <div class="sm:col-span-3"><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Penempatan Kelas</label><select id="form-roster-grade" class="w-full p-2.5 border border-slate-300 rounded-xl text-xs sm:text-sm font-bold bg-amber-50 text-amber-900"><option value="Kelas Basic">Kelas Basic</option><option value="Kelas Advance">Kelas Advance</option><option value="Kelas Champion">Kelas Champion</option></select></div>
+              <div class="sm:col-span-3"><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Maskot</label><select id="form-roster-avatar" class="w-full p-2.5 border border-slate-300 rounded-xl text-xs sm:text-sm font-bold"><option value="🦎">🦎 Komodo</option><option value="🦧">🦧 Orangutan</option><option value="🐅">🐅 Harimau</option><option value="🦏">🦏 Badak</option><option value="🦅">🦅 Elang</option><option value="🦌">🦌 Rusa</option><option value="🦜">🦜 Burung</option><option value="🐢">🐢 Penyu</option></select></div>
             </div>
-            <button type="button" onclick="adminSaveStudentForm()" class="w-full py-2 bg-blue-600 text-white font-title text-xs font-bold rounded-xl shadow-xs"><span id="btn-save-roster-label">Simpan Akun Murid ✓</span></button>
+            <button type="button" onclick="adminSaveStudentForm()" class="w-full py-3 bg-blue-600 text-white font-title text-sm font-bold rounded-xl shadow-xs"><span id="btn-save-roster-label">Simpan Akun Murid ✓</span></button>
           </div>
           
-          <!-- Daftar Seluruh Murid -->
           <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs">
-            <div class="p-2.5 bg-slate-50 border-b text-xs font-bold text-slate-700 flex justify-between items-center">
+            <div class="p-3 bg-slate-50 border-b text-xs sm:text-sm font-bold text-slate-700 flex justify-between items-center">
               <span>Daftar Seluruh Murid:</span>
               <span id="roster-count-tag" class="text-sky-700 font-mono">0 Murid</span>
             </div>
-            <div class="max-h-72 overflow-y-auto custom-scroll" id="admin-roster-list-container"></div>
+            <div class="max-h-80 overflow-y-auto custom-scroll" id="admin-roster-list-container"></div>
           </div>
         </div>
 
         <!-- TAB 2: ABSENSI QR GURU -->
         <div id="teacher-tab-attendance" class="space-y-3 hidden">
-          <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300 rounded-2xl p-3.5 space-y-2.5">
+          <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-300 rounded-2xl p-4 space-y-3">
             <div class="flex items-center justify-between">
               <div>
-                <strong class="font-title text-sm text-amber-950 block">📷 Pemindai QR Absensi Siswa</strong>
-                <span class="text-[10px] text-amber-800 font-semibold">Pindai QR Kartu Siswa untuk menyalakan Api Streak 🔥!</span>
+                <strong class="font-title text-sm sm:text-base text-amber-950 block">📷 Pemindai QR Absensi Siswa</strong>
+                <span class="text-xs text-amber-800 font-semibold">Pindai QR Kartu Siswa untuk menyalakan Api Streak 🔥!</span>
               </div>
-              <span class="text-2xl animate-flame-flicker">🔥</span>
+              <span class="text-3xl animate-flame-flicker">🔥</span>
             </div>
             
-            <div class="bg-slate-900 rounded-2xl overflow-hidden relative border-2 border-amber-400 aspect-square max-w-[220px] mx-auto flex items-center justify-center text-center p-2">
+            <div class="bg-slate-900 rounded-2xl overflow-hidden relative border-2 border-amber-400 aspect-square max-w-[240px] mx-auto flex items-center justify-center text-center p-2">
               <video id="qr-live-video" class="w-full h-full object-cover hidden rounded-xl"></video>
               <div id="qr-camera-placeholder" class="absolute inset-0 flex flex-col items-center justify-center p-4 bg-slate-800 text-white">
-                <span class="text-3xl mb-1">📷</span>
-                <p class="text-[11px] font-bold">Kamera Siap</p>
-                <p class="text-[9px] text-slate-300 mt-0.5">Ketuk tombol hijau di bawah untuk memotret QR siswa</p>
+                <span class="text-4xl mb-1">📷</span>
+                <p class="text-xs sm:text-sm font-bold">Kamera Siap</p>
+                <p class="text-[10px] text-slate-300 mt-0.5">Ketuk tombol hijau di bawah untuk memotret QR siswa</p>
               </div>
             </div>
 
             <input type="file" id="qr-native-file-input" accept="image/*" capture="environment" class="hidden" onchange="handleNativeQrCapture(event)">
 
             <div class="space-y-2">
-              <button type="button" onclick="triggerNativeQrCamera()" class="w-full py-3 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-xs font-bold rounded-xl shadow-bouncy-btn active:scale-95 transition flex items-center justify-center gap-1.5">
-                <span class="text-base">📸</span>
+              <button type="button" onclick="triggerNativeQrCamera()" class="w-full py-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-sm sm:text-base font-bold rounded-xl shadow-bouncy-btn active:scale-95 transition flex items-center justify-center gap-2">
+                <span class="text-lg">📸</span>
                 <span>Jepret Foto QR Siswa (Deteksi Cepat & Akurat)</span>
               </button>
 
               <div class="flex gap-2">
-                <button type="button" id="btn-start-qr-scan" onclick="startQrScannerCamera()" class="flex-1 py-2 bg-slate-700 text-white font-title text-[10px] font-bold rounded-xl shadow-xs active:scale-95 transition flex items-center justify-center gap-1">
+                <button type="button" id="btn-start-qr-scan" onclick="startQrScannerCamera()" class="flex-1 py-2.5 bg-slate-700 text-white font-title text-xs sm:text-sm font-bold rounded-xl shadow-xs active:scale-95 transition flex items-center justify-center gap-1">
                   <span>🎥 Kamera Live Streaming</span>
                 </button>
-                <button type="button" id="btn-stop-qr-scan" onclick="stopQrScannerCamera()" class="hidden flex-1 py-2 bg-rose-500 text-white font-title text-[10px] font-bold rounded-xl shadow-xs active:scale-95 transition">
+                <button type="button" id="btn-stop-qr-scan" onclick="stopQrScannerCamera()" class="hidden flex-1 py-2.5 bg-rose-500 text-white font-title text-xs sm:text-sm font-bold rounded-xl shadow-xs active:scale-95 transition">
                   <span>⏹ Matikan Live</span>
                 </button>
               </div>
             </div>
 
-            <div id="qr-scan-success-banner" class="hidden p-2.5 bg-emerald-100 border border-emerald-400 rounded-xl text-emerald-950 text-xs font-bold flex items-center gap-2">
-              <span class="text-xl">🎉</span>
+            <div id="qr-scan-success-banner" class="hidden p-3 bg-emerald-100 border border-emerald-400 rounded-xl text-emerald-950 text-xs sm:text-sm font-bold flex items-center gap-2">
+              <span class="text-2xl">🎉</span>
               <div id="qr-scan-success-msg">Absen Berhasil!</div>
             </div>
           </div>
 
-          <div class="bg-white border-2 border-slate-200 rounded-2xl p-3 shadow-xs space-y-2">
+          <div class="bg-white border-2 border-slate-200 rounded-2xl p-4 shadow-xs space-y-2.5">
             <div class="flex items-center justify-between">
-              <span class="font-title text-xs font-bold text-slate-800">📋 Absensi Cepat Sekali Klik & Status Api:</span>
-              <span class="text-[9px] text-slate-400 font-mono" id="today-date-tag">Hari Ini</span>
+              <span class="font-title text-xs sm:text-sm font-bold text-slate-800">📋 Absensi Cepat Sekali Klik & Status Api:</span>
+              <span class="text-xs text-slate-400 font-mono" id="today-date-tag">Hari Ini</span>
             </div>
-            <div class="max-h-56 overflow-y-auto custom-scroll space-y-1.5" id="admin-attendance-manual-list"></div>
+            <div class="max-h-64 overflow-y-auto custom-scroll space-y-2" id="admin-attendance-manual-list"></div>
           </div>
         </div>
 
         <!-- TAB 3: KELOLA BAB -->
         <div id="teacher-tab-bab" class="space-y-3 hidden">
-          <div class="bg-white p-3.5 rounded-2xl border-2 border-slate-200 shadow-xs space-y-2">
-            <div class="flex items-center justify-between"><span id="form-bab-title" class="text-xs font-bold text-slate-800">➕ Tambah Bab Baru:</span><button type="button" id="btn-cancel-edit-bab" onclick="cancelEditBabForm()" class="text-[10px] text-rose-600 font-bold hidden">✕ Batal</button></div>
-            <div class="grid grid-cols-6 gap-2">
-              <div class="col-span-2"><label class="text-[9px] font-bold text-slate-500 block mb-0.5">Tag Bab</label><input id="form-bab-tag" type="text" placeholder="Bab 5" class="w-full p-2 border rounded-xl text-xs font-bold text-center"></div>
-              <div class="col-span-3"><label class="text-[9px] font-bold text-slate-500 block mb-0.5">Nama Bab</label><input id="form-bab-name" type="text" placeholder="Judul Bab..." class="w-full p-2 border rounded-xl text-xs font-bold"></div>
-              <div class="col-span-1"><label class="text-[9px] font-bold text-slate-500 block mb-0.5">Ikon</label><input id="form-bab-icon" type="text" placeholder="🚀" class="w-full p-2 border rounded-xl text-xs font-bold text-center"></div>
+          <div class="bg-white p-4 rounded-2xl border-2 border-slate-200 shadow-xs space-y-2.5">
+            <div class="flex items-center justify-between"><span id="form-bab-title" class="text-xs sm:text-sm font-bold text-slate-800">➕ Tambah Bab Baru:</span><button type="button" id="btn-cancel-edit-bab" onclick="cancelEditBabForm()" class="text-xs text-rose-600 font-bold hidden">✕ Batal</button></div>
+            <div class="grid grid-cols-6 gap-2.5">
+              <div class="col-span-2"><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Tag Bab</label><input id="form-bab-tag" type="text" placeholder="Bab 5" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold text-center"></div>
+              <div class="col-span-3"><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Nama Bab</label><input id="form-bab-name" type="text" placeholder="Judul Bab..." class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold"></div>
+              <div class="col-span-1"><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Ikon</label><input id="form-bab-icon" type="text" placeholder="🚀" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold text-center"></div>
             </div>
-            <div><label class="text-[9px] font-bold text-slate-500 block mb-0.5">Deskripsi Ringkas</label><input id="form-bab-desc" type="text" class="w-full p-2 border rounded-xl text-xs"></div>
-            <div class="grid grid-cols-2 gap-2">
-              <div><label class="text-[9px] font-bold text-slate-500 block mb-0.5">Target Kelas</label><select id="form-bab-grade" class="w-full p-2 border rounded-xl text-xs font-bold bg-amber-50 text-amber-900"><option value="Basic">Basic</option><option value="Advance">Advance</option><option value="Champion">Champion</option></select></div>
-              <div><label class="text-[9px] font-bold text-slate-500 block mb-0.5">Warna Kartu</label><select id="form-bab-color" class="w-full p-2 border rounded-xl text-xs font-bold"><option value="from-sky-500 to-blue-600">Biru Langit</option><option value="from-amber-500 to-orange-600">Oranye Cerah</option><option value="from-emerald-500 to-green-600">Hijau Segar</option><option value="from-purple-500 to-indigo-600">Ungu Indigo</option></select></div>
+            <div><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Deskripsi Ringkas</label><input id="form-bab-desc" type="text" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Target Kelas</label><select id="form-bab-grade" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold bg-amber-50 text-amber-900"><option value="Basic">Basic</option><option value="Advance">Advance</option><option value="Champion">Champion</option></select></div>
+              <div><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Warna Kartu</label><select id="form-bab-color" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold"><option value="from-sky-500 to-blue-600">Biru Langit</option><option value="from-amber-500 to-orange-600">Oranye Cerah</option><option value="from-emerald-500 to-green-600">Hijau Segar</option><option value="from-purple-500 to-indigo-600">Ungu Indigo</option></select></div>
             </div>
-            <button type="button" onclick="adminSaveBabForm()" class="w-full py-2 bg-blue-600 text-white font-title text-xs font-bold rounded-xl shadow-xs">Simpan Bab Petualangan ✓</button>
+            <button type="button" onclick="adminSaveBabForm()" class="w-full py-2.5 bg-blue-600 text-white font-title text-sm font-bold rounded-xl shadow-xs">Simpan Bab Petualangan ✓</button>
           </div>
 
-          <div class="bg-white border border-slate-200 rounded-2xl p-3 shadow-xs space-y-2">
-            <span class="text-xs font-bold text-slate-800 block">Daftar Bab Aktif:</span>
-            <div class="space-y-2 max-h-48 overflow-y-auto custom-scroll" id="admin-bab-list-container"></div>
+          <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-xs space-y-2.5">
+            <span class="text-xs sm:text-sm font-bold text-slate-800 block">Daftar Bab Aktif:</span>
+            <div class="space-y-2 max-h-56 overflow-y-auto custom-scroll" id="admin-bab-list-container"></div>
           </div>
 
-          <div class="bg-white border-2 border-slate-200 rounded-2xl p-3 shadow-xs space-y-2">
-            <div class="flex items-center justify-between"><span class="text-xs font-bold text-slate-800">🎯 Edit Tema 10 Level:</span><select id="admin-leveltheme-world-select" onchange="renderAdminLevelThemesEditor()" class="p-1 border rounded-lg text-xs font-bold bg-slate-50 max-w-[140px]"></select></div>
-            <div id="admin-levelthemes-inputs-grid" class="space-y-1.5 max-h-40 overflow-y-auto custom-scroll"></div>
-            <button onclick="saveAdminLevelThemes()" class="w-full py-2 bg-emerald-600 text-white font-title text-xs font-bold rounded-xl shadow-xs">Simpan Tema Level ✓</button>
+          <div class="bg-white border-2 border-slate-200 rounded-2xl p-4 shadow-xs space-y-2.5">
+            <div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-bold text-slate-800">🎯 Edit Tema 10 Level:</span><select id="admin-leveltheme-world-select" onchange="renderAdminLevelThemesEditor()" class="p-1.5 border rounded-lg text-xs sm:text-sm font-bold bg-slate-50 max-w-[160px]"></select></div>
+            <div id="admin-levelthemes-inputs-grid" class="space-y-2 max-h-48 overflow-y-auto custom-scroll"></div>
+            <button onclick="saveAdminLevelThemes()" class="w-full py-2.5 bg-emerald-600 text-white font-title text-sm font-bold rounded-xl shadow-xs">Simpan Tema Level ✓</button>
           </div>
         </div>
 
         <!-- TAB 4: EDITOR SOAL -->
         <div id="teacher-tab-editor" class="space-y-3 hidden">
-          <div class="grid grid-cols-2 gap-2">
-            <div><label class="text-[11px] font-bold text-slate-600 block mb-0.5">Pilih Bab:</label><select id="admin-editor-world" onchange="loadAdminQuestionsList()" class="w-full p-2 text-xs font-bold border-2 border-slate-200 rounded-xl bg-white"></select></div>
-            <div><label class="text-[11px] font-bold text-slate-600 block mb-0.5">Pilih Level:</label><select id="admin-editor-level" onchange="loadAdminQuestionsList()" class="w-full p-2 text-xs font-bold border-2 border-slate-200 rounded-xl bg-white"></select></div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div><label class="text-xs font-bold text-slate-600 block mb-1">Pilih Bab:</label><select id="admin-editor-world" onchange="loadAdminQuestionsList()" class="w-full p-2.5 text-xs sm:text-sm font-bold border-2 border-slate-200 rounded-xl bg-white"></select></div>
+            <div><label class="text-xs font-bold text-slate-600 block mb-1">Pilih Level:</label><select id="admin-editor-level" onchange="loadAdminQuestionsList()" class="w-full p-2.5 text-xs sm:text-sm font-bold border-2 border-slate-200 rounded-xl bg-white"></select></div>
           </div>
-          <div class="border-2 border-slate-200 rounded-2xl p-2 max-h-40 overflow-y-auto custom-scroll space-y-2 bg-white" id="admin-questions-accordion"></div>
-          <div class="bg-white p-3.5 rounded-2xl border-2 border-slate-300 space-y-2 shadow-xs">
-            <div class="flex items-center justify-between"><span id="form-q-mode-label" class="text-xs font-bold text-slate-800">✏️ Edit Soal No. 1:</span></div>
-            <div><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Instruksi</label><input id="form-q-instruction" type="text" class="w-full p-2 border rounded-xl text-xs bg-slate-50 font-medium"></div>
-            <div><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Teks Soal ("________")</label><input id="form-q-text" type="text" class="w-full p-2 border-2 border-slate-300 rounded-xl text-xs font-bold bg-white"></div>
-            <div class="grid grid-cols-2 gap-1.5 pt-1">
-              <div><label class="text-[9px] font-bold text-slate-400">Pilihan A</label><input id="form-opt-0" type="text" class="w-full p-1.5 border rounded-lg text-xs font-semibold"></div>
-              <div><label class="text-[9px] font-bold text-slate-400">Pilihan B</label><input id="form-opt-1" type="text" class="w-full p-1.5 border rounded-lg text-xs font-semibold"></div>
-              <div><label class="text-[9px] font-bold text-slate-400">Pilihan C</label><input id="form-opt-2" type="text" class="w-full p-1.5 border rounded-lg text-xs font-semibold"></div>
-              <div><label class="text-[9px] font-bold text-slate-400">Pilihan D</label><input id="form-opt-3" type="text" class="w-full p-1.5 border rounded-lg text-xs font-semibold"></div>
+          <div class="border-2 border-slate-200 rounded-2xl p-3 max-h-48 overflow-y-auto custom-scroll space-y-2 bg-white" id="admin-questions-accordion"></div>
+          <div class="bg-white p-4 rounded-2xl border-2 border-slate-300 space-y-3 shadow-xs">
+            <div class="flex items-center justify-between"><span id="form-q-mode-label" class="text-xs sm:text-sm font-bold text-slate-800">✏️ Edit Soal No. 1:</span></div>
+            <div><label class="text-xs font-bold text-slate-500 block mb-1">Instruksi</label><input id="form-q-instruction" type="text" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm bg-slate-50 font-medium"></div>
+            <div><label class="text-xs font-bold text-slate-500 block mb-1">Teks Soal ("________")</label><input id="form-q-text" type="text" class="w-full p-2.5 border-2 border-slate-300 rounded-xl text-xs sm:text-sm font-bold bg-white"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+              <div><label class="text-[10px] font-bold text-slate-400">Pilihan A</label><input id="form-opt-0" type="text" class="w-full p-2 border rounded-lg text-xs sm:text-sm font-semibold"></div>
+              <div><label class="text-[10px] font-bold text-slate-400">Pilihan B</label><input id="form-opt-1" type="text" class="w-full p-2 border rounded-lg text-xs sm:text-sm font-semibold"></div>
+              <div><label class="text-[10px] font-bold text-slate-400">Pilihan C</label><input id="form-opt-2" type="text" class="w-full p-2 border rounded-lg text-xs sm:text-sm font-semibold"></div>
+              <div><label class="text-[10px] font-bold text-slate-400">Pilihan D</label><input id="form-opt-3" type="text" class="w-full p-2 border rounded-lg text-xs sm:text-sm font-semibold"></div>
             </div>
-            <div class="pt-1"><label class="text-[10px] font-bold text-slate-600 block mb-0.5">Kunci Jawaban Benar:</label><select id="form-correct-idx" class="w-full p-1.5 border rounded-xl text-xs font-bold bg-emerald-50 text-emerald-900 border-emerald-300"><option value="0">Pilihan A</option><option value="1">Pilihan B</option><option value="2">Pilihan C</option><option value="3">Pilihan D</option></select></div>
-            <div><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Tips Tata Bahasa</label><input id="form-q-tip" type="text" class="w-full p-2 border rounded-xl text-xs bg-slate-50"></div>
-            <button type="button" onclick="adminSaveQuestionForm()" class="w-full py-2.5 bg-emerald-600 text-white font-title text-xs font-bold rounded-xl shadow-xs">Simpan Perubahan Soal ✓</button>
+            <div class="pt-1"><label class="text-xs font-bold text-slate-600 block mb-1">Kunci Jawaban Benar:</label><select id="form-correct-idx" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold bg-emerald-50 text-emerald-900 border-emerald-300"><option value="0">Pilihan A</option><option value="1">Pilihan B</option><option value="2">Pilihan C</option><option value="3">Pilihan D</option></select></div>
+            <div><label class="text-xs font-bold text-slate-500 block mb-1">Tips Tata Bahasa</label><input id="form-q-tip" type="text" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm bg-slate-50"></div>
+            <button type="button" onclick="adminSaveQuestionForm()" class="w-full py-3 bg-emerald-600 text-white font-title text-sm font-bold rounded-xl shadow-xs">Simpan Perubahan Soal ✓</button>
           </div>
         </div>
 
         <!-- TAB 5: KUNCI LEVEL -->
         <div id="teacher-tab-locks" class="space-y-3 hidden">
-          <div class="space-y-2"><label class="text-xs font-bold text-slate-700 uppercase block">Pilih Bab:</label><select id="admin-lock-world-select" onchange="renderAdminLevelLocks()" class="w-full p-2 bg-white border-2 border-slate-200 rounded-xl font-bold text-xs"></select></div>
-          <div class="flex items-center justify-between p-2.5 bg-amber-50 border border-amber-200 rounded-xl"><div><span class="text-xs font-bold text-amber-900 block">Kunci Seluruh Bab Ini</span><span class="text-[10px] text-amber-700">Murid tidak bisa membuka bab ini</span></div><input type="checkbox" id="admin-world-lock-toggle" onchange="toggleWorldLock(this.checked)" class="w-5 h-5 accent-amber-500"></div>
-          <div><label class="text-xs font-bold text-slate-700 uppercase mb-1 block">Status Kunci Per Level (1–10):</label><div class="grid grid-cols-2 gap-2" id="admin-level-locks-grid"></div></div>
+          <div class="space-y-2"><label class="text-xs sm:text-sm font-bold text-slate-700 uppercase block">Pilih Bab:</label><select id="admin-lock-world-select" onchange="renderAdminLevelLocks()" class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl font-bold text-xs sm:text-sm"></select></div>
+          <div class="flex items-center justify-between p-3 bg-amber-50 border border-amber-200 rounded-xl"><div><span class="text-xs sm:text-sm font-bold text-amber-900 block">Kunci Seluruh Bab Ini</span><span class="text-[10px] sm:text-xs text-amber-700">Murid tidak bisa membuka bab ini</span></div><input type="checkbox" id="admin-world-lock-toggle" onchange="toggleWorldLock(this.checked)" class="w-6 h-6 accent-amber-500 cursor-pointer"></div>
+          <div><label class="text-xs sm:text-sm font-bold text-slate-700 uppercase mb-1.5 block">Status Kunci Per Level (1–10):</label><div class="grid grid-cols-2 sm:grid-cols-5 gap-2" id="admin-level-locks-grid"></div></div>
         </div>
 
         <!-- TAB 6: PENGELOLAAN UJIAN -->
         <div id="teacher-tab-exam" class="space-y-3 hidden">
-          <div class="bg-purple-50 border-2 border-purple-200 rounded-2xl p-3.5 space-y-2">
+          <div class="bg-purple-50 border-2 border-purple-200 rounded-2xl p-4 space-y-2.5">
             <div class="flex items-center justify-between">
               <div>
-                <strong class="font-title text-sm text-purple-900 block">⚡ Status Akses Ujian / Ulangan:</strong>
-                <span class="text-[10px] text-purple-700 font-semibold">Aktifkan saat sesi ulangan dimulai. Siswa hanya bisa mengerjakan 1x (tanpa batas waktu).</span>
+                <strong class="font-title text-sm sm:text-base text-purple-900 block">⚡ Status Akses Ujian / Ulangan:</strong>
+                <span class="text-xs text-purple-700 font-semibold">Aktifkan saat sesi ulangan dimulai. Siswa hanya bisa mengerjakan 1x (tanpa batas waktu).</span>
               </div>
               <input type="checkbox" id="admin-exam-active-toggle" onchange="toggleExamActive(this.checked)" class="w-6 h-6 accent-purple-600 cursor-pointer">
             </div>
           </div>
 
-          <div class="bg-white border-2 border-slate-200 rounded-2xl p-3 space-y-2">
+          <div class="bg-white border-2 border-slate-200 rounded-2xl p-4 space-y-3">
             <div class="flex items-center justify-between">
-              <span class="font-title text-xs font-bold text-slate-800">📝 Edit 10 Soal Ujian Dadakan:</span>
-              <select id="admin-exam-q-select" onchange="loadAdminExamQuestionForm(parseInt(this.value))" class="p-1 border rounded-lg text-xs font-bold bg-slate-50">
+              <span class="font-title text-xs sm:text-sm font-bold text-slate-800">📝 Edit 10 Soal Ujian Dadakan:</span>
+              <select id="admin-exam-q-select" onchange="loadAdminExamQuestionForm(parseInt(this.value))" class="p-1.5 border rounded-lg text-xs sm:text-sm font-bold bg-slate-50">
                 <option value="0">Soal 1</option><option value="1">Soal 2</option><option value="2">Soal 3</option><option value="3">Soal 4</option>
                 <option value="4">Soal 5</option><option value="5">Soal 6</option><option value="6">Soal 7</option><option value="7">Soal 8</option>
                 <option value="8">Soal 9</option><option value="9">Soal 10</option>
               </select>
             </div>
-            <div><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Teks Kalimat Soal ("________")</label><input id="form-exam-q-text" type="text" class="w-full p-2 border-2 rounded-xl text-xs font-bold"></div>
-            <div class="grid grid-cols-2 gap-1.5">
-              <div><label class="text-[9px] font-bold text-slate-400">Pilihan A</label><input id="form-exam-opt-0" type="text" class="w-full p-1.5 border rounded-lg text-xs font-semibold"></div>
-              <div><label class="text-[9px] font-bold text-slate-400">Pilihan B</label><input id="form-exam-opt-1" type="text" class="w-full p-1.5 border rounded-lg text-xs font-semibold"></div>
-              <div><label class="text-[9px] font-bold text-slate-400">Pilihan C</label><input id="form-exam-opt-2" type="text" class="w-full p-1.5 border rounded-lg text-xs font-semibold"></div>
-              <div><label class="text-[9px] font-bold text-slate-400">Pilihan D</label><input id="form-exam-opt-3" type="text" class="w-full p-1.5 border rounded-lg text-xs font-semibold"></div>
+            <div><label class="text-xs font-bold text-slate-500 block mb-1">Teks Kalimat Soal ("________")</label><input id="form-exam-q-text" type="text" class="w-full p-2.5 border-2 rounded-xl text-xs sm:text-sm font-bold"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <div><label class="text-[10px] font-bold text-slate-400">Pilihan A</label><input id="form-exam-opt-0" type="text" class="w-full p-2 border rounded-lg text-xs sm:text-sm font-semibold"></div>
+              <div><label class="text-[10px] font-bold text-slate-400">Pilihan B</label><input id="form-exam-opt-1" type="text" class="w-full p-2 border rounded-lg text-xs sm:text-sm font-semibold"></div>
+              <div><label class="text-[10px] font-bold text-slate-400">Pilihan C</label><input id="form-exam-opt-2" type="text" class="w-full p-2 border rounded-lg text-xs sm:text-sm font-semibold"></div>
+              <div><label class="text-[10px] font-bold text-slate-400">Pilihan D</label><input id="form-exam-opt-3" type="text" class="w-full p-2 border rounded-lg text-xs sm:text-sm font-semibold"></div>
             </div>
-            <div class="pt-1"><label class="text-[10px] font-bold text-slate-600 block mb-0.5">Kunci Jawaban Benar:</label><select id="form-exam-correct-idx" class="w-full p-1.5 border rounded-xl text-xs font-bold bg-purple-50 text-purple-900 border-purple-300"><option value="0">Pilihan A</option><option value="1">Pilihan B</option><option value="2">Pilihan C</option><option value="3">Pilihan D</option></select></div>
-            <div><label class="text-[10px] font-bold text-slate-500 block mb-0.5">Tips Tata Bahasa Ujian</label><input id="form-exam-tip" type="text" class="w-full p-2 border rounded-xl text-xs bg-slate-50"></div>
-            <button type="button" onclick="adminSaveExamQuestionForm()" class="w-full py-2 bg-purple-600 text-white font-title text-xs font-bold rounded-xl shadow-xs">Simpan Soal Ujian ✓</button>
+            <div class="pt-1"><label class="text-xs font-bold text-slate-600 block mb-1">Kunci Jawaban Benar:</label><select id="form-exam-correct-idx" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm font-bold bg-purple-50 text-purple-900 border-purple-300"><option value="0">Pilihan A</option><option value="1">Pilihan B</option><option value="2">Pilihan C</option><option value="3">Pilihan D</option></select></div>
+            <div><label class="text-xs font-bold text-slate-500 block mb-1">Tips Tata Bahasa Ujian</label><input id="form-exam-tip" type="text" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm bg-slate-50"></div>
+            <button type="button" onclick="adminSaveExamQuestionForm()" class="w-full py-3 bg-purple-600 text-white font-title text-sm font-bold rounded-xl shadow-xs">Simpan Soal Ujian ✓</button>
           </div>
         </div>
 
         <!-- TAB 7: BUKU NILAI -->
         <div id="teacher-tab-scores" class="space-y-3 hidden">
-          <div class="flex items-center justify-between"><span class="text-xs font-bold text-slate-700">Rekap Nilai & Api Kehadiran:</span><span class="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded">Tersimpan Permanen</span></div>
-          <div class="border border-slate-200 rounded-2xl overflow-hidden max-h-64 overflow-y-auto custom-scroll bg-white shadow-xs">
-            <table class="w-full text-[11px] text-left">
+          <div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-bold text-slate-700">Rekap Nilai & Api Kehadiran:</span><span class="text-[10px] sm:text-xs text-emerald-700 font-bold bg-emerald-100 px-2.5 py-0.5 rounded">Tersimpan Permanen</span></div>
+          <div class="border border-slate-200 rounded-2xl overflow-hidden max-h-80 overflow-y-auto custom-scroll bg-white shadow-xs">
+            <table class="w-full text-xs sm:text-sm text-left">
               <thead class="bg-slate-100 text-slate-600 font-bold border-b">
-                <tr><th class="p-2">No.</th><th class="p-2">Nama</th><th class="p-2">Kelas</th><th class="p-2">Api 🔥</th><th class="p-2">Skor</th><th class="p-2">Ujian</th><th class="p-2 text-center">Aksi</th></tr>
+                <tr><th class="p-2.5">No.</th><th class="p-2.5">Nama</th><th class="p-2.5">Kelas</th><th class="p-2.5">Api 🔥</th><th class="p-2.5">Skor</th><th class="p-2.5">Ujian</th><th class="p-2.5 text-center">Aksi</th></tr>
               </thead>
               <tbody id="admin-scorebook-tbody" class="divide-y divide-slate-100 font-semibold text-slate-700"></tbody>
             </table>
@@ -798,41 +795,38 @@
         </div>
       </div>
     </main>
-    <!-- MODAL: KTP SISWA RESMI (BOLAK-BALIK DENGAN WATERMARK 80% & NO HP ANDA) -->
+    <!-- MODAL: KTP SISWA RESMI -->
     <div id="modal-student-ktp" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex flex-col items-center justify-center p-3 overflow-y-auto">
       
-      <div class="modal-ktp-box w-full max-w-lg bg-sunNavy-950/95 border border-sunGold-500/40 rounded-3xl p-4 shadow-2xl flex flex-col items-center gap-3 text-center">
+      <div class="modal-ktp-box w-full max-w-lg bg-sunNavy-950/95 border border-sunGold-500/40 rounded-3xl p-4 sm:p-6 shadow-2xl flex flex-col items-center gap-3 text-center">
         
-        <div class="w-full flex items-center justify-between border-b border-sunGold-500/20 pb-2 no-print">
+        <div class="w-full flex items-center justify-between border-b border-sunGold-500/20 pb-2.5 no-print">
           <div class="flex items-center gap-2">
             <span class="text-xl">🪪</span>
             <div class="text-left">
-              <h3 class="font-display font-black text-sm text-white leading-tight">Official Student Smart ID Card</h3>
-              <p class="text-[10px] text-sunGold-300">Sunshine English Academy &bull; Mr. Agung's Class</p>
+              <h3 class="font-display font-black text-xs sm:text-sm text-white leading-tight">Official Student Smart ID Card</h3>
+              <p class="text-[9px] sm:text-[10px] text-sunGold-300">Sunshine English Academy &bull; Mr. Agung's Class</p>
             </div>
           </div>
           <div class="flex items-center gap-1.5">
-            <!-- Tombol Balik Kartu -->
-            <button type="button" onclick="toggleStudentKtpSide()" id="btn-toggle-ktp-flip" class="px-2.5 py-1 bg-amber-400 text-sunNavy-950 rounded-xl font-display text-[10px] font-black shadow-xs active:scale-95 transition flex items-center gap-1">
+            <button type="button" onclick="toggleStudentKtpSide()" id="btn-toggle-ktp-flip" class="px-3 py-1.5 bg-amber-400 text-sunNavy-950 rounded-xl font-display text-xs font-black shadow-xs active:scale-95 transition flex items-center gap-1">
               <span>🔄</span><span id="ktp-flip-btn-label">Lihat Belakang</span>
             </button>
-            <button onclick="closeStudentKtpModal()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center transition">✕</button>
+            <button onclick="closeStudentKtpModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center transition">✕</button>
           </div>
         </div>
 
-        <!-- INPUT TERSEMBUNYI UNTUK GANTI WATERMARK BELAKANG DARI MODAL KTP -->
         <input type="file" id="ktp-modal-back-logo-input" accept="image/*" class="hidden" onchange="uploadGlobalBackLogoFile(event)">
 
         <!-- KONTEN KARTU KTP (CR-80: 450px x 282px) -->
         <div class="ktp-scale-container my-1">
           
-          <!-- SISI 1: TAMPAK DEPAN (PRESISI TANPA CACAT) -->
+          <!-- SISI 1: TAMPAK DEPAN -->
           <div id="ktp-card-front-view" class="id-card-frame rounded-3xl shadow-card-vip gold-foil-border overflow-hidden text-white flex flex-col justify-between relative bg-gradient-to-br from-sunNavy-900 via-sunNavy-850 to-sunNavy-950 text-left">
             
             <div class="absolute inset-0 security-guilloche opacity-70 pointer-events-none"></div>
             <div class="absolute inset-0 gold-holographic-ribbon pointer-events-none"></div>
 
-            <!-- HEADER DEPAN -->
             <div class="relative z-10 px-4 pt-3 pb-2 flex items-center justify-between border-b border-sunGold-500/30 bg-sunNavy-950/60 backdrop-blur-xs">
               <div class="flex items-center gap-2.5">
                 <div class="w-11 h-11 rounded-xl bg-white p-0.5 shadow-md border-2 border-sunGold-400/80 flex items-center justify-center shrink-0 overflow-hidden">
@@ -856,10 +850,7 @@
               </div>
             </div>
 
-            <!-- BODY DEPAN (DIATUR ULANG PRESISI AGAR NAMA TIDAK TURUN) -->
             <div class="relative z-10 px-4 py-2 flex items-center justify-between gap-3 flex-1">
-              
-              <!-- Kiri: Foto Siswa 3x4 + Chip EMV -->
               <div class="flex flex-col items-center justify-center gap-1.5 w-24 shrink-0">
                 <div class="relative group cursor-pointer" onclick="triggerStudentPhotoUpload()" title="Klik untuk ganti foto murid">
                   <div class="w-20 h-24 rounded-xl bg-slate-800 border-2 border-sunGold-400/80 shadow-md overflow-hidden relative">
@@ -877,7 +868,6 @@
                 </div>
               </div>
 
-              <!-- Tengah: Identitas & Akun Web App (Posisi nama di-fix agar tepat di bawah label) -->
               <div class="flex-1 flex flex-col justify-center space-y-1 text-left pl-1">
                 <div class="flex items-center justify-between">
                   <span class="text-[7.5px] uppercase tracking-wider text-slate-300 font-extrabold">Student Name</span>
@@ -914,7 +904,6 @@
                 </div>
               </div>
 
-              <!-- Kanan: QR Code Absensi Tajam Presisi 80px x 80px -->
               <div class="shrink-0 flex flex-col items-center justify-center pl-1 w-24">
                 <div class="p-1 bg-white rounded-2xl shadow-xl border-2 border-sunGold-400 flex items-center justify-center">
                   <img id="ktp-qr-code-img" src="" alt="QR Absensi" class="w-20 h-20 rounded-lg object-contain block">
@@ -924,10 +913,8 @@
                   <span class="text-[7.5px] font-extrabold uppercase tracking-wider font-display block">SCAN ABSEN</span>
                 </div>
               </div>
-
             </div>
 
-            <!-- FOOTER DEPAN -->
             <div class="relative z-10 px-4 py-1.5 bg-sunNavy-950/90 border-t border-sunGold-500/30 flex items-center justify-between text-[8px]">
               <span class="font-code text-slate-400 tracking-wider">SEC-2026-REG</span>
               <div class="flex items-center gap-1 text-sunGold-300 font-display font-black tracking-wide italic">
@@ -938,27 +925,22 @@
 
           </div>
 
-          <!-- SISI 2: TAMPAK BELAKANG (DENGAN WATERMARK 80% & NO HP ANDA 085759420950) -->
+          <!-- SISI 2: TAMPAK BELAKANG -->
           <div id="ktp-card-back-view" class="id-card-frame rounded-3xl shadow-card-vip gold-foil-border overflow-hidden text-white flex flex-col justify-between hidden relative bg-gradient-to-br from-sunNavy-950 via-sunNavy-900 to-sunNavy-850 text-left">
             
             <div class="absolute inset-0 security-guilloche opacity-50 pointer-events-none"></div>
 
-            <!-- LOGO WATERMARK MEMANJANG LATAR BELAKANG - OPACITY 80% (0.80) & TATA LETAK PRESISI -->
             <div class="absolute inset-0 flex items-center justify-center p-4 watermark-silhouette">
               <img class="app-global-back-logo w-full max-h-32 object-contain filter drop-shadow-md" src="https://placehold.co/400x160/ffffff/0b1b36?text=SUNSHINE+ENGLISH+ACADEMY" alt="Watermark Belakang">
             </div>
 
-            <!-- PITA MAGNETIK HITAM ATAS -->
             <div class="relative z-10 w-full h-7 bg-black/90 mt-2 border-y border-sunGold-500/20 flex items-center px-4">
               <span class="text-[6.5px] font-code text-sunGold-300/70 tracking-widest">
                 MR. AGUNG'S CLASS &bull; SUNSHINE ENGLISH ACADEMY &bull; STUDENT SMART ID CR-80
               </span>
             </div>
 
-            <!-- KONTEN UTAMA BELAKANG (DIPERBAIKI AGAR PRESISI & TIDAK BERTUMPUK) -->
             <div class="relative z-10 px-4 py-1 flex items-center justify-between gap-2.5 flex-1">
-              
-              <!-- Sisi Kiri: Ketentuan & No HP 085759420950 -->
               <div class="flex-1 space-y-1">
                 <span class="text-[8px] font-display font-extrabold text-sunGold-300 uppercase tracking-wider block">
                   Ketentuan Pemegang Kartu:
@@ -976,7 +958,6 @@
                 </div>
               </div>
 
-              <!-- Sisi Kanan: Barcode Digital & Tanda Tangan Verifikasi -->
               <div class="w-32 shrink-0 flex flex-col items-center justify-center text-center space-y-1">
                 <div class="bg-white p-1 rounded-md border border-sunGold-400 shadow-xs flex flex-col items-center">
                   <div class="flex items-end h-6 gap-0.5 px-0.5">
@@ -1001,7 +982,6 @@
 
             </div>
 
-            <!-- FOOTER BELAKANG -->
             <div class="relative z-10 px-4 py-1.5 bg-sunNavy-950/90 border-t border-sunGold-500/30 flex items-center justify-between text-[7.5px]">
               <div class="flex items-center gap-1.5">
                 <div class="w-4 h-4 rounded bg-white p-0.5 shrink-0">
@@ -1017,21 +997,20 @@
 
         </div>
 
-        <!-- TOMBOL AKSI MODAL KTP -->
         <div class="w-full flex flex-wrap items-center justify-center gap-2 pt-2 border-t border-sunGold-500/20 no-print">
-          <button type="button" onclick="downloadStudentKtpSidePng('front')" class="py-2 px-3 bg-gradient-to-r from-amber-400 via-sunGold-400 to-amber-500 text-sunNavy-950 font-display text-xs font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1">
+          <button type="button" onclick="downloadStudentKtpSidePng('front')" class="py-2.5 px-3.5 bg-gradient-to-r from-amber-400 via-sunGold-400 to-amber-500 text-sunNavy-950 font-display text-xs sm:text-sm font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1.5">
             <span>📥 Unduh Depan (PNG HD)</span>
           </button>
-          <button type="button" onclick="downloadStudentKtpSidePng('back')" class="py-2 px-3 bg-gradient-to-r from-amber-500 to-orange-500 text-sunNavy-950 font-display text-xs font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1">
+          <button type="button" onclick="downloadStudentKtpSidePng('back')" class="py-2.5 px-3.5 bg-gradient-to-r from-amber-500 to-orange-500 text-sunNavy-950 font-display text-xs sm:text-sm font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1.5">
             <span>📥 Unduh Belakang (PNG HD)</span>
           </button>
-          <button type="button" onclick="printSingleStudentKtp()" class="py-2 px-3 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-display text-xs font-bold rounded-xl shadow-md active:scale-95 transition flex items-center gap-1">
+          <button type="button" onclick="printSingleStudentKtp()" class="py-2.5 px-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-display text-xs sm:text-sm font-bold rounded-xl shadow-md active:scale-95 transition flex items-center gap-1.5">
             <span>🖨️ Cetak / Simpan PDF</span>
           </button>
-          <button type="button" onclick="document.getElementById('ktp-modal-back-logo-input').click()" class="py-2 px-2.5 bg-sunNavy-800 hover:bg-sunNavy-700 text-sunGold-300 border border-sunGold-400/40 font-display text-xs font-bold rounded-xl active:scale-95 transition flex items-center gap-1" title="Pilih gambar logo memanjang untuk background belakang kartu">
+          <button type="button" onclick="document.getElementById('ktp-modal-back-logo-input').click()" class="py-2.5 px-3 bg-sunNavy-800 hover:bg-sunNavy-700 text-sunGold-300 border border-sunGold-400/40 font-display text-xs sm:text-sm font-bold rounded-xl active:scale-95 transition flex items-center gap-1.5">
             <span>🖼️ Ganti Background Belakang</span>
           </button>
-          <button type="button" onclick="closeStudentKtpModal()" class="px-3 py-2 bg-slate-800 text-slate-300 font-display text-xs font-bold rounded-xl hover:bg-slate-700 transition">
+          <button type="button" onclick="closeStudentKtpModal()" class="px-4 py-2.5 bg-slate-800 text-slate-300 font-display text-xs sm:text-sm font-bold rounded-xl hover:bg-slate-700 transition">
             Tutup
           </button>
         </div>
@@ -1569,38 +1548,38 @@
       var studentExamScore = gameState.examScore;
 
       var examCard = document.createElement("div");
-      examCard.className = "w-full rounded-3xl p-3.5 border-2 transition " + 
+      examCard.className = "w-full rounded-3xl p-4 border-2 transition " + 
         (hasTakenExam ? "bg-emerald-50/80 border-emerald-300" : (isExamOpen ? "bg-gradient-to-r from-purple-50 to-indigo-50 border-purple-300 shadow-sm" : "bg-slate-100 border-slate-300 opacity-80"));
 
       var examStatusBadge = "";
       if (hasTakenExam) {
-        examStatusBadge = '<span class="text-[9px] bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded-md font-bold">✓ Sudah Dikerjakan (Nilai: ' + studentExamScore + ')</span>';
+        examStatusBadge = '<span class="text-[10px] bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded-md font-bold">✓ Sudah Dikerjakan (Nilai: ' + studentExamScore + ')</span>';
       } else if (isExamOpen) {
-        examStatusBadge = '<span class="text-[9px] bg-purple-200 text-purple-900 px-2 py-0.5 rounded-md font-bold animate-pulse">● Ujian Dibuka Guru (1x Coba)</span>';
+        examStatusBadge = '<span class="text-[10px] bg-purple-200 text-purple-900 px-2 py-0.5 rounded-md font-bold animate-pulse">● Ujian Dibuka Guru (1x Coba)</span>';
       } else {
-        examStatusBadge = '<span class="text-[9px] bg-slate-200 text-slate-600 px-2 py-0.5 rounded-md font-bold">🔒 Ujian Dikunci Guru</span>';
+        examStatusBadge = '<span class="text-[10px] bg-slate-200 text-slate-600 px-2 py-0.5 rounded-md font-bold">🔒 Ujian Dikunci Guru</span>';
       }
 
       var examButtonHtml = "";
       if (hasTakenExam) {
-        examButtonHtml = '<button type="button" class="px-3 py-1.5 bg-slate-200 text-slate-500 font-title text-xs font-bold rounded-xl cursor-not-allowed">Tuntas ✓</button>';
+        examButtonHtml = '<button type="button" class="px-3.5 py-2 bg-slate-200 text-slate-500 font-title text-xs sm:text-sm font-bold rounded-xl cursor-not-allowed">Tuntas ✓</button>';
       } else if (isExamOpen) {
-        examButtonHtml = '<button onclick="startExamSession()" class="px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-title text-xs font-bold rounded-xl shadow-xs active:scale-95 transition">Mulai ⚡</button>';
+        examButtonHtml = '<button onclick="startExamSession()" class="px-3.5 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-title text-xs sm:text-sm font-bold rounded-xl shadow-xs active:scale-95 transition">Mulai ⚡</button>';
       } else {
         examButtonHtml = '<span class="text-xl opacity-60">🔒</span>';
       }
 
       examCard.innerHTML = 
         '<div class="flex items-center justify-between">' +
-          '<div class="flex items-center gap-3">' +
-            '<div class="w-12 h-12 rounded-2xl ' + (hasTakenExam ? 'bg-emerald-600' : 'bg-gradient-to-br from-purple-600 to-indigo-700') + ' flex items-center justify-center text-2xl text-white shadow-xs">⚡</div>' +
+          '<div class="flex items-center gap-3.5">' +
+            '<div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl ' + (hasTakenExam ? 'bg-emerald-600' : 'bg-gradient-to-br from-purple-600 to-indigo-700') + ' flex items-center justify-center text-2xl text-white shadow-xs">⚡</div>' +
             '<div>' +
-              '<div class="flex items-center gap-1.5">' +
+              '<div class="flex items-center gap-1.5 mb-0.5">' +
                 '<span class="text-[10px] font-bold px-2 py-0.5 rounded-md ' + (hasTakenExam ? 'bg-emerald-100 text-emerald-800' : 'bg-purple-100 text-purple-800') + '">ULANGAN BAB</span>' +
                 examStatusBadge +
               '</div>' +
-              '<h3 class="font-title text-base font-bold text-slate-800">Quiz / Ulangan Bab</h3>' +
-              '<p class="text-[11px] text-slate-500 mt-0.5">Ujian dadakan resmi dari Mr. Agung (Hanya 1x Coba)</p>' +
+              '<h3 class="font-title text-base sm:text-lg font-bold text-slate-800">Quiz / Ulangan Bab</h3>' +
+              '<p class="text-xs text-slate-500 mt-0.5">Ujian dadakan resmi dari Mr. Agung (Hanya 1x Coba)</p>' +
             '</div>' +
           '</div>' +
           '<div>' + examButtonHtml + '</div>' +
@@ -1620,8 +1599,8 @@
         for (var k = 0; k < arr.length; k++) stars += (Number(arr[k]) || 0);
 
         var card = document.createElement("div");
-        card.className = "w-full rounded-3xl p-3.5 border-2 transition cursor-pointer " + (isLocked ? "bg-slate-100 border-slate-300 opacity-80" : "bg-white border-sky-200");
-        card.innerHTML = '<div class="flex items-center justify-between"><div class="flex items-center gap-3"><div class="w-12 h-12 rounded-2xl bg-gradient-to-br ' + (w.color || "from-sky-500 to-blue-600") + ' flex items-center justify-center text-2xl text-white shadow-xs">' + (w.subjectIcon || "📘") + '</div><div><div class="flex items-center gap-1.5"><span class="text-[10px] font-bold px-2 py-0.5 rounded-md ' + (isLocked ? 'bg-slate-300' : 'bg-sky-100 text-sky-800') + '">' + w.tag + '</span><h3 class="font-title text-base font-bold text-slate-800">' + w.name + '</h3></div><p class="text-[11px] text-slate-500 mt-0.5 truncate">' + (w.desc || "") + '</p><div class="text-[11px] font-bold text-amber-600 mt-1">⭐ ' + stars + ' / 30 Bintang</div></div></div><div>' + (isLocked ? '🔒' : '<span class="text-sky-600 font-bold text-lg">➔</span>') + '</div></div>';
+        card.className = "w-full rounded-3xl p-4 border-2 transition cursor-pointer " + (isLocked ? "bg-slate-100 border-slate-300 opacity-80" : "bg-white border-sky-200");
+        card.innerHTML = '<div class="flex items-center justify-between"><div class="flex items-center gap-3.5"><div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br ' + (w.color || "from-sky-500 to-blue-600") + ' flex items-center justify-center text-2xl text-white shadow-xs">' + (w.subjectIcon || "📘") + '</div><div><div class="flex items-center gap-1.5 mb-0.5"><span class="text-[10px] font-bold px-2 py-0.5 rounded-md ' + (isLocked ? 'bg-slate-300' : 'bg-sky-100 text-sky-800') + '">' + w.tag + '</span><h3 class="font-title text-base sm:text-lg font-bold text-slate-800">' + w.name + '</h3></div><p class="text-xs text-slate-500 mt-0.5 truncate">' + (w.desc || "") + '</p><div class="text-xs font-bold text-amber-600 mt-1">⭐ ' + stars + ' / 30 Bintang</div></div></div><div>' + (isLocked ? '🔒' : '<span class="text-sky-600 font-bold text-xl">➔</span>') + '</div></div>';
         
         card.onclick = (function(idx, locked) {
           return function() {
@@ -1711,9 +1690,9 @@
 
         if (isSelected) {
           var mascotBalloon = document.createElement("div");
-          mascotBalloon.className = "absolute -top-11 z-20 flex flex-col items-center animate-bounce";
-          mascotBalloon.innerHTML = '<div class="bg-amber-400 text-amber-950 font-title text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md border border-amber-200 whitespace-nowrap">Ayo, ' + (gameState.studentName ? gameState.studentName.split(" ")[0] : "Kamu") + '! 🚀</div>' +
-            '<div class="text-2xl -mt-1 filter drop-shadow">' + (gameState.avatar || "🦎") + '</div>';
+          mascotBalloon.className = "absolute -top-12 z-20 flex flex-col items-center animate-bounce";
+          mascotBalloon.innerHTML = '<div class="bg-amber-400 text-amber-950 font-title text-xs font-bold px-2.5 py-0.5 rounded-full shadow-md border border-amber-200 whitespace-nowrap">Ayo, ' + (gameState.studentName ? gameState.studentName.split(" ")[0] : "Kamu") + '! 🚀</div>' +
+            '<div class="text-3xl -mt-1 filter drop-shadow">' + (gameState.avatar || "🦎") + '</div>';
           nodeWrapper.appendChild(mascotBalloon);
         }
 
@@ -1731,23 +1710,23 @@
           nodeBg = "bg-gradient-to-b from-sky-400 to-blue-600 border-2 border-blue-700 text-white shadow-bouncy-node cursor-pointer";
         }
 
-        var nodeSize = isBossLevel ? "w-16 h-16 text-xl" : "w-14 h-14 text-base";
+        var nodeSize = isBossLevel ? "w-18 h-18 text-2xl" : "w-14 h-14 sm:w-16 sm:h-16 text-lg";
         nodeCircle.className = nodeSize + " rounded-3xl flex items-center justify-center font-title font-bold transition-all active:scale-90 " + nodeBg + " " + ringClass;
 
-        if (isLocked) nodeCircle.innerHTML = '<span class="text-lg">🔒</span>';
-        else if (isBossLevel) nodeCircle.innerHTML = st > 0 ? '<span class="text-2xl">🏆</span>' : '<span class="text-2xl">🏰</span>';
+        if (isLocked) nodeCircle.innerHTML = '<span class="text-xl">🔒</span>';
+        else if (isBossLevel) nodeCircle.innerHTML = st > 0 ? '<span class="text-3xl">🏆</span>' : '<span class="text-3xl">🏰</span>';
         else nodeCircle.innerHTML = '<span>' + (i + 1) + '</span>';
 
         var starRow = document.createElement("div");
-        starRow.className = "flex items-center gap-0.5 mt-1 bg-white/90 px-2 py-0.5 rounded-full border border-slate-200 shadow-2xs";
+        starRow.className = "flex items-center gap-0.5 mt-1 bg-white/90 px-2.5 py-0.5 rounded-full border border-slate-200 shadow-2xs";
         var sHtml = "";
         for (var starIdx = 0; starIdx < 3; starIdx++) {
-          sHtml += (starIdx < st) ? '<span class="text-xs text-amber-400">★</span>' : '<span class="text-xs text-slate-300">★</span>';
+          sHtml += (starIdx < st) ? '<span class="text-sm text-amber-400">★</span>' : '<span class="text-sm text-slate-300">★</span>';
         }
         starRow.innerHTML = sHtml;
 
         var themeLabel = document.createElement("span");
-        themeLabel.className = "text-[10px] font-bold text-slate-700 max-w-[120px] truncate text-center mt-0.5 " + (isSelected ? "text-sky-900 font-extrabold" : "");
+        themeLabel.className = "text-xs font-bold text-slate-700 max-w-[130px] truncate text-center mt-1 " + (isSelected ? "text-sky-900 font-extrabold" : "");
         themeLabel.innerText = isBossLevel ? "🏆 Final Boss" : themeName;
 
         nodeWrapper.appendChild(nodeCircle);
@@ -1756,11 +1735,11 @@
 
         if (isSelected && !isLocked) {
           var launchBox = document.createElement("div");
-          launchBox.className = "mt-2 z-30 flex flex-col items-center animate-pop-in";
+          launchBox.className = "mt-2.5 z-30 flex flex-col items-center animate-pop-in";
           launchBox.innerHTML = 
             '<div class="w-0 h-0 border-x-6 border-x-transparent border-b-6 border-b-emerald-600 -mb-0.5"></div>' +
-            '<button onclick="launchSelectedLevel()" class="px-5 py-2.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-xs font-bold rounded-2xl shadow-bouncy-btn active:translate-y-1 transition flex items-center gap-1.5 whitespace-nowrap ring-2 ring-white">' +
-              '<span>Mulai Level ' + (i + 1) + '</span><span class="text-sm">▶</span>' +
+            '<button onclick="launchSelectedLevel()" class="px-5 py-3 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-sm sm:text-base font-bold rounded-2xl shadow-bouncy-btn active:translate-y-1 transition flex items-center gap-2 whitespace-nowrap ring-2 ring-white">' +
+              '<span>Mulai Level ' + (i + 1) + '</span><span class="text-base">▶</span>' +
             '</button>';
           nodeWrapper.appendChild(launchBox);
         }
@@ -1779,8 +1758,8 @@
 
         if (i < 9) {
           var stepConnector = document.createElement("div");
-          stepConnector.className = "w-full flex justify-center -my-1 opacity-50 pointer-events-none";
-          stepConnector.innerHTML = '<div class="h-5 w-1 border-r-2 border-dashed border-sky-400"></div>';
+          stepConnector.className = "w-full flex justify-center -my-1.5 opacity-50 pointer-events-none";
+          stepConnector.innerHTML = '<div class="h-6 w-1 border-r-2 border-dashed border-sky-400"></div>';
           container.appendChild(stepConnector);
         }
       }
@@ -1862,7 +1841,7 @@
       for (var i = 0; i < q.options.length; i++) {
         var btn = document.createElement("button");
         btn.type = "button";
-        btn.className = "option-btn p-3 bg-slate-50 border-2 border-slate-200 rounded-2xl font-title text-sm font-bold text-slate-800 text-center transition active:scale-95";
+        btn.className = "option-btn p-3.5 sm:p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-title text-sm sm:text-base font-bold text-slate-800 text-center transition active:scale-95";
         btn.innerText = q.options[i];
         btn.onclick = (function(idx, el) {
           return function() {
@@ -1879,7 +1858,7 @@
       document.getElementById("answer-feedback-banner").classList.add("hidden");
       var checkBtn = document.getElementById("btn-check-or-next");
       checkBtn.innerText = "Periksa ✓";
-      checkBtn.className = "flex-1 py-3 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base font-bold rounded-xl text-center";
+      checkBtn.className = "flex-1 py-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base sm:text-lg font-bold rounded-xl text-center";
     }
 
     function checkOrNextQuestion() {
@@ -1910,15 +1889,15 @@
         gameState.sessionScore += 10;
         gameState.correctCount++;
         playSfx("correct");
-        btns[gameState.selectedOptionIdx].className = "option-btn p-3 bg-emerald-100 border-2 border-emerald-500 rounded-2xl font-title text-sm font-bold text-emerald-900 text-center";
-        banner.className = "mt-3 p-3 rounded-2xl border-2 bg-emerald-50 border-emerald-300 block";
+        btns[gameState.selectedOptionIdx].className = "option-btn p-3.5 sm:p-4 bg-emerald-100 border-2 border-emerald-500 rounded-2xl font-title text-sm sm:text-base font-bold text-emerald-900 text-center";
+        banner.className = "mt-4 p-4 rounded-2xl border-2 bg-emerald-50 border-emerald-300 block";
         document.getElementById("feedback-title").innerText = "Benar Sekali! 🎉";
       } else {
         gameState.wrongCount++;
         playSfx("wrong");
-        btns[gameState.selectedOptionIdx].className = "option-btn p-3 bg-rose-100 border-2 border-rose-400 rounded-2xl font-title text-sm font-bold text-rose-900 text-center";
-        btns[q.answer].className = "option-btn p-3 bg-emerald-50 border-2 border-emerald-400 rounded-2xl font-title text-sm font-bold text-emerald-800 text-center";
-        banner.className = "mt-3 p-3 rounded-2xl border-2 bg-rose-50 border-rose-300 block";
+        btns[gameState.selectedOptionIdx].className = "option-btn p-3.5 sm:p-4 bg-rose-100 border-2 border-rose-400 rounded-2xl font-title text-sm sm:text-base font-bold text-rose-900 text-center";
+        btns[q.answer].className = "option-btn p-3.5 sm:p-4 bg-emerald-50 border-2 border-emerald-400 rounded-2xl font-title text-sm sm:text-base font-bold text-emerald-800 text-center";
+        banner.className = "mt-4 p-4 rounded-2xl border-2 bg-rose-50 border-rose-300 block";
         document.getElementById("feedback-title").innerText = "Hampir Tepat!";
       }
 
@@ -1927,7 +1906,7 @@
       document.getElementById("game-score-val").innerText = gameState.sessionScore;
 
       checkBtn.innerText = (gameState.currentQuestionIdx < 9) ? "Lanjut ➔" : "Lihat Hasil ➔";
-      checkBtn.className = "flex-1 py-3 bg-blue-600 text-white font-title text-base font-bold rounded-xl text-center";
+      checkBtn.className = "flex-1 py-3.5 bg-blue-600 text-white font-title text-base sm:text-lg font-bold rounded-xl text-center";
     }
 
     function playQuestionSpeech() {
@@ -1950,7 +1929,7 @@
 
         var examStars = score >= 80 ? 3 : (score >= 60 ? 2 : 1);
         var sHtmlExam = "";
-        for (var es = 0; es < 3; es++) sHtmlExam += (es < examStars) ? '<span class="text-5xl animate-bounce">⚡</span>' : '<span class="text-5xl opacity-40">⚡</span>';
+        for (var es = 0; es < 3; es++) sHtmlExam += (es < examStars) ? '<span class="text-5xl sm:text-6xl animate-bounce">⚡</span>' : '<span class="text-5xl sm:text-6xl opacity-40">⚡</span>';
         document.getElementById("result-stars-box").innerHTML = sHtmlExam;
 
         var retryBtn = document.getElementById("btn-result-retry");
@@ -1999,7 +1978,7 @@
       document.getElementById("result-wrong-count").innerText = gameState.wrongCount;
 
       var sHtml = "";
-      for (var i = 0; i < 3; i++) sHtml += (i < stars) ? '<span class="text-5xl animate-bounce">⭐</span>' : '<span class="text-5xl opacity-40">⭐</span>';
+      for (var i = 0; i < 3; i++) sHtml += (i < stars) ? '<span class="text-5xl sm:text-6xl animate-bounce">⭐</span>' : '<span class="text-5xl sm:text-6xl opacity-40">⭐</span>';
       document.getElementById("result-stars-box").innerHTML = sHtml;
 
       if (stars >= 2 && typeof confetti === "function") confetti({ particleCount: 60, spread: 70, origin: { y: 0.6 } });
@@ -2016,12 +1995,12 @@
         var el = document.getElementById("teacher-tab-" + tabs[i]);
         if (el) el.classList.add("hidden");
         var btn = document.getElementById("tab-btn-" + tabs[i]);
-        if (btn) btn.className = "flex-1 py-1.5 px-2 rounded-xl text-slate-600 whitespace-nowrap";
+        if (btn) btn.className = "py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap";
       }
       var aEl = document.getElementById("teacher-tab-" + t);
       if (aEl) aEl.classList.remove("hidden");
       var aBtn = document.getElementById("tab-btn-" + t);
-      if (aBtn) aBtn.className = "flex-1 py-1.5 px-2 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap";
+      if (aBtn) aBtn.className = "py-2 px-3 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap";
 
       if (t !== "attendance") stopQrScannerCamera();
 
@@ -2044,31 +2023,31 @@
       for (var i = 0; i < studentRoster.length; i++) {
         var s = studentRoster[i];
         var item = document.createElement("div");
-        item.className = "p-2.5 border-b border-slate-100 flex items-center justify-between hover:bg-slate-50 text-xs";
+        item.className = "p-3 border-b border-slate-100 flex items-center justify-between hover:bg-slate-50 text-xs sm:text-sm";
         
         var leftDiv = document.createElement("div");
-        leftDiv.className = "flex items-center gap-2";
-        leftDiv.innerHTML = '<span class="text-xl">' + (s.avatar || "🦎") + '</span>' +
+        leftDiv.className = "flex items-center gap-2.5";
+        leftDiv.innerHTML = '<span class="text-2xl">' + (s.avatar || "🦎") + '</span>' +
           '<div>' +
-            '<div class="flex items-center gap-1.5"><strong class="text-slate-800">' + s.name + '</strong><span class="text-[9px] bg-slate-200 text-slate-700 px-1 py-0.2 rounded font-mono">#' + s.id + '</span></div>' +
-            '<div class="text-[10px] text-slate-500">User: <span class="text-sky-700 font-mono font-bold">' + s.username + '</span> | Pass: <span class="font-mono font-bold text-amber-700">' + (s.password || "123") + '</span> | <span class="text-emerald-700 font-bold">' + s.grade + '</span></div>' +
+            '<div class="flex items-center gap-2"><strong class="text-slate-800 text-sm sm:text-base">' + s.name + '</strong><span class="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-mono">#' + s.id + '</span></div>' +
+            '<div class="text-xs text-slate-500 mt-0.5">User: <span class="text-sky-700 font-mono font-bold">' + s.username + '</span> | Pass: <span class="font-mono font-bold text-amber-700">' + (s.password || "123") + '</span> | <span class="text-emerald-700 font-bold">' + s.grade + '</span></div>' +
           '</div>';
 
         var actionDiv = document.createElement("div");
-        actionDiv.className = "flex items-center gap-1";
+        actionDiv.className = "flex items-center gap-1.5";
 
         var ktpBtn = document.createElement("button");
-        ktpBtn.className = "px-2 py-1 bg-sunGold-400/20 text-sunNavy-900 border border-sunGold-500/50 rounded-lg font-display font-black text-[10px] active:scale-95 transition flex items-center gap-1";
+        ktpBtn.className = "px-2.5 py-1.5 bg-sunGold-400/20 text-sunNavy-900 border border-sunGold-500/50 rounded-lg font-display font-black text-xs active:scale-95 transition flex items-center gap-1";
         ktpBtn.innerHTML = '<span>🪪</span><span>KTP</span>';
         ktpBtn.onclick = (function(stId) { return function() { openSpecificStudentKtpModal(stId); }; })(s.id);
 
         var editBtn = document.createElement("button");
-        editBtn.className = "px-2 py-1 bg-amber-100 text-amber-900 rounded-lg font-bold text-[10px] active:scale-95";
+        editBtn.className = "px-2.5 py-1.5 bg-amber-100 text-amber-900 rounded-lg font-bold text-xs active:scale-95";
         editBtn.innerText = "Edit";
         editBtn.onclick = (function(stId) { return function() { startEditStudentForm(stId); }; })(s.id);
 
         var delBtn = document.createElement("button");
-        delBtn.className = "px-1.5 py-1 bg-rose-100 text-rose-700 rounded-lg font-bold text-[10px] active:scale-95";
+        delBtn.className = "px-2 py-1.5 bg-rose-100 text-rose-700 rounded-lg font-bold text-xs active:scale-95";
         delBtn.innerText = "🗑️";
         delBtn.onclick = (function(stId) { return function() { adminDeleteStudent(stId); }; })(s.id);
 
@@ -2240,7 +2219,6 @@
       });
     }
 
-    // FUNGSI CETAK SATUAN PDF DENGAN WADAH TERISOLASI (NON-BLANK)
     function printSingleStudentKtp() {
       var frontView = document.getElementById("ktp-card-front-view").cloneNode(true);
       var backView = document.getElementById("ktp-card-back-view").cloneNode(true);
@@ -2262,7 +2240,6 @@
       }, 300);
     }
 
-    // FUNGSI CETAK MASAL SEMUA KTP A4
     function printAllStudentsKtpA4() {
       if (!studentRoster || studentRoster.length === 0) {
         showToast("Belum ada data murid!");
@@ -2424,20 +2401,20 @@
         var streakVal = Number(s.streak || 0);
 
         var row = document.createElement("div");
-        row.className = "flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-200 text-xs";
+        row.className = "flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm";
         row.innerHTML = 
-          '<div class="flex items-center gap-2">' +
-            '<span class="text-xl">' + (s.avatar || "🦎") + '</span>' +
+          '<div class="flex items-center gap-2.5">' +
+            '<span class="text-2xl">' + (s.avatar || "🦎") + '</span>' +
             '<div>' +
-              '<strong class="text-slate-800">' + s.name + '</strong>' +
-              '<div class="text-[10px] text-slate-500 font-mono">No: #' + s.id + ' | <span class="text-amber-600 font-bold">' + s.grade + '</span></div>' +
+              '<strong class="text-slate-800 text-sm sm:text-base">' + s.name + '</strong>' +
+              '<div class="text-xs text-slate-500 font-mono">No: #' + s.id + ' | <span class="text-amber-600 font-bold">' + s.grade + '</span></div>' +
             '</div>' +
           '</div>' +
-          '<div class="flex items-center gap-2">' +
-            '<span class="inline-flex items-center gap-0.5 bg-orange-100 text-orange-800 px-2 py-0.5 rounded-full text-[10px] font-bold border border-orange-200">' +
+          '<div class="flex items-center gap-2.5">' +
+            '<span class="inline-flex items-center gap-1 bg-orange-100 text-orange-800 px-2.5 py-1 rounded-full text-xs font-bold border border-orange-200">' +
               '<span class="animate-flame-flicker">🔥</span><span>' + streakVal + '</span>' +
             '</span>' +
-            '<button onclick="adminMarkAttendance(\'' + s.id + '\')" class="px-2.5 py-1 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white rounded-lg text-[10px] font-title font-bold shadow-xs active:scale-95 transition">Absen 🔥</button>' +
+            '<button onclick="adminMarkAttendance(\'' + s.id + '\')" class="px-3 py-1.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white rounded-lg text-xs font-title font-bold shadow-xs active:scale-95 transition">Absen 🔥</button>' +
           '</div>';
 
         manualList.appendChild(row);
@@ -2663,11 +2640,11 @@
       for (var i = 0; i < worldsInfo.length; i++) {
         var w = worldsInfo[i];
         var d = document.createElement("div");
-        d.className = "p-2 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between text-xs";
-        d.innerHTML = '<div><strong>' + w.tag + ': ' + w.name + '</strong> <span class="text-[9px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold uppercase">' + w.grade + '</span></div>' +
-          '<div class="flex gap-1">' +
-            '<button onclick="startEditBab(' + i + ')" class="bg-amber-100 px-2 py-0.5 rounded text-[10px] font-bold text-amber-900">Edit</button>' +
-            '<button onclick="adminDeleteBab(' + i + ')" class="bg-rose-100 px-1.5 py-0.5 rounded text-[10px] font-bold text-rose-700">🗑️</button>' +
+        d.className = "p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between text-xs sm:text-sm";
+        d.innerHTML = '<div><strong>' + w.tag + ': ' + w.name + '</strong> <span class="text-[10px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold uppercase">' + w.grade + '</span></div>' +
+          '<div class="flex gap-1.5">' +
+            '<button onclick="startEditBab(' + i + ')" class="bg-amber-100 px-2.5 py-1 rounded text-xs font-bold text-amber-900">Edit</button>' +
+            '<button onclick="adminDeleteBab(' + i + ')" class="bg-rose-100 px-2 py-1 rounded text-xs font-bold text-rose-700">🗑️</button>' +
           '</div>';
         c.appendChild(d);
       }
@@ -2748,8 +2725,8 @@
 
       for (var i = 0; i < 10; i++) {
         var r = document.createElement("div");
-        r.className = "flex gap-1 items-center";
-        r.innerHTML = '<span class="text-[10px] w-8">Lvl ' + (i + 1) + ':</span><input type="text" id="input-theme-lvl-' + i + '" value="' + (w.levelThemes[i] || ("Level " + (i + 1))) + '" class="border p-1 text-xs w-full rounded bg-slate-50">';
+        r.className = "flex gap-2 items-center";
+        r.innerHTML = '<span class="text-xs w-12 font-bold">Lvl ' + (i + 1) + ':</span><input type="text" id="input-theme-lvl-' + i + '" value="' + (w.levelThemes[i] || ("Level " + (i + 1))) + '" class="border p-2 text-xs sm:text-sm w-full rounded-xl bg-slate-50">';
         grid.appendChild(r);
       }
     }
@@ -2803,9 +2780,9 @@
       for (var i = 0; i < 10; i++) {
         var q = getQuestion(parseInt(wVal), lIdx, i);
         var d = document.createElement("div");
-        d.className = "p-2 bg-slate-50 border text-[10px] rounded flex justify-between items-center";
-        d.innerHTML = '<div class="truncate max-w-[200px]"><strong>S' + (i + 1) + ':</strong> ' + q.text + '</div>' +
-          '<button onclick="editQuestionInForm(' + wVal + ', ' + lIdx + ', ' + i + ')" class="bg-sky-100 text-sky-800 px-2 py-0.5 rounded font-bold">Edit</button>';
+        d.className = "p-2.5 bg-slate-50 border text-xs rounded-xl flex justify-between items-center";
+        d.innerHTML = '<div class="truncate max-w-[220px]"><strong>S' + (i + 1) + ':</strong> ' + q.text + '</div>' +
+          '<button onclick="editQuestionInForm(' + wVal + ', ' + lIdx + ', ' + i + ')" class="bg-sky-100 text-sky-800 px-2.5 py-1 rounded-lg font-bold">Edit</button>';
         c.appendChild(d);
       }
       editQuestionInForm(wVal, lIdx, 0);
@@ -2864,8 +2841,8 @@
 
       for (var i = 0; i < 10; i++) {
         var box = document.createElement("label");
-        box.className = "flex justify-between p-2 border rounded text-[10px] bg-white cursor-pointer";
-        box.innerHTML = 'Level ' + (i + 1) + ' <input type="checkbox" ' + (locks[i] ? "checked" : "") + ' onchange="toggleLevelLock(' + wIdx + ', ' + i + ', this.checked)">';
+        box.className = "flex justify-between p-2.5 border rounded-xl text-xs bg-white cursor-pointer font-bold";
+        box.innerHTML = 'Level ' + (i + 1) + ' <input type="checkbox" ' + (locks[i] ? "checked" : "") + ' onchange="toggleLevelLock(' + wIdx + ', ' + i + ', this.checked)" class="w-4 h-4 accent-amber-500 cursor-pointer">';
         grid.appendChild(box);
       }
     }
@@ -2945,14 +2922,14 @@
         var streakVal = Number(s.streak || 0);
 
         var tr = document.createElement("tr");
-        tr.innerHTML = '<td class="p-2 font-mono">#' + s.id + '</td>' +
-          '<td class="p-2"><strong>' + s.name + '</strong></td>' +
-          '<td class="p-2">' + s.grade + '</td>' +
-          '<td class="p-2 text-orange-600 font-bold">🔥 ' + streakVal + '</td>' +
-          '<td class="p-2 font-bold text-blue-700">' + (scoreData.totalScore || 0) + ' Pts</td>' +
-          '<td class="p-2">' + examValDisplay + '</td>' +
-          '<td class="p-2 text-center">' +
-            (scoreData.examTaken ? '<button onclick="adminResetStudentExam(\'' + s.id + '\')" class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold text-[10px] active:scale-95">🔄 Reset</button>' : '<span class="text-slate-300">-</span>') +
+        tr.innerHTML = '<td class="p-3 font-mono">#' + s.id + '</td>' +
+          '<td class="p-3"><strong>' + s.name + '</strong></td>' +
+          '<td class="p-3">' + s.grade + '</td>' +
+          '<td class="p-3 text-orange-600 font-bold">🔥 ' + streakVal + '</td>' +
+          '<td class="p-3 font-bold text-blue-700">' + (scoreData.totalScore || 0) + ' Pts</td>' +
+          '<td class="p-3">' + examValDisplay + '</td>' +
+          '<td class="p-3 text-center">' +
+            (scoreData.examTaken ? '<button onclick="adminResetStudentExam(\'' + s.id + '\')" class="px-2.5 py-1 bg-amber-100 text-amber-900 rounded font-bold text-xs active:scale-95">🔄 Reset</button>' : '<span class="text-slate-300">-</span>') +
           '</td>';
         tbody.appendChild(tr);
       }
@@ -2994,8 +2971,8 @@
       for (var i = 0; i < buttons.length; i++) {
         var btn = document.getElementById("tab-lb-class-" + buttons[i]);
         if (btn) {
-          if (buttons[i] === cls) btn.className = "px-2.5 py-1 rounded-lg bg-sky-500 text-white shadow-sm transition";
-          else btn.className = "px-2.5 py-1 rounded-lg bg-slate-200 text-slate-600 hover:bg-slate-300 transition";
+          if (buttons[i] === cls) btn.className = "px-3 py-1.5 rounded-lg bg-sky-500 text-white shadow-sm transition text-xs sm:text-sm";
+          else btn.className = "px-3 py-1.5 rounded-lg bg-slate-200 text-slate-600 hover:bg-slate-300 transition text-xs sm:text-sm";
         }
       }
 
@@ -3034,15 +3011,15 @@
         var medal = (k === 0 ? "🥇" : (k === 1 ? "🥈" : (k === 2 ? "🥉" : "<span class='text-slate-400 font-mono font-bold'>#" + (k + 1) + "</span>")));
 
         var row = document.createElement("div");
-        row.className = "flex items-center justify-between p-2 rounded-xl border border-slate-100 hover:bg-slate-50 text-xs";
-        row.innerHTML = '<div class="flex items-center gap-1.5">' +
+        row.className = "flex items-center justify-between p-2.5 rounded-xl border border-slate-100 hover:bg-slate-50 text-xs sm:text-sm";
+        row.innerHTML = '<div class="flex items-center gap-2">' +
           medal + ' ' + (item.avatar || "🦎") +
           '<div class="leading-tight">' +
-            '<div class="flex items-center gap-1"><strong class="text-slate-800">' + item.studentName + '</strong>' + (isMe ? '<span class="text-[9px] bg-amber-400 text-amber-950 px-1 rounded font-bold">Kamu</span>' : '') + '</div>' +
-            '<div class="flex items-center gap-1 mt-0.5"><span class="text-[9px] px-1 py-0.2 rounded border font-bold uppercase ' + badgeColor + '">' + cleanGrd + '</span><span class="text-[9px] text-orange-600 font-bold">🔥 ' + item.streak + '</span></div>' +
+            '<div class="flex items-center gap-1.5"><strong class="text-slate-800">' + item.studentName + '</strong>' + (isMe ? '<span class="text-[9px] bg-amber-400 text-amber-950 px-1.5 py-0.2 rounded font-bold">Kamu</span>' : '') + '</div>' +
+            '<div class="flex items-center gap-1 mt-0.5"><span class="text-[9px] px-1.5 py-0.2 rounded border font-bold uppercase ' + badgeColor + '">' + cleanGrd + '</span><span class="text-[9px] text-orange-600 font-bold">🔥 ' + item.streak + '</span></div>' +
           '</div>' +
         '</div>' +
-        '<div class="text-blue-700 font-title font-bold text-sm">' + (item.totalScore || 0) + ' Pts</div>';
+        '<div class="text-blue-700 font-title font-bold text-sm sm:text-base">' + (item.totalScore || 0) + ' Pts</div>';
         c.appendChild(row);
       }
     }
@@ -3055,8 +3032,8 @@
       for (var i = 0; i < faunaMascots.length; i++) {
         var f = faunaMascots[i];
         var btn = document.createElement("button");
-        btn.className = "p-2 border rounded-xl flex items-center gap-2 " + (gameState.avatar === f.icon ? "bg-emerald-100 border-emerald-500" : "bg-slate-50");
-        btn.innerHTML = '<span class="text-xl">' + f.icon + '</span><div class="text-left leading-tight"><span class="font-bold text-[11px] block">' + f.name + '</span><span class="text-[9px] text-slate-500">' + f.origin + '</span></div>';
+        btn.className = "p-2.5 border rounded-xl flex items-center gap-2.5 " + (gameState.avatar === f.icon ? "bg-emerald-100 border-emerald-500" : "bg-slate-50");
+        btn.innerHTML = '<span class="text-2xl">' + f.icon + '</span><div class="text-left leading-tight"><span class="font-bold text-xs sm:text-sm block">' + f.name + '</span><span class="text-[10px] text-slate-500">' + f.origin + '</span></div>';
         btn.onclick = (function(av) {
           return function() {
             gameState.avatar = av;
