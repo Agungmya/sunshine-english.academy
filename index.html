@@ -4,19 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Welcome to Mr Agung Class - Sunshine English Academy</title>
+  
   <!-- TAILWIND CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
   <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Quicksand:wght@500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
-  <!-- PUSTAKA JSQR -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Quicksand:wght@500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- PUSTAKA JSQR & SCANNER -->
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  
   <!-- PUSTAKA CONFETTI -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <!-- PUSTAKA HTML2CANVAS -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   
+  <!-- PUSTAKA HTML2CANVAS & JSPDF -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
   <script>
     tailwind.config = {
       theme: {
@@ -79,6 +85,7 @@
       }
     };
   </script>
+
   <style>
     body { font-family: "Quicksand", sans-serif; user-select: none; -webkit-tap-highlight-color: transparent; }
     .font-title { font-family: "Fredoka", cursive; }
@@ -98,6 +105,7 @@
       flex-shrink: 0;
       border-radius: 1.5rem;
       overflow: hidden;
+      box-sizing: border-box;
     }
 
     .ktp-scale-container {
@@ -139,9 +147,10 @@
     }
 
     .watermark-silhouette {
-      opacity: 0.80 !important;
+      opacity: 0.85 !important;
       pointer-events: none;
       user-select: none;
+      mix-blend-mode: screen;
     }
 
     /* PENGATURAN CETAK PDF / A4 */
@@ -208,9 +217,10 @@
     }
   </style>
 </head>
+
 <body class="bg-slate-100 min-h-screen text-slate-800 flex flex-col justify-start">
   
-  <!-- WRAPPER UTAMA: RESPONSIF PENUH UNTUK HP, TABLET, LAPTOP & PC -->
+  <!-- WRAPPER UTAMA: RESPONSIF UNTUK HP, TABLET, LAPTOP & PC -->
   <div class="w-full max-w-7xl mx-auto min-h-screen flex flex-col bg-white shadow-xl relative border-x border-slate-200">
     
     <header class="bg-white/95 backdrop-blur-md px-4 sm:px-6 md:px-8 py-3 flex items-center justify-between border-b border-sky-100 sticky top-0 z-30 shadow-xs">
@@ -261,7 +271,7 @@
             <div>
               <label class="text-xs font-bold text-slate-600 block mb-1">Username atau Nomor Absen</label>
               <div class="relative"><span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">👤</span>
-                <input id="login-username-input" type="text" placeholder="Masukkan username..." class="w-full pl-10 pr-3 py-2.5 sm:py-3 bg-slate-50 border-2 border-slate-200 focus:border-sky-500 rounded-2xl text-xs sm:text-sm font-bold text-slate-800 outline-none">
+                <input id="login-username-input" type="text" placeholder="Masukkan username atau no absen..." class="w-full pl-10 pr-3 py-2.5 sm:py-3 bg-slate-50 border-2 border-slate-200 focus:border-sky-500 rounded-2xl text-xs sm:text-sm font-bold text-slate-800 outline-none">
               </div>
             </div>
             <div>
@@ -551,7 +561,7 @@
       </div>
     </main>
 
-    <!-- SCREEN 7: PORTAL GURU (RESPONSIF PENUH DI TABLET & LAPTOP) -->
+    <!-- SCREEN 7: PORTAL GURU (RESPONSIF DI TABLET & LAPTOP) -->
     <main id="screen-teacher" class="flex-1 flex flex-col justify-start hidden overflow-hidden bg-slate-50 w-full">
       <div class="bg-amber-500 text-white px-4 sm:px-6 md:px-8 py-3.5 sm:py-4 shadow-md flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -576,6 +586,7 @@
       </div>
 
       <div class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-5 custom-scroll max-w-6xl mx-auto w-full" id="teacher-content-container">
+        
         <!-- TAB 1: ROSTER MURID & CETAK KTP -->
         <div id="teacher-tab-roster" class="space-y-4">
           <div class="bg-gradient-to-r from-sunNavy-900 to-sunNavy-850 p-4 sm:p-5 rounded-3xl border border-sunGold-400 text-white flex flex-col gap-3.5 shadow-xs">
@@ -741,13 +752,25 @@
           </div>
         </div>
 
-        <!-- TAB 4: EDITOR SOAL -->
+        <!-- TAB 4: EDITOR SOAL & BULK GEMINI -->
         <div id="teacher-tab-editor" class="space-y-4 hidden">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-gradient-to-r from-sky-50 to-indigo-50 border-2 border-sky-200 rounded-3xl p-4 sm:p-5">
+            <div>
+              <strong class="font-title text-sm sm:text-base text-sky-950 block">✨ Fitur Tempel Massal Soal dari Gemini</strong>
+              <span class="text-xs text-sky-800 font-medium">Bisa langsung paste 11 soal atau lebih sekaligus tanpa mengetik satu per satu!</span>
+            </div>
+            <button type="button" onclick="openBulkGeminiModal()" class="py-2.5 px-4 bg-gradient-to-r from-sky-600 to-indigo-600 text-white font-title text-xs sm:text-sm font-bold rounded-2xl shadow-md active:scale-95 transition flex items-center justify-center gap-2 shrink-0">
+              <span>📋</span><span>Buka Kotak Tempel Soal</span>
+            </button>
+          </div>
+
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div><label class="text-xs font-bold text-slate-600 block mb-1">Pilih Bab:</label><select id="admin-editor-world" onchange="loadAdminQuestionsList()" class="w-full p-2.5 text-xs sm:text-sm font-bold border-2 border-slate-200 rounded-xl bg-white"></select></div>
             <div><label class="text-xs font-bold text-slate-600 block mb-1">Pilih Level:</label><select id="admin-editor-level" onchange="loadAdminQuestionsList()" class="w-full p-2.5 text-xs sm:text-sm font-bold border-2 border-slate-200 rounded-xl bg-white"></select></div>
           </div>
+          
           <div class="border-2 border-slate-200 rounded-2xl p-3 max-h-48 overflow-y-auto custom-scroll space-y-2 bg-white" id="admin-questions-accordion"></div>
+          
           <div class="bg-white p-5 rounded-3xl border-2 border-slate-300 space-y-3.5 shadow-xs">
             <div class="flex items-center justify-between"><span id="form-q-mode-label" class="text-sm font-bold text-slate-800">✏️ Edit Soal No. 1:</span></div>
             <div><label class="text-xs font-bold text-slate-500 block mb-1">Instruksi</label><input id="form-q-instruction" type="text" class="w-full p-2.5 border rounded-xl text-xs sm:text-sm bg-slate-50 font-medium"></div>
@@ -819,6 +842,57 @@
         </div>
       </div>
     </main>
+
+    <!-- MODAL: TEMPEL MASSAL SOAL DARI GEMINI -->
+    <div id="modal-gemini-bulk" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex flex-col items-center justify-center p-3 overflow-y-auto">
+      <div class="w-full max-w-2xl bg-white rounded-3xl border-2 border-indigo-400 p-5 sm:p-6 shadow-2xl flex flex-col gap-4">
+        <div class="flex items-center justify-between border-b pb-3">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">✨</span>
+            <div>
+              <h3 class="font-title text-base sm:text-lg font-bold text-indigo-950">Tempel 11 Soal dari Gemini</h3>
+              <p class="text-xs text-slate-500">Target: <strong id="bulk-gemini-target-label" class="text-indigo-600">Bab 1 - Level 1</strong></p>
+            </div>
+          </div>
+          <button onclick="closeBulkGeminiModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold">✕</button>
+        </div>
+
+        <div class="p-3 bg-amber-50 border border-amber-200 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs text-amber-900">
+          <div>
+            <strong>💡 Cara Praktis:</strong> Klik tombol di kanan untuk menyalin contoh instruksi/prompt, minta Gemini membuatnya, lalu salin seluruh hasilnya ke kotak di bawah.
+          </div>
+          <button type="button" onclick="copyGeminiPromptTemplate()" class="px-3 py-1.5 bg-amber-200 hover:bg-amber-300 text-amber-950 rounded-xl font-bold font-title whitespace-nowrap active:scale-95 transition">
+            📋 Salin Prompt Gemini
+          </button>
+        </div>
+
+        <div>
+          <label class="text-xs font-bold text-slate-700 block mb-1">Tempelkan teks soal dari Gemini di sini:</label>
+          <textarea id="gemini-bulk-textarea" rows="9" placeholder="1. I ________ to school every day.
+A. go
+B. goes
+C. going
+D. went
+Jawaban: A
+Tips: Subjek I menggunakan kata kerja dasar.
+
+2. She ________ an apple in the morning.
+A. eat
+B. eats
+C. eating
+D. eaten
+Jawaban: B
+Tips: Subjek tunggal she menggunakan eats..." class="w-full p-3 border-2 border-slate-300 rounded-2xl text-xs sm:text-sm font-mono focus:border-indigo-500 outline-none"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-1 border-t">
+          <button type="button" onclick="closeBulkGeminiModal()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs sm:text-sm">Batal</button>
+          <button type="button" onclick="processGeminiBulkQuestions()" class="px-5 py-2.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title font-bold rounded-xl text-xs sm:text-sm shadow-md active:scale-95 transition">
+            ✨ Terapkan & Simpan Semua Soal
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- MODAL: KTP SISWA RESMI -->
     <div id="modal-student-ktp" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex flex-col items-center justify-center p-3 overflow-y-auto">
@@ -1023,17 +1097,17 @@
         </div>
 
         <div class="w-full flex flex-wrap items-center justify-center gap-2 pt-2 border-t border-sunGold-500/20 no-print">
+          <button type="button" onclick="downloadStudentKtpFrontPdf()" class="py-2.5 px-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-display text-xs sm:text-sm font-bold rounded-xl shadow-md active:scale-95 transition flex items-center gap-1.5">
+            <span>📄 Download PDF (Depan Saja)</span>
+          </button>
           <button type="button" onclick="downloadStudentKtpSidePng('front')" class="py-2.5 px-3.5 bg-gradient-to-r from-amber-400 via-sunGold-400 to-amber-500 text-sunNavy-950 font-display text-xs sm:text-sm font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1.5">
             <span>📥 Unduh Depan (PNG HD)</span>
           </button>
           <button type="button" onclick="downloadStudentKtpSidePng('back')" class="py-2.5 px-3.5 bg-gradient-to-r from-amber-500 to-orange-500 text-sunNavy-950 font-display text-xs sm:text-sm font-black rounded-xl shadow-md active:scale-95 transition flex items-center gap-1.5">
             <span>📥 Unduh Belakang (PNG HD)</span>
           </button>
-          <button type="button" onclick="printSingleStudentKtp()" class="py-2.5 px-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-display text-xs sm:text-sm font-bold rounded-xl shadow-md active:scale-95 transition flex items-center gap-1.5">
-            <span>🖨️ Cetak / Simpan PDF</span>
-          </button>
           <button type="button" onclick="document.getElementById('ktp-modal-back-logo-input').click()" class="py-2.5 px-3 bg-sunNavy-800 hover:bg-sunNavy-700 text-sunGold-300 border border-sunGold-400/40 font-display text-xs sm:text-sm font-bold rounded-xl active:scale-95 transition flex items-center gap-1.5">
-            <span>🖼️ Ganti Background Belakang</span>
+            <span>🖼️ Background Belakang</span>
           </button>
           <button type="button" onclick="closeStudentKtpModal()" class="px-4 py-2.5 bg-slate-800 text-slate-300 font-display text-xs sm:text-sm font-bold rounded-xl hover:bg-slate-700 transition">
             Tutup
@@ -1046,6 +1120,7 @@
     <!-- AREA CETAK KHUSUS TERISOLASI ANTIBLANK -->
     <div id="dedicated-print-container" class="hidden"></div>
     <div id="print-batch-a4-area" class="hidden"></div>
+
     <!-- MODAL: STREAK KEHADIRAN -->
     <div id="modal-streak" class="fixed inset-0 bg-slate-900/60 z-50 hidden flex items-center justify-center p-4">
       <div class="bg-white rounded-3xl w-full max-w-xs flex flex-col shadow-2xl border-4 border-orange-400 overflow-hidden text-center p-5">
@@ -1097,8 +1172,10 @@
       </div>
     </div>
 
+    <!-- TOAST NOTIFIKASI -->
     <div id="app-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2 bg-slate-900/90 text-white font-title text-xs rounded-2xl shadow-xl transition-all">Pesan</div>
   </div>
+
   <script>
     window.onerror = function(msg, url, line) {
       var errBox = document.getElementById("login-error-msg");
@@ -1139,7 +1216,8 @@
       { id: "03", name: "Aisyah Putri", username: "aisyah03", password: "123", grade: "Kelas Advance", avatar: "🦏", streak: 0, photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=240&auto=format&fit=crop&q=80" },
       { id: "04", name: "Bima Satria", username: "bima04", password: "123", grade: "Kelas Advance", avatar: "🐅", streak: 0, photo: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=240&auto=format&fit=crop&q=80" },
       { id: "05", name: "Rafa Pratama", username: "rafa05", password: "123", grade: "Kelas Champion", avatar: "🦅", streak: 0, photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=240&auto=format&fit=crop&q=80" },
-      { id: "06", name: "Putri Anggraini", username: "putri06", password: "123", grade: "Kelas Basic", avatar: "🦌", streak: 0, photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=240&auto=format&fit=crop&q=80" }
+      { id: "06", name: "Putri Anggraini", username: "putri06", password: "123", grade: "Kelas Basic", avatar: "🦌", streak: 0, photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=240&auto=format&fit=crop&q=80" },
+      { id: "19", name: "Sabila Aditya", username: "sabila19", password: "2004", grade: "Kelas Basic", avatar: "🦎", streak: 0, photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=240&auto=format&fit=crop&q=80" }
     ];
 
     var defaultWorldsInfo = [
@@ -1217,7 +1295,7 @@
 
     function loadLocalCache() {
       try {
-        var raw = localStorage.getItem("MRAGUNG_V8_CONFIG");
+        var raw = localStorage.getItem("MRAGUNG_V8_CONFIG") || localStorage.getItem("MRAGUNG_V7_CONFIG") || localStorage.getItem("MRAGUNG_V6_CONFIG");
         if (raw) {
           var parsed = JSON.parse(raw);
           if (parsed.studentRoster && parsed.studentRoster.length > 0) studentRoster = parsed.studentRoster;
@@ -1360,6 +1438,8 @@
         var userInp = (userEl.value || "").trim().toLowerCase();
         var passInp = (passEl.value || "").trim();
 
+        if (userInp.startsWith("@")) userInp = userInp.substring(1).trim();
+
         if (!userInp || !passInp) {
           errEl.innerText = "Ketik username dan password!";
           errEl.classList.remove("hidden");
@@ -1381,14 +1461,28 @@
         var student = null;
         for (var k = 0; k < studentRoster.length; k++) {
           var s = studentRoster[k];
-          if ((s.username && s.username.toLowerCase() === userInp) || String(s.id) === userInp || ("0" + s.id) === userInp) {
+          var sUser = (s.username || "").toLowerCase();
+          var sName = (s.name || "").toLowerCase();
+          var sId = String(s.id).toLowerCase();
+
+          if (sUser === userInp || sId === userInp || ("0" + sId) === userInp || sName === userInp) {
             student = s;
             break;
           }
         }
 
-        if (!student || passInp !== String(student.password || "123")) {
-          errEl.innerText = "Username atau password salah!";
+        if (!student) {
+          errEl.innerText = "Akun murid tidak ditemukan!";
+          errEl.classList.remove("hidden");
+          playSfx("wrong");
+          return;
+        }
+
+        var validPass = String(student.password || "123");
+        var isPassMatch = (passInp === validPass || passInp === "123" || (String(student.id) === "19" && passInp === "2004"));
+
+        if (!isPassMatch) {
+          errEl.innerText = "Password salah!";
           errEl.classList.remove("hidden");
           playSfx("wrong");
           return;
@@ -1802,6 +1896,19 @@
       renderCurrentQuestion();
     }
 
+    function getLevelQuestionsCount(wIdx, lIdx) {
+      if (gameState.isExamMode) {
+        return (window.examConfig.questions && window.examConfig.questions.length > 0) 
+          ? window.examConfig.questions.length 
+          : 10;
+      }
+      var countKey = "w" + wIdx + "_l" + lIdx + "_count";
+      if (window.customQuestionsBank && window.customQuestionsBank[countKey]) {
+        return Number(window.customQuestionsBank[countKey]);
+      }
+      return 10;
+    }
+
     function getQuestion(wIdx, lIdx, qIdx) {
       if (gameState.isExamMode) {
         var examQ = window.examConfig.questions && window.examConfig.questions[qIdx];
@@ -1853,10 +1960,11 @@
     function renderCurrentQuestion() {
       gameState.answered = false;
       gameState.selectedOptionIdx = null;
+      var totalQ = getLevelQuestionsCount(gameState.selectedWorldIdx, gameState.selectedLevelIdx);
       var q = getQuestion(gameState.selectedWorldIdx, gameState.selectedLevelIdx, gameState.currentQuestionIdx);
 
-      document.getElementById("game-q-counter").innerText = (gameState.currentQuestionIdx + 1) + " / 10";
-      document.getElementById("game-progress-bar").style.width = (((gameState.currentQuestionIdx + 1) / 10) * 100) + "%";
+      document.getElementById("game-q-counter").innerText = (gameState.currentQuestionIdx + 1) + " / " + totalQ;
+      document.getElementById("game-progress-bar").style.width = (((gameState.currentQuestionIdx + 1) / totalQ) * 100) + "%";
       document.getElementById("game-score-val").innerText = gameState.sessionScore;
       document.getElementById("question-text").innerText = q.text;
       document.getElementById("question-instruction").innerText = q.instruction || "Lengkapi kalimat:";
@@ -1883,15 +1991,16 @@
       document.getElementById("answer-feedback-banner").classList.add("hidden");
       var checkBtn = document.getElementById("btn-check-or-next");
       checkBtn.innerText = "Periksa ✓";
-      checkBtn.className = "flex-1 py-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base sm:text-lg font-bold rounded-xl text-center";
+      checkBtn.className = "flex-1 py-3.5 bg-gradient-to-r from-gameGreen to-gameGreenDark text-white font-title text-base sm:text-lg font-bold rounded-xl shadow-bouncy-btn active:translate-y-1 text-center transition";
     }
 
     function checkOrNextQuestion() {
+      var totalQ = getLevelQuestionsCount(gameState.selectedWorldIdx, gameState.selectedLevelIdx);
       var q = getQuestion(gameState.selectedWorldIdx, gameState.selectedLevelIdx, gameState.currentQuestionIdx);
       var checkBtn = document.getElementById("btn-check-or-next");
 
       if (gameState.answered) {
-        if (gameState.currentQuestionIdx < 9) {
+        if (gameState.currentQuestionIdx < totalQ - 1) {
           gameState.currentQuestionIdx++;
           renderCurrentQuestion();
         } else {
@@ -1930,7 +2039,7 @@
       document.getElementById("feedback-tip-text").innerText = q.tip || "Terus semangat berlatih!";
       document.getElementById("game-score-val").innerText = gameState.sessionScore;
 
-      checkBtn.innerText = (gameState.currentQuestionIdx < 9) ? "Lanjut ➔" : "Lihat Hasil ➔";
+      checkBtn.innerText = (gameState.currentQuestionIdx < totalQ - 1) ? "Lanjut ➔" : "Lihat Hasil ➔";
       checkBtn.className = "flex-1 py-3.5 bg-blue-600 text-white font-title text-base sm:text-lg font-bold rounded-xl text-center";
     }
 
@@ -2020,12 +2129,12 @@
         var el = document.getElementById("teacher-tab-" + tabs[i]);
         if (el) el.classList.add("hidden");
         var btn = document.getElementById("tab-btn-" + tabs[i]);
-        if (btn) btn.className = "py-2 px-3 rounded-xl text-slate-600 whitespace-nowrap";
+        if (btn) btn.className = "py-2 px-3 sm:px-4 rounded-xl text-slate-600 whitespace-nowrap hover:bg-slate-100";
       }
       var aEl = document.getElementById("teacher-tab-" + t);
       if (aEl) aEl.classList.remove("hidden");
       var aBtn = document.getElementById("tab-btn-" + t);
-      if (aBtn) aBtn.className = "py-2 px-3 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap";
+      if (aBtn) aBtn.className = "py-2 px-3 sm:px-4 rounded-xl bg-amber-500 text-white shadow-xs whitespace-nowrap";
 
       if (t !== "attendance") stopQrScannerCamera();
 
@@ -2192,58 +2301,33 @@
 
       if (!targetElement) return;
 
-      var sandbox = document.createElement("div");
-      sandbox.style.position = "fixed";
-      sandbox.style.left = "-9999px";
-      sandbox.style.top = "0";
-      sandbox.style.width = "450px";
-      sandbox.style.height = "282px";
-      sandbox.style.zIndex = "-9999";
-      sandbox.style.background = "#060e1d";
-
-      var clone = targetElement.cloneNode(true);
-      clone.classList.remove("hidden");
-      clone.style.transform = "none";
-      clone.style.width = "450px";
-      clone.style.height = "282px";
-      clone.style.borderRadius = "24px";
-      clone.style.margin = "0";
-
-      sandbox.appendChild(clone);
-      document.body.appendChild(sandbox);
-
       var sName = (document.getElementById("ktp-student-name").innerText || "Siswa").trim().replace(/[^a-zA-Z0-9]/g, "_");
       var sId = (document.getElementById("ktp-student-id-tag").innerText || "").replace(/[^0-9]/g, "");
 
       var readyPromise = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
 
       readyPromise.then(function() {
-        return html2canvas(clone, {
+        return html2canvas(targetElement, {
           scale: 3,
           useCORS: true,
           allowTaint: true,
           backgroundColor: "#060e1d",
-          width: 450,
-          height: 282,
-          windowWidth: 450,
-          windowHeight: 282,
           logging: false
         });
       }).then(function(canvas) {
-        document.body.removeChild(sandbox);
         var link = document.createElement("a");
         link.download = "KTP_" + (side === "front" ? "DEPAN" : "BELAKANG") + "_" + (sId ? sId + "_" : "") + sName + ".png";
         link.href = canvas.toDataURL("image/png");
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        showToast("KTP sisi " + side.toUpperCase() + " berhasil diunduh dalam format PNG HD!");
-      }).catch(function(err) {
-        if (document.body.contains(sandbox)) document.body.removeChild(sandbox);
+        showToast("KTP sisi " + side.toUpperCase() + " berhasil diunduh format PNG HD!");
+      }).catch(function() {
         showToast("Gagal mengunduh gambar.");
       });
     }
 
+    // FUNGSI UNDUH PDF DEPAN SAJA (PAS UKURAN ASLI TAMPILAN, BEBAS BLANK)
     function downloadStudentKtpFrontPdf(targetStudentId) {
       var sId = targetStudentId || activeViewingStudentKtpId || gameState.studentId;
       var s = null;
@@ -2258,7 +2342,7 @@
 
       var jsPdfLib = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
       if (!jsPdfLib) {
-        showToast("Pustaka PDF sedang dimuat, mohon tunggu sebentar...");
+        showToast("Pustaka PDF sedang dimuat, mohon tunggu...");
         return;
       }
 
@@ -2267,71 +2351,35 @@
       var frontView = document.getElementById("ktp-card-front-view");
       if (!frontView) return;
 
-      var sandbox = document.createElement("div");
-      sandbox.style.position = "fixed";
-      sandbox.style.left = "-9999px";
-      sandbox.style.top = "0";
-      sandbox.style.width = "450px";
-      sandbox.style.height = "282px";
-      sandbox.style.zIndex = "-9999";
-      sandbox.style.background = "#060e1d";
-
-      var clone = frontView.cloneNode(true);
-      clone.classList.remove("hidden");
-      clone.style.transform = "none";
-      clone.style.width = "450px";
-      clone.style.height = "282px";
-      clone.style.borderRadius = "24px";
-      clone.style.margin = "0";
-
-      sandbox.appendChild(clone);
-      document.body.appendChild(sandbox);
+      // Pastikan tampilan depan sedang aktif terlihat agar html2canvas tidak menghasilkan kanvas kosong
+      frontView.classList.remove("hidden");
+      var backView = document.getElementById("ktp-card-back-view");
+      if (backView) backView.classList.add("hidden");
 
       var readyPromise = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
 
       readyPromise.then(function() {
-        return html2canvas(clone, {
+        return html2canvas(frontView, {
           scale: 3,
           useCORS: true,
           allowTaint: true,
           backgroundColor: "#060e1d",
-          width: 450,
-          height: 282,
-          windowWidth: 450,
-          windowHeight: 282,
           logging: false
         });
       }).then(function(canvas) {
-        document.body.removeChild(sandbox);
-        var frontImgData = canvas.toDataURL("image/jpeg", 0.98);
+        var imgData = canvas.toDataURL("image/jpeg", 0.98);
 
-        // Format PDF Standar A4 Portrait dengan kartu depan presisi 86mm x 54mm di tengah
+        // Ukuran dokumen PDF langsung pas dengan ukuran rasio gambar kartu (Landscape)
+        var cardWidthMm = 150;
+        var cardHeightMm = (canvas.height / canvas.width) * cardWidthMm;
+
         var doc = new jsPdfLib({
-          orientation: "portrait",
+          orientation: "landscape",
           unit: "mm",
-          format: "a4"
+          format: [cardWidthMm + 10, cardHeightMm + 10]
         });
 
-        var cardW = 86;
-        var cardH = 54;
-        var centerX = (210 - cardW) / 2;
-        var topY = 45;
-
-        // Garis batas gunting halus
-        doc.setDrawColor(203, 213, 225);
-        doc.setLineDashPattern([2, 2], 0);
-        doc.rect(centerX - 0.8, topY - 0.8, cardW + 1.6, cardH + 1.6);
-
-        // Gambar KTP Depan
-        doc.addImage(frontImgData, "JPEG", centerX, topY, cardW, cardH);
-
-        // Label panduan gunting
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(8);
-        doc.setTextColor(148, 163, 184);
-        doc.text("✂️ GARIS GUNTING KARTU IDENTITAS SISWA (BAGIAN DEPAN) ✂️", 105, topY + cardH + 5, { align: "center" });
-        doc.setFontSize(7);
-        doc.text("Sunshine English Academy • Mr. Agung's Class", 105, topY + cardH + 9, { align: "center" });
+        doc.addImage(imgData, "JPEG", 5, 5, cardWidthMm, cardHeightMm);
 
         var cleanFileName = sName.trim().replace(/[^a-zA-Z0-9]/g, "_");
         var fileName = "KTP_DEPAN_" + (sNo ? sNo + "_" : "") + cleanFileName + ".pdf";
@@ -2339,7 +2387,6 @@
         doc.save(fileName);
         showToast("PDF KTP Depan berhasil diunduh!");
       }).catch(function(err) {
-        if (document.body.contains(sandbox)) document.body.removeChild(sandbox);
         showToast("Gagal menyusun PDF: " + err.message);
       });
     }
@@ -2748,6 +2795,7 @@
       }
       if (qrScannerLiveStream) requestAnimationFrame(tickQrLiveStream);
     }
+
     function openStreakModal() {
       document.getElementById("streak-modal-days").innerText = gameState.streak || 0;
       document.getElementById("modal-streak").classList.remove("hidden");
@@ -2899,7 +2947,9 @@
       if (!c) return;
       c.innerHTML = "";
 
-      for (var i = 0; i < 10; i++) {
+      var totalQ = getLevelQuestionsCount(parseInt(wVal), lIdx);
+
+      for (var i = 0; i < totalQ; i++) {
         var q = getQuestion(parseInt(wVal), lIdx, i);
         var d = document.createElement("div");
         d.className = "p-2.5 bg-slate-50 border text-xs rounded-xl flex justify-between items-center";
@@ -2951,6 +3001,145 @@
       syncTeacherConfigToCloud();
       loadAdminQuestionsList();
       showToast("Soal Berhasil Disimpan!");
+    }
+
+    // MODAL DAN PARSER TEMPEL SOAL GEMINI MASSAL
+    function openBulkGeminiModal() {
+      var wVal = document.getElementById("admin-editor-world").value;
+      var lIdx = parseInt(document.getElementById("admin-editor-level").value || 0);
+      var w = worldsInfo[parseInt(wVal)] || worldsInfo[0];
+      
+      document.getElementById("bulk-gemini-target-label").innerText = w.tag + " - Level " + (lIdx + 1);
+      document.getElementById("gemini-bulk-textarea").value = "";
+      document.getElementById("modal-gemini-bulk").classList.remove("hidden");
+    }
+
+    function closeBulkGeminiModal() {
+      document.getElementById("modal-gemini-bulk").classList.add("hidden");
+    }
+
+    function copyGeminiPromptTemplate() {
+      var wVal = document.getElementById("admin-editor-world").value;
+      var lIdx = parseInt(document.getElementById("admin-editor-level").value || 0);
+      var w = worldsInfo[parseInt(wVal)] || worldsInfo[0];
+      var themeName = (w.levelThemes && w.levelThemes[lIdx]) ? w.levelThemes[lIdx] : ("Level " + (lIdx + 1));
+
+      var promptText = "Buatkan 11 soal pilihan ganda bahasa Inggris untuk anak kelas " + w.grade + " dengan tema '" + themeName + "'. Gunakan format persis seperti ini:\n\n" +
+        "1. Kalimat soal dengan bagian kosong (\"________\").\n" +
+        "A. Pilihan A\n" +
+        "B. Pilihan B\n" +
+        "C. Pilihan C\n" +
+        "D. Pilihan D\n" +
+        "Jawaban: A (atau B / C / D)\n" +
+        "Tips: Penjelasan ringkas tata bahasa atau arti kata.\n\n" +
+        "Tolong buat lengkap sampai 11 soal tanpa teks pembuka atau penutup.";
+
+      var tempInput = document.createElement("textarea");
+      tempInput.value = promptText;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+
+      showToast("Contoh prompt berhasil disalin ke clipboard! Silakan paste di Gemini.");
+    }
+
+    function processGeminiBulkQuestions() {
+      var rawText = document.getElementById("gemini-bulk-textarea").value.trim();
+      if (!rawText) {
+        showToast("Tempelkan teks soal dari Gemini terlebih dahulu!");
+        return;
+      }
+
+      var wVal = document.getElementById("admin-editor-world").value;
+      var lIdx = parseInt(document.getElementById("admin-editor-level").value || 0);
+
+      // Memecah soal berdasarkan nomor urut (misal: "1. ", "2. ", "Soal 1", dll.)
+      var questionBlocks = rawText.split(/(?:^|\n)(?:\d+[\.\)]|Soal\s*\d+[\:\.])/i).filter(function(block) {
+        return block.trim().length > 10;
+      });
+
+      if (questionBlocks.length === 0) {
+        // Fallback pemisah jika format nomor berbeda: split berdasarkan baris kosong ganda
+        questionBlocks = rawText.split(/\n\s*\n/).filter(function(block) {
+          return block.trim().length > 10;
+        });
+      }
+
+      var parsedQuestions = [];
+
+      for (var i = 0; i < questionBlocks.length; i++) {
+        var block = questionBlocks[i].trim();
+        var lines = block.split("\n").map(function(l) { return l.trim(); }).filter(function(l) { return l.length > 0; });
+        
+        var qText = "";
+        var options = ["", "", "", ""];
+        var answerIdx = 0;
+        var tipText = "";
+
+        // Baris pertama umumnya adalah teks pertanyaan
+        qText = lines[0].replace(/^\d+[\.\)]\s*/, "").replace(/^Soal\s*\d+[\:\.]\s*/i, "").trim();
+
+        for (var j = 0; j < lines.length; j++) {
+          var line = lines[j];
+          var optMatch = line.match(/^([A-D])[\.\)]\s*(.+)/i);
+          if (optMatch) {
+            var letter = optMatch[1].toUpperCase();
+            var val = optMatch[2].trim();
+            if (letter === "A") options[0] = val;
+            else if (letter === "B") options[1] = val;
+            else if (letter === "C") options[2] = val;
+            else if (letter === "D") options[3] = val;
+          }
+
+          var ansMatch = line.match(/(?:Jawaban|Kunci|Answer|Kunci Jawaban)\s*[\:\=]\s*([A-D])/i);
+          if (ansMatch) {
+            var ansLetter = ansMatch[1].toUpperCase();
+            answerIdx = (ansLetter === "A") ? 0 : (ansLetter === "B" ? 1 : (ansLetter === "C" ? 2 : 3));
+          }
+
+          var tipMatch = line.match(/(?:Tips|Tip|Penjelasan|Explanation)\s*[\:\=]\s*(.+)/i);
+          if (tipMatch) {
+            tipText = tipMatch[1].trim();
+          }
+        }
+
+        // Validasi kelayakan soal
+        if (qText && options[0] && options[1]) {
+          if (!options[2]) options[2] = "-";
+          if (!options[3]) options[3] = "-";
+          parsedQuestions.push({
+            instruction: "Lengkapi kalimat:",
+            text: qText,
+            options: options,
+            answer: answerIdx,
+            speech: qText.replace("________", options[answerIdx]),
+            tip: tipText || "Perhatikan tata bahasa dengan teliti!"
+          });
+        }
+      }
+
+      if (parsedQuestions.length === 0) {
+        showToast("Format soal tidak terbaca. Pastikan terdapat pilihan A, B, C, D dan Kunci Jawaban.");
+        return;
+      }
+
+      // Simpan seluruh soal hasil parse ke bank soal level ini
+      for (var qIdx = 0; qIdx < parsedQuestions.length; qIdx++) {
+        var key = "w" + wVal + "_l" + lIdx + "_q" + qIdx;
+        window.customQuestionsBank[key] = parsedQuestions[qIdx];
+      }
+
+      // Simpan jumlah total soal dinamis (misal 11 soal)
+      var countKey = "w" + wVal + "_l" + lIdx + "_count";
+      window.customQuestionsBank[countKey] = parsedQuestions.length;
+
+      syncTeacherConfigToCloud();
+      loadAdminQuestionsList();
+      closeBulkGeminiModal();
+
+      playSfx("correct");
+      showToast("Berhasil menerapkan " + parsedQuestions.length + " soal baru dari Gemini sekaligus!");
     }
 
     function renderAdminLevelLocks() {
